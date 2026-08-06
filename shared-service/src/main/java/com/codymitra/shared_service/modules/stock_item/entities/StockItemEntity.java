@@ -2,6 +2,10 @@ package com.codymitra.shared_service.modules.stock_item.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
+import com.codymitra.shared_service.modules.stock_category.entities.StockCategoryEntity;
+import com.codymitra.shared_service.modules.stock_group.entities.StockGroupEntity;
+import com.codymitra.shared_service.modules.stock_item.enums.StockItemTypeEnum;
+import com.codymitra.shared_service.modules.unit.entities.UnitEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +30,7 @@ public class StockItemEntity extends BaseEntity {
     private String name;
 
     /// Unique stock code (e.g., STK0001)
-    @Column(name = "code")
+    @Column(name = "code", unique = true)
     private String code;
 
     @Column(name = "alias")
@@ -35,14 +39,20 @@ public class StockItemEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "stock_group_id")
-    private Long stockGroupId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stock_group_id")
+    private StockGroupEntity stockGroup;
 
-    @Column(name = "stock_category_id")
-    private Long stockCategoryId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stock_category_id")
+    private StockCategoryEntity stockCategory;
 
-    @Column(name = "unit_id")
-    private Long unitId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unit_id", nullable = false)
+    private UnitEntity unit;
+
+    @Column(name = "stock_item_type")
+    private StockItemTypeEnum stockItemType;
 
     /// decimal 5,2
     @Column(name = "gst_rate")
@@ -59,6 +69,12 @@ public class StockItemEntity extends BaseEntity {
 
     @Column(name = "opening_value")
     private Double openingValue;
+
+    @Column(name = "current_quantity")
+    private Double currentQuantity;
+
+    @Column(name = "reorder_level")
+    private Double reorderLevel;
 
     /// decimal 12,3
     @Column(name = "minimum_stock", precision = 12, scale = 3)

@@ -1,6 +1,8 @@
 package com.codymitra.shared_service.modules.unit.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
+import com.codymitra.shared_service.modules.unit.enums.OperatorEnum;
+import com.codymitra.shared_service.modules.unit.enums.UnitTypeEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +32,12 @@ public class UnitEntity extends BaseEntity {
 
     @Column(name = "code",unique = true)
     private String code;
+
+    @Column(name = "unit_type")
+    private UnitTypeEnum unitType;
+
+    @Column(name = "operator")
+    private OperatorEnum operator;
 
     @Column(name = "alias")
     private String alias;
