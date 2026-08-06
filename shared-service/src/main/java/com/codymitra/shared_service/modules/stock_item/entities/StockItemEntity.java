@@ -98,9 +98,6 @@ public class StockItemEntity extends BaseEntity {
     @Column(name = "manufacturer_id")
     private Long manufacturerId;
 
-    @Column(name = "status")
-    private String status;
-
     @Column(name = "active")
     private Boolean active;
 }

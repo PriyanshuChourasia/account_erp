@@ -11,7 +11,11 @@
 	<artifactId>codymitra</artifactId>
 
 	<dependencies>
-
+        <dependency>
+			<groupId>com.codymitra</groupId>
+			<artifactId>shared-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
