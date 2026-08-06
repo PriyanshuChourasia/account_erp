@@ -1,4 +1,4 @@
-package com.codymitra.shared_service.modules.stock_group.entities;
+package com.codymitra.shared_service.modules.tax_rate_master.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
@@ -8,13 +8,16 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "stock_groups")
-@Table(name = "stock_groups")
+@Entity(name = "tax_rate_masters")
+@Table(name = "tax_rate_masters")
 @EqualsAndHashCode(callSuper = true)
-public class StockGroupEntity extends BaseEntity {
+public class TaxRateMasterEntity extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,18 +25,30 @@ public class StockGroupEntity extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "code",unique = true)
+    @Column(name = "code", unique = true)
     private String code;
 
     @Column(name = "alias")
     private String alias;
 
-    @Column(name = "parent_id")
-    private Long parentId;
-
     @Column(name = "description")
     private String description;
 
+    @Column(name = "effective_from")
+    private LocalDate effectiveFrom;
+
+    @Column(name = "effective_to")
+    private LocalDate effectiveTo;
+
+    @Column(name = "cgst")
+    private Double cgst;
+
+    @Column(name = "sgst")
+    private Double sgst;
+
+    @Column(name = "igst")
+    private Double igst;
+
     @Column(name = "active")
-    private String active;
+    private Boolean active;
 }

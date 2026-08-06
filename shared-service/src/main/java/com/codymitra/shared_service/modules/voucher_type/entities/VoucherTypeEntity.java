@@ -1,4 +1,4 @@
-package com.codymitra.shared_service.modules.stock_group.entities;
+package com.codymitra.shared_service.modules.voucher_type.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "stock_groups")
-@Table(name = "stock_groups")
+@Entity(name = "voucher_types")
+@Table(name = "voucher_types")
 @EqualsAndHashCode(callSuper = true)
-public class StockGroupEntity extends BaseEntity {
+public class VoucherTypeEntity extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,18 +23,12 @@ public class StockGroupEntity extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "code",unique = true)
+    @Column(name = "code", unique = true)
     private String code;
-
-    @Column(name = "alias")
-    private String alias;
-
-    @Column(name = "parent_id")
-    private Long parentId;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "active")
-    private String active;
+    private Boolean active;
 }

@@ -1,4 +1,4 @@
-package com.codymitra.shared_service.modules.stock_group.entities;
+package com.codymitra.shared_service.modules.stock_category.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "stock_groups")
-@Table(name = "stock_groups")
+@Entity(name = "stock_categories")
+@Table(name = "stock_categories")
 @EqualsAndHashCode(callSuper = true)
-public class StockGroupEntity extends BaseEntity {
+public class StockCategoryEntity extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

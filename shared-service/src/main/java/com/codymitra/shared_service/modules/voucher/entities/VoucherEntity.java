@@ -31,6 +31,10 @@ public class VoucherEntity extends BaseEntity {
     @Column(name = "voucher_type_id")
     private Long voucherTypeId;
 
+
+    @Column(name = "voucher_reference_id")
+    private Long voucherReferenceId;
+
     @Column(name = "account_ledger_id")
     private Long accountLedgerId;
 
