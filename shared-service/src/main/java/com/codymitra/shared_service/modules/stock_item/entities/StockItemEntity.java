@@ -1,4 +1,4 @@
-package com.codymitra.shared_service.modules.account_ledger.entities;
+package com.codymitra.shared_service.modules.stock_item.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
@@ -11,27 +11,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "account_ledgers")
-@Table(name = "account_ledgers")
+@Entity(name = "stock_items")
+@Table(name = "stock_items")
 @EqualsAndHashCode(callSuper = true)
-public class AccountLedgerEntity extends BaseEntity {
+public class StockItemEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name",unique = true)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "code",unique = true)
-    private String code;
-
-    @Column(name = "parent_id")
-    private Long parentId;
+    @Column(name = "alias")
+    private String alias;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "")
+
 }
