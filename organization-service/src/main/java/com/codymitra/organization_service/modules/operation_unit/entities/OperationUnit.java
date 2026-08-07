@@ -1,7 +1,6 @@
-package com.codymitra.organization_service.modules.legal_entity.entities;
+package com.codymitra.organization_service.modules.operation_unit.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
-import com.codymitra.shared_service.modules.country.entities.CountryEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,27 +10,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "legal_entities")
-@Table(name = "legal_entities")
+@Entity(name = "operation_units")
+@Table(name = "operation_units")
 @EqualsAndHashCode(callSuper = true)
-public class LegalEntity extends BaseEntity {
+public class OperationUnit extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name",nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "code", unique = true,nullable = false)
+    @Column(name = "code", unique = true)
     private String code;
 
     @Column(name = "description")
     private String description;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id",nullable = false)
-    private CountryEntity country;
 
     @Column(name = "active")
     private Boolean active;

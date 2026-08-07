@@ -73,6 +73,6 @@ The database must exist locally (`account_erp`) before starting codymitra-servic
 ## Architecture conventions
 
 - Entities live under `modules/<feature_name>/entities/<Feature>Entity.java`, package-by-feature rather than package-by-layer. Follow this layout when adding new domain entities to `shared-service`.
-- Shared/base persistence concerns (audit fields) belong in `shared-service`'s top-level `entities.BaseEntity`, extended via `@EqualsAndHashCode(callSuper = true)` by feature entities (see `StockItemEntity`).
+- Shared/base persistence concerns (audit fields) belong in `shared-service`'s top-level `entities.BaseEntity`, extended via `@EqualsAndHashCode(callSuper = true)` by feature entities (see `ItemEntity`).
 - Lombok (`@Data`, `@NoArgsConstructor`, `@AllArgsConstructor`) is the standard for entity boilerplate across modules.
 - `codymitra-service`'s pom explicitly wires the Lombok annotation processor into both `default-compile` and `default-testCompile` executions of `maven-compiler-plugin`, and excludes Lombok from the repackaged fat jar — replicate this pattern if adding annotation processors to other modules in the reactor.
