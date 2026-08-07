@@ -27,6 +27,7 @@
         <module>codymitra-service</module>
         <module>auth-service</module>
         <module>shared-service</module>
+        <module>organization-service</module>
     </modules>
 
     <dependencies>
