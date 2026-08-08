@@ -21,8 +21,7 @@ public final class StockGroupMapper {
     public static StockGroupEntity stockGroupEntity(CreateStockRequest stockRequest){
         StockGroupEntity stockGroup = new StockGroupEntity();
         stockGroup.setName(stockRequest.name());
-        String codeName = stockRequest.name().replace(" ","_");
-        stockGroup.setCode(codeName.toUpperCase());
+        stockGroup.setCode(stockRequest.code().toUpperCase());
         stockGroup.setAlias(stockRequest.alias());
         stockGroup.setDescription(stockRequest.description());
         if(stockRequest.parentId() != null){

@@ -21,8 +21,7 @@ public final class StockCategoryMapper {
     public static StockCategoryEntity stockCategoryEntity(CreateStockCategoryRequest stockRequest){
         StockCategoryEntity stockCategory = new StockCategoryEntity();
         stockCategory.setName(stockRequest.name());
-        String codeName = stockRequest.name().replace(" ","_");
-        stockCategory.setCode(codeName.toUpperCase());
+        stockCategory.setCode(stockRequest.code().toUpperCase());
         stockCategory.setAlias(stockRequest.alias());
         stockCategory.setDescription(stockRequest.description());
         if(stockRequest.parentId() != null){
