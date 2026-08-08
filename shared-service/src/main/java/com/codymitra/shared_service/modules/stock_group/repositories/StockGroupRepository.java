@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StockGroupRepository extends JpaRepository<StockGroupEntity,Long> {
+
+    Boolean existsByName(String name);
+
+    Boolean existsByCode(String code);
 }

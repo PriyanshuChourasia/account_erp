@@ -20,7 +20,7 @@ public class StockCategoryEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name",unique = true)
     private String name;
 
     @Column(name = "code",unique = true)
@@ -36,5 +36,5 @@ public class StockCategoryEntity extends BaseEntity {
     private String description;
 
     @Column(name = "active")
-    private String active;
+    private Boolean active;
 }

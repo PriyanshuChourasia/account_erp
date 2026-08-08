@@ -1,10 +1,11 @@
-package com.codymitra.shared_service.modules.item.entities;
+package com.codymitra.shared_service.modules.stock_item.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
-import com.codymitra.shared_service.modules.item.enums.ItemTypeEnum;
 import com.codymitra.shared_service.modules.stock_category.entities.StockCategoryEntity;
 import com.codymitra.shared_service.modules.stock_group.entities.StockGroupEntity;
+import com.codymitra.shared_service.modules.stock_item.enums.StockItemTypeEnum;
+import com.codymitra.shared_service.modules.stock_item.enums.TypeOfSupplyEnum;
 import com.codymitra.shared_service.modules.unit.entities.UnitEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,10 +18,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "items")
-@Table(name = "items")
+@Entity(name = "stock_items")
+@Table(name = "stock_items")
 @EqualsAndHashCode(callSuper = true)
-public class ItemEntity extends BaseEntity {
+public class StockItemEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,8 +40,8 @@ public class ItemEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "item_type")
-    private ItemTypeEnum itemType;
+    @Column(name = "stock_item_type")
+    private StockItemTypeEnum stockItemType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stock_group_id")
@@ -53,9 +54,6 @@ public class ItemEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "unit_id", nullable = false)
     private UnitEntity unit;
-
-    @Column(name = "item_type")
-    private ItemTypeEnum itemType;
 
     /// decimal 5,2
     @Column(name = "gst_rate")
@@ -89,8 +87,7 @@ public class ItemEntity extends BaseEntity {
     @Column(name = "barcode")
     private String barcode;
 
-    @Column(name = "sku")
-    private String sku;
+
 
     @Column(name = "hsn")
     private String hsn;
@@ -100,6 +97,24 @@ public class ItemEntity extends BaseEntity {
 
     @Column(name = "manufacturer_id")
     private Long manufacturerId;
+
+    /// type of supply goods and services and this will affect gst and taxation
+    @Column(name = "type_of_supply")
+    private TypeOfSupplyEnum typeOfSupply;
+
+
+    ///  identifies as manufacturer/component specific part
+    @Column(name = "part_no")
+    private String partNo;
+
+    ///  this is internal code for product given by company to track its stock keeping unit
+    @Column(name = "sku")
+    private String sku;
+
+
+    ///  if type of supply is goods
+
+
 
     @Column(name = "active")
     private Boolean active;

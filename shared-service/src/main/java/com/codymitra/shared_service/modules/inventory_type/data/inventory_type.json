@@ -1,0 +1,42 @@
+{
+  "inventory_types": [
+    {
+      "name": "Retail Inventory Types",
+      "children": [
+        {
+          "name": "Raw Materials",
+          "description": "Basic unprocessed inputs and parts bought from suppliers to create a product."
+        },
+        {
+          "name": "Merchandise Inventory",
+          "description":"Ready-to-sell goods bought by a retailer or wholesaler from a third-party manufacturer."
+        },
+        {
+          "name": "Work-in-Progress (WIP)",
+          "description":"Partially finished goods currently on the production floor that require more labor or parts before sale."
+        },
+        {
+          "name": "Finished Goods",
+          "description":"Final, completed products ready to be sold to customers."
+        }
+      ]
+    },
+    {
+      "name": "Operational & Support Inventory Types",
+      "children": [
+        {
+          "name": "MRO Supplies"
+        },
+        {
+          "name": "Packing/Packaging Materials"
+        },
+        {
+          "name": "Transit/Pipeline Inventory"
+        },
+        {
+          "name": "Consignment Inventory"
+        }
+      ]
+    }
+  ]
+}
