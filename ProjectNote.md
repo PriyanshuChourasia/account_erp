@@ -1,1 +1,8 @@
-Under the Goods and Services Tax (GST) framework, supply is the taxable event that triggers tax. It includes all forms of the supply of goods or services—such as sales, transfers, barters, exchanges, licenses, rentals, leases, or disposals
+Under the Goods and Services Tax (GST) framework, supply is the taxable event that triggers tax. 
+It includes all forms of the supply of goods or services—such as sales, transfers, 
+barters, exchanges, licenses, rentals, leases, or disposals
+
+
+Stock Summary in Tally
+
+

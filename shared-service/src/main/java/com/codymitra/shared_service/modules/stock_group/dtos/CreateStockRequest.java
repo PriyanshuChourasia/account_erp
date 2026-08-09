@@ -6,9 +6,11 @@ import jakarta.validation.constraints.NotBlank;
 public record CreateStockRequest(
         @NotBlank(message = "Name is required")
         String name,
-        String code,
         String alias,
+        String code,
+        String description,
         Long parentId,
-        String description
+        Boolean shouldAddQuantities,
+        Boolean setAlterGstDetail
 ) {
 }

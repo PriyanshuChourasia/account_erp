@@ -14,7 +14,9 @@ public final class StockGroupMapper {
                 stockGroup.getCode(),
                 stockGroup.getAlias(),
                 stockGroup.getDescription(),
-                stockGroup.getActive()
+                stockGroup.getActive(),
+                stockGroup.getShouldAddQuantities(),
+                stockGroup.getSetAlterGstDetails()
         );
     }
 
@@ -29,6 +31,19 @@ public final class StockGroupMapper {
         }
         else{
             stockGroup.setParentId(null);
+        }
+        if(stockRequest.shouldAddQuantities() == null){
+            stockGroup.setShouldAddQuantities(false);
+        }
+        else{
+            stockGroup.setShouldAddQuantities(stockRequest.shouldAddQuantities());
+        }
+
+        if(stockRequest.setAlterGstDetail() == null){
+            stockGroup.setSetAlterGstDetails(false);
+        }
+        else{
+            stockGroup.setSetAlterGstDetails(stockRequest.setAlterGstDetail());
         }
         stockGroup.setActive(true);
         return stockGroup;

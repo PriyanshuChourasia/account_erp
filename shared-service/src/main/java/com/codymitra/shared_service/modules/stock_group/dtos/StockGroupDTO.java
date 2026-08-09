@@ -9,5 +9,7 @@ public record StockGroupDTO(
         String code,
         String alias,
         String description,
-        Boolean isActive
+        Boolean isActive,
+        Boolean shouldAddQuantities,
+        Boolean setAlterGstDetail
 ) {}

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 
 import java.math.BigDecimal;
 
@@ -24,29 +25,30 @@ public class UnitEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name",unique = true)
+    @Column(name = "name",unique = true,nullable = false)
     private String name;
-
-    @Column(name = "description")
-    private String description;
 
     @Column(name = "code",unique = true)
     private String code;
 
-    @Column(name = "unit_type")
-    private UnitTypeEnum unitType;
-
-    @Column(name = "operator")
-    private OperatorEnum operator;
-
     @Column(name = "alias")
     private String alias;
 
-    @Column(name = "base_unit_1_id")
-    private Long baseUnit1Id;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "base_unit_2_id")
-    private Long baseUnit2Id;
+    ///  simple and compound
+    @Comment("Compound will have two level of units either multiply or divide")
+    @Column(name = "unit_type")
+    @Enumerated(EnumType.STRING)
+    private UnitTypeEnum unitType;
+
+    /// example can be Box 1 piece conversion factor = 10 means 1 box = 10 piece
+    @Column(name = "primary_unit_id")
+    private Long primaryUnitId;
+
+    @Column(name = "secondary_unit_id")
+    private Long secondaryUnitId;
 
     /// decimal 12,4
     @Column(name = "conversion_factor", precision = 12, scale = 4)
@@ -56,5 +58,6 @@ public class UnitEntity extends BaseEntity {
     @Column(name = "decimal_places")
     private Integer decimalPlaces;
 
-
+    @Column(name = "active")
+    private Boolean active;
 }

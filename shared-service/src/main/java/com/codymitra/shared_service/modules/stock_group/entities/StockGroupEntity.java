@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,6 +34,14 @@ public class StockGroupEntity extends BaseEntity {
 
     @Column(name = "description")
     private String description;
+
+    @Comment("Should add quantities items be added : this reflects in reporting")
+    @Column(name = "should_add_quantities",nullable = false)
+    private Boolean shouldAddQuantities;
+
+    @Comment("Set/Alter GST Details")
+    @Column(name = "set_alter_gst_details",nullable = false)
+    private Boolean setAlterGstDetails;
 
     @Column(name = "active")
     private Boolean active;

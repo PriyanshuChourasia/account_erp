@@ -55,6 +55,10 @@ public class StockItemEntity extends BaseEntity {
     @JoinColumn(name = "unit_id", nullable = false)
     private UnitEntity unit;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "alt_unit_id", nullable = false)
+    private UnitEntity altUnitId;
+
     /// decimal 5,2
     @Column(name = "gst_rate")
     private Double gstRate;

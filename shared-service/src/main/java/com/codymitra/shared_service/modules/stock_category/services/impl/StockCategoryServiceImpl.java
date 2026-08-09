@@ -16,6 +16,8 @@ public class StockCategoryServiceImpl implements StockCategoryService {
 
     private final StockCategoryRepository stockCategoryRepository;
 
+
+
     @Override
     public StockCategoryDTO create(CreateStockCategoryRequest createStockCategoryRequest){
 
