@@ -1,6 +1,5 @@
 package com.codymitra.shared_service.modules.unit.dtos;
 
-import com.codymitra.shared_service.modules.unit.enums.OperatorEnum;
 import com.codymitra.shared_service.modules.unit.enums.UnitTypeEnum;
 
 import java.math.BigDecimal;

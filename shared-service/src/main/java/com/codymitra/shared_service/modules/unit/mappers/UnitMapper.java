@@ -4,7 +4,6 @@ import com.codymitra.shared_service.modules.unit.dtos.BaseUnitDTO;
 import com.codymitra.shared_service.modules.unit.dtos.CreateUnitRequestDTO;
 import com.codymitra.shared_service.modules.unit.dtos.UnitDTO;
 import com.codymitra.shared_service.modules.unit.entities.UnitEntity;
-import com.codymitra.shared_service.modules.unit.enums.OperatorEnum;
 import com.codymitra.shared_service.modules.unit.enums.UnitTypeEnum;
 
 public final class UnitMapper {

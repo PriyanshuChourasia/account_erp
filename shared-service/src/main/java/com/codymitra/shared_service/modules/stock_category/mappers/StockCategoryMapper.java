@@ -13,6 +13,7 @@ public final class StockCategoryMapper {
                 stockCategory.getName(),
                 stockCategory.getCode(),
                 stockCategory.getAlias(),
+                stockCategory.getParentId(),
                 stockCategory.getDescription(),
                 stockCategory.getActive()
         );

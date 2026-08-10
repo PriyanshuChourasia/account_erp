@@ -1,8 +1,6 @@
 package com.codymitra.shared_service.modules.unit.dtos;
 
-import com.codymitra.shared_service.modules.unit.enums.OperatorEnum;
 import com.codymitra.shared_service.modules.unit.enums.UnitTypeEnum;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.math.BigDecimal;

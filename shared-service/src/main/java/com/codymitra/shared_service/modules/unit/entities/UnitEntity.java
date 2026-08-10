@@ -1,7 +1,6 @@
 package com.codymitra.shared_service.modules.unit.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
-import com.codymitra.shared_service.modules.unit.enums.OperatorEnum;
 import com.codymitra.shared_service.modules.unit.enums.UnitTypeEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
