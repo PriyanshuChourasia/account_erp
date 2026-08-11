@@ -3,6 +3,7 @@ package com.codymitra.shared_service.modules.account_ledger.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
 import com.codymitra.shared_service.modules.account_ledger.interfaces.Ledgerable;
+import com.codymitra.shared_service.modules.financial_year.entities.FinancialYearEntity;
 import com.codymitra.shared_service.modules.party.entities.PartyEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,11 @@ public class AccountLedgerEntity extends BaseEntity {
 
     @Column(name = "parent_id")
     private Long parentId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "financial_year_id")
+    private FinancialYearEntity financialYearId;
+
 
     @Column(name = "description")
     private String description;

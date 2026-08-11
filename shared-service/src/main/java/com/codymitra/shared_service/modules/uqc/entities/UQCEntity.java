@@ -1,8 +1,9 @@
-package com.codymitra.shared_service.modules.state.entities;
+package com.codymitra.shared_service.modules.uqc.entities;
+
 
 import com.codymitra.shared_service.entities.BaseEntity;
-import com.codymitra.shared_service.modules.country.entities.CountryEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,27 +12,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "states")
-@Table(name = "states")
+@Entity(name = "unique_quantity_codes")
+@Table(name = "unique_quantity_codes")
 @EqualsAndHashCode(callSuper = true)
-public class StateEntity extends BaseEntity {
+public class UQCEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name",nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "code", unique = true,nullable = false)
+    @Column(name = "code")
+    @Size(max = 3,message = "Code has to be only 3 character")
     private String code;
 
-    @Column(name = "gst_code",nullable = false)
-    private String gstCode;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
-    private CountryEntity countryId;
+    @Column(name = "alias")
+    private String alias;
 
     @Column(name = "description")
     private String description;

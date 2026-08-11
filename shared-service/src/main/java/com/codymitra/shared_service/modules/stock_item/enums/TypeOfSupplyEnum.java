@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum TypeOfSupplyEnum {
     GOODS("GOODS"),
+    CAPITAL_GOODS("CAPITAL_GOODS"),
     SERVICES("SERVICES");
 
     private final String typeOfSupply;

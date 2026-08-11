@@ -40,6 +40,10 @@ public class StockItemEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
+
+    @Column(name = "unique_quantity_code")
+    private String uniqueQuantityCode;
+
     @Column(name = "stock_item_type")
     private StockItemTypeEnum stockItemType;
 
@@ -92,31 +96,38 @@ public class StockItemEntity extends BaseEntity {
     private String barcode;
 
 
-
+    /// HSN if selected GOODS
     @Column(name = "hsn")
     private String hsn;
+
+    /// SAC if selected SERVICES
+    @Column(name = "sac")
+    private String sac;
 
     @Column(name = "brand_id")
     private Long brandId;
 
-    @Column(name = "manufacturer_id")
-    private Long manufacturerId;
 
     /// type of supply goods and services and this will affect gst and taxation
     @Column(name = "type_of_supply")
     private TypeOfSupplyEnum typeOfSupply;
 
 
-    ///  identifies as manufacturer/component specific part
-    @Column(name = "part_no")
-    private String partNo;
+
+    // all for identification purpose
+
+    ///  identifies as manufacturer/component specific part given by original maker to identify a retail industrial goods
+    /// part number is individual component
+    @Column(name = "manufacturer_part_no")
+    private String manufacturePartNo;
+
+    /// for information, we can say article number or item number is given by business to indetify item
+    @Column(name = "article_no")
+    private String articleNo;
 
     ///  this is internal code for product given by company to track its stock keeping unit
     @Column(name = "sku")
     private String sku;
-
-
-    ///  if type of supply is goods
 
 
 

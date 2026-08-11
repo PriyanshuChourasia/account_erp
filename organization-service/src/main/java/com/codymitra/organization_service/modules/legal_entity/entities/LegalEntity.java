@@ -32,7 +32,4 @@ public class LegalEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id",nullable = false)
     private CountryEntity country;
-
-    @Column(name = "active")
-    private Boolean active;
 }

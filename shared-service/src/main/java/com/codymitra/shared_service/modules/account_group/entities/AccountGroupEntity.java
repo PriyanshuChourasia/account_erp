@@ -1,4 +1,4 @@
-package com.codymitra.shared_service.modules.department.entities;
+package com.codymitra.shared_service.modules.account_group.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
 import jakarta.persistence.*;
@@ -10,20 +10,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "departments")
-@Table(name = "departments")
+@Entity(name = "account_groups")
+@Table(name = "account_groups")
 @EqualsAndHashCode(callSuper = true)
-public class DepartmentEntity extends BaseEntity {
+public class AccountGroupEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name",nullable = false,unique = true)
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @Column(name = "code", unique = true)
-    private String code;
+    @Column(name = "alias")
+    private String alias;
 
     @Column(name = "parent_id")
     private Long parentId;
