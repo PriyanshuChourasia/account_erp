@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Assets",
+    "code": 10000,
+    "description": "Items of value that a business owns. Examples include cash, inventory, and equipment."
+  },
+  {
+    "name": "Liabilities",
+    "code": 20000,
+    "description": "Debts or money the business owes to others. Examples include loans and accounts payable."
+  },
+  {
+    "name": "Equity",
+    "code": 30000,
+    "description": "The owner's remaining stake after subtracting debts from assets. Examples include stock and retained earnings."
+  },
+  {
+    "name": "Revenues",
+    "code": 40000,
+    "description": "Money made from selling goods or services. Examples include sales revenue and service fees."
+  },
+  {
+    "name": "Expenses",
+    "code": 50000,
+    "description": "Costs paid to run the business. Examples include rent, utilities, and payroll."
+  }
+]

@@ -6,7 +6,7 @@ import com.codymitra.shared_service.modules.stock_category.entities.StockCategor
 import com.codymitra.shared_service.modules.stock_group.entities.StockGroupEntity;
 import com.codymitra.shared_service.modules.stock_item.enums.StockItemTypeEnum;
 import com.codymitra.shared_service.modules.stock_item.enums.TypeOfSupplyEnum;
-import com.codymitra.shared_service.modules.unit.entities.UnitEntity;
+import com.codymitra.shared_service.modules.stock_unit.entities.StockUnitEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,10 +40,6 @@ public class StockItemEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-
-    @Column(name = "unique_quantity_code")
-    private String uniqueQuantityCode;
-
     @Column(name = "stock_item_type")
     private StockItemTypeEnum stockItemType;
 
@@ -57,11 +53,11 @@ public class StockItemEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "unit_id", nullable = false)
-    private UnitEntity unit;
+    private StockUnitEntity unit;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "alt_unit_id", nullable = false)
-    private UnitEntity altUnitId;
+    private StockUnitEntity altUnitId;
 
     /// decimal 5,2
     @Column(name = "gst_rate")

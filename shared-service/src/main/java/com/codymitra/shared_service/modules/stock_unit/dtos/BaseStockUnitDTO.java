@@ -1,16 +1,16 @@
-package com.codymitra.shared_service.modules.unit.dtos;
+package com.codymitra.shared_service.modules.stock_unit.dtos;
 
-import com.codymitra.shared_service.modules.unit.enums.UnitTypeEnum;
+import com.codymitra.shared_service.modules.stock_unit.enums.StockUnitTypeEnum;
 
 import java.math.BigDecimal;
 
-public record BaseUnitDTO(
+public record BaseStockUnitDTO(
         Long id,
         String name,
         String code,
         String alias,
         String description,
-        UnitTypeEnum unitType,
+        StockUnitTypeEnum unitType,
         BigDecimal conversionFactor,
         Integer decimalPlaces
 ) {}

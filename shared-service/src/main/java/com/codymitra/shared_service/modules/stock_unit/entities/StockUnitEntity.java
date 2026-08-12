@@ -1,7 +1,7 @@
-package com.codymitra.shared_service.modules.unit.entities;
+package com.codymitra.shared_service.modules.stock_unit.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
-import com.codymitra.shared_service.modules.unit.enums.UnitTypeEnum;
+import com.codymitra.shared_service.modules.stock_unit.enums.StockUnitTypeEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,9 +16,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Entity(name = "units")
-@Table(name = "units")
-public class UnitEntity extends BaseEntity {
+@Entity(name = "stock_units")
+@Table(name = "stock_units")
+public class StockUnitEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class UnitEntity extends BaseEntity {
     @Comment("Compound will have two level of units either multiply or divide")
     @Column(name = "unit_type")
     @Enumerated(EnumType.STRING)
-    private UnitTypeEnum unitType;
+    private StockUnitTypeEnum unitType;
 
     /// example can be Box 1 piece conversion factor = 10 means 1 box = 10 piece
     @Column(name = "primary_unit_id")

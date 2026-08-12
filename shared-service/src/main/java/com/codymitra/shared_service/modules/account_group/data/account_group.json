@@ -1,0 +1,78 @@
+{
+  "id": 1,
+  "name": "Current Assets",
+  "code": "CURRENT_ASSETS",
+  "accountNature": {
+    "id": 1,
+    "name": "Asset",
+    "code": "ASSET"
+  },
+  "parentGroup": null,
+  "childGroups": [
+    {
+      "id": 2,
+      "name": "Cash & Bank",
+      "code": "CASH_BANK",
+      "accountNature": {
+        "id": 1,
+        "name": "Asset",
+        "code": "ASSET"
+      },
+      "parentGroup": {
+        "id": 1,
+        "name": "Current Assets",
+        "code": "CURRENT_ASSETS"
+      },
+      "childGroups": [
+        {
+          "id": 3,
+          "name": "Cash",
+          "code": "CASH",
+          "accountNature": {
+            "id": 1,
+            "name": "Asset",
+            "code": "ASSET"
+          },
+          "parentGroup": {
+            "id": 2,
+            "name": "Cash & Bank",
+            "code": "CASH_BANK"
+          },
+          "childGroups": []
+        },
+        {
+          "id": 4,
+          "name": "Bank Accounts",
+          "code": "BANK_ACCOUNTS",
+          "accountNature": {
+            "id": 1,
+            "name": "Asset",
+            "code": "ASSET"
+          },
+          "parentGroup": {
+            "id": 2,
+            "name": "Cash & Bank",
+            "code": "CASH_BANK"
+          },
+          "childGroups": []
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Receivables",
+      "code": "RECEIVABLES",
+      "accountNature": {
+        "id": 1,
+        "name": "Asset",
+        "code": "ASSET"
+      },
+      "parentGroup": {
+        "id": 1,
+        "name": "Current Assets",
+        "code": "CURRENT_ASSETS"
+      },
+      "childGroups": []
+    }
+  ]
+}

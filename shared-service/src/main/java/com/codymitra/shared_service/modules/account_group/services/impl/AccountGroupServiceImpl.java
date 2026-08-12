@@ -1,12 +1,15 @@
 package com.codymitra.shared_service.modules.account_group.services.impl;
 
 
+import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.account_group.dtos.AccountGroupDTO;
 import com.codymitra.shared_service.modules.account_group.dtos.CreateAccountGroupDTO;
 import com.codymitra.shared_service.modules.account_group.entities.AccountGroupEntity;
 import com.codymitra.shared_service.modules.account_group.mapper.AccountGroupMapper;
 import com.codymitra.shared_service.modules.account_group.repositories.AccountGroupRepository;
 import com.codymitra.shared_service.modules.account_group.services.AccountGroupService;
+import com.codymitra.shared_service.modules.accounting_nature.entities.AccountNatureEntity;
+import com.codymitra.shared_service.modules.accounting_nature.services.AccountNatureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,7 @@ import java.util.List;
 public class AccountGroupServiceImpl implements AccountGroupService {
 
     private final AccountGroupRepository accountGroupRepository;
+    private final AccountNatureService natureService;
 
 
     @Override
@@ -25,9 +29,18 @@ public class AccountGroupServiceImpl implements AccountGroupService {
         return accountGroupEntities.stream().map(AccountGroupMapper::accountGroupDTO).toList();
     }
 
+
+    @Override
+    public AccountGroupEntity getById(Long id){
+        return accountGroupRepository.findById(id).orElseThrow(
+                () -> new DataNotFoundException("Account Group does not exists with this id")
+        );
+    }
+
     @Override
     public String create(CreateAccountGroupDTO createAccountGroupDTO){
-        AccountGroupEntity accountGroupEntity = AccountGroupMapper.accountGroup(createAccountGroupDTO,true);
+        AccountNatureEntity accountNature = natureService.show(createAccountGroupDTO.accountNatureId());
+        AccountGroupEntity accountGroupEntity = AccountGroupMapper.accountGroup(createAccountGroupDTO,true,accountNature);
         return "Account Group created successfully";
     }
 }
