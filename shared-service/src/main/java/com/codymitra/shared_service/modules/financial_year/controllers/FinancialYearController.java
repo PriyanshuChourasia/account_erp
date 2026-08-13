@@ -39,11 +39,11 @@ public class FinancialYearController {
         return ResponseHandler.generateResponse(dto, "Financial year created successfully", HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @Valid @RequestBody CreateFinancialYearDTO request) {
-        FinancialYearDTO dto = financialYearService.update(id, request);
-        return ResponseHandler.generateResponse(dto, "Financial year updated successfully", HttpStatus.OK);
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @Valid @RequestBody CreateFinancialYearDTO request) {
+//        FinancialYearDTO dto = financialYearService.update(id, request);
+//        return ResponseHandler.generateResponse(dto, "Financial year updated successfully", HttpStatus.OK);
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {

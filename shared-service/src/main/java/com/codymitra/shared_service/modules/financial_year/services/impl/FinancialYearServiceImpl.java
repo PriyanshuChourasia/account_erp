@@ -33,6 +33,9 @@ public class FinancialYearServiceImpl implements FinancialYearService {
     @Override
     @Transactional
     public FinancialYearDTO create(CreateFinancialYearDTO request) {
+        if(financialYearRepository.existsByStartDateAndEndDate(request.startDate(),request.endDate())){
+            throw new DataAlreadyExistsException("Start Date and End Date already exists");
+        }
         if (request.endDate().isBefore(request.startDate())) {
             throw new IllegalArgumentException("End date cannot be before start date");
         }
