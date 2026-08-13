@@ -27,10 +27,10 @@ public class FinancialYearController {
         return ResponseHandler.generateResponse(dtos, message, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> getById(@PathVariable Long id) {
-        FinancialYearDTO dto = financialYearService.getById(id);
-        return ResponseHandler.generateResponse(dto, "Financial year fetched successfully", HttpStatus.OK);
+    @GetMapping("/current")
+    public ResponseEntity<Map<String, Object>> updateCurrent(@Valid @RequestParam Long id, @RequestParam Boolean current) {
+        String message = financialYearService.updateCurrentFinancialYear(id,current);
+        return ResponseHandler.generateResponse(message, "Financial year updated successfully", HttpStatus.OK);
     }
 
     @PostMapping("/create")
@@ -44,10 +44,4 @@ public class FinancialYearController {
 //        FinancialYearDTO dto = financialYearService.update(id, request);
 //        return ResponseHandler.generateResponse(dto, "Financial year updated successfully", HttpStatus.OK);
 //    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
-        String message = financialYearService.delete(id);
-        return ResponseHandler.generateResponse(message, HttpStatus.OK);
-    }
 }

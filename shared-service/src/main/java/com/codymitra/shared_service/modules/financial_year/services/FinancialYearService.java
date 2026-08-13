@@ -15,5 +15,7 @@ public interface FinancialYearService {
 
     FinancialYearDTO update(Long id, CreateFinancialYearDTO request);
 
+    String updateCurrentFinancialYear(Long id, Boolean current);
+
     String delete(Long id);
 }

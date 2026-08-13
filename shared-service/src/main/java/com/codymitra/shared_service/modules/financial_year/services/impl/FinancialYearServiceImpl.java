@@ -79,6 +79,18 @@ public class FinancialYearServiceImpl implements FinancialYearService {
     }
 
     @Override
+    @Transactional
+    public String updateCurrentFinancialYear(Long id, Boolean current){
+        FinancialYearEntity financialYear = financialYearRepository.findById(id).orElseThrow(
+                () -> new DataNotFoundException("No such financial year found")
+        );
+
+        financialYear.setIsCurrent(current);
+        financialYearRepository.save(financialYear);
+        return "Financial year created successfully";
+    }
+
+    @Override
     public String delete(Long id) {
         FinancialYearEntity financialYear = findById(id);
         financialYearRepository.delete(financialYear);
