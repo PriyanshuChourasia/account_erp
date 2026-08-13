@@ -1,0 +1,15 @@
+package com.codymitra.shared_service.modules.company_financial_year.repositories;
+
+import com.codymitra.shared_service.modules.company_financial_year.entities.CompanyFinancialYearEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface CompanyFinancialYearRepository extends JpaRepository<CompanyFinancialYearEntity, Long> {
+
+    Boolean existsByCompany_IdAndFinancialYear_Id(Long companyId, Long financialYearId);
+
+    List<CompanyFinancialYearEntity> findByCompany_Id(Long companyId);
+}

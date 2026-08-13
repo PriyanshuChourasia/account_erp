@@ -32,4 +32,10 @@ public abstract class BaseEntity {
     @LastModifiedDate
     @Column(name = "last_modified_at")
     private Instant lastModifiedAt;
+
+    @Column(name = "deleted_at")
+    private Instant deletedAt;
+
+    @Column(name = "deleted_by")
+    private String deleted_by;
 }

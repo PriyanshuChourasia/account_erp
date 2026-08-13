@@ -33,8 +33,8 @@ public class AccountGroupEntity extends BaseEntity {
     private Long parentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_nature_id")
-    private AccountNatureEntity accountNatureId;
+    @JoinColumn(name = "account_group_id")
+    private AccountGroupEntity accountNatureId;
 
     @Column(name = "description")
     private String description;

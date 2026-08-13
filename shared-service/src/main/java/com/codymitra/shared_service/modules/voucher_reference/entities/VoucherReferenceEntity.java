@@ -2,6 +2,7 @@ package com.codymitra.shared_service.modules.voucher_reference.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
+import com.codymitra.shared_service.modules.voucher.entities.VoucherEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,15 +21,11 @@ public class VoucherReferenceEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "voucher_id", nullable = false)
+    private VoucherEntity voucherId;
 
-    @Column(name = "code", unique = true)
-    private String code;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "active")
-    private Boolean active;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ref_voucher_id", nullable = false)
+    private VoucherEntity refVoucherId;
 }
