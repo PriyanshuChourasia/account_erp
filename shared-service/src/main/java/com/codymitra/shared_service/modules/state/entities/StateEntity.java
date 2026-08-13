@@ -29,7 +29,7 @@ public class StateEntity extends BaseEntity {
     @Column(name = "gst_code",nullable = false)
     private String gstCode;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     private CountryEntity countryId;
 

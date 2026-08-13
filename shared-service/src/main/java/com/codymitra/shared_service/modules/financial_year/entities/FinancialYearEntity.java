@@ -22,18 +22,18 @@ public class FinancialYearEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name",nullable = false,unique = true)
     private String name;
 
-    @Column(name = "code")
+    @Column(name = "code",unique = true)
     private String code;
 
-    @Column(name = "start_date")
+    @Column(name = "start_date",columnDefinition = "DATE",nullable = false)
     private LocalDate startDate;
 
-    @Column(name = "end_date")
+    @Column(name = "end_date", columnDefinition = "DATE",nullable = false)
     private LocalDate endDate;
 
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "is_current")
+    private Boolean isCurrent;
 }
