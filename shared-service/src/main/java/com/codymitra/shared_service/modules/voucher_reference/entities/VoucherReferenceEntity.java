@@ -23,9 +23,9 @@ public class VoucherReferenceEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "voucher_id", nullable = false)
-    private VoucherEntity voucherId;
+    private VoucherEntity voucher;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ref_voucher_id", nullable = false)
-    private VoucherEntity refVoucherId;
+    private VoucherEntity refVoucher;
 }

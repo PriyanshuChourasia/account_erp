@@ -5,6 +5,8 @@ import com.codymitra.shared_service.modules.stock_unit.dtos.CreateStockUnitReque
 import com.codymitra.shared_service.modules.stock_unit.dtos.StockUnitDTO;
 import com.codymitra.shared_service.modules.stock_unit.entities.StockUnitEntity;
 import com.codymitra.shared_service.modules.stock_unit.enums.StockUnitTypeEnum;
+import com.codymitra.shared_service.modules.uqc.entities.UQCEntity;
+import com.codymitra.shared_service.modules.uqc.mappers.UQCMapper;
 
 public final class StockUnitMapper {
 
@@ -17,6 +19,7 @@ public final class StockUnitMapper {
                 unit.getAlias(),
                 unit.getDescription(),
                 unit.getUnitType(),
+                unit.getUqc() != null ? UQCMapper.uqcDTO(unit.getUqc()) : null,
                 baseStockUnitDTO(baseUnit1),
                 baseStockUnitDTO(baseUnit2),
                 unit.getConversionFactor(),
@@ -24,14 +27,23 @@ public final class StockUnitMapper {
         );
     }
 
-    public static StockUnitEntity stockUnitEntity(CreateStockUnitRequestDTO unitRequest) {
+    public static StockUnitEntity stockUnitEntity(CreateStockUnitRequestDTO unitRequest, UQCEntity uqc) {
         StockUnitEntity unit = new StockUnitEntity();
+        return applyRequest(unit, unitRequest, uqc);
+    }
+
+    public static StockUnitEntity stockUnitEntity(StockUnitEntity unit, CreateStockUnitRequestDTO unitRequest, UQCEntity uqc) {
+        return applyRequest(unit, unitRequest, uqc);
+    }
+
+    private static StockUnitEntity applyRequest(StockUnitEntity unit, CreateStockUnitRequestDTO unitRequest, UQCEntity uqc) {
         unit.setName(unitRequest.name());
         String codeName = unitRequest.name().replace(" ", "_");
         unit.setCode(codeName.toUpperCase());
         unit.setAlias(unitRequest.alias());
         unit.setDescription(unitRequest.description());
         unit.setUnitType(unitRequest.unitType() != null ? StockUnitTypeEnum.valueOf(unitRequest.unitType()) : null);
+        unit.setUqc(uqc);
         unit.setPrimaryUnitId(unitRequest.primaryUnitId());
         unit.setSecondaryUnitId(unitRequest.secondaryUnitId());
         unit.setConversionFactor(unitRequest.conversionFactor());

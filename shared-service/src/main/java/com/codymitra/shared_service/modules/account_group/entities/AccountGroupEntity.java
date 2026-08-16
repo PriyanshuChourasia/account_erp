@@ -1,7 +1,7 @@
 package com.codymitra.shared_service.modules.account_group.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
-import com.codymitra.shared_service.modules.accounting_nature.entities.AccountNatureEntity;
+import com.codymitra.shared_service.modules.account_nature.entities.AccountNatureEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,8 +33,8 @@ public class AccountGroupEntity extends BaseEntity {
     private Long parentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_group_id")
-    private AccountGroupEntity accountNatureId;
+    @JoinColumn(name = "account_nature_id")
+    private AccountNatureEntity accountNatureId;
 
     @Column(name = "description")
     private String description;

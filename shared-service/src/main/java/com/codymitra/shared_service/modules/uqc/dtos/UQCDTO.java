@@ -8,7 +8,6 @@ public record UQCDTO(
         String name,
         String code,
         String alias,
-        String description,
-        Boolean active
+        String description
 ) {
 }

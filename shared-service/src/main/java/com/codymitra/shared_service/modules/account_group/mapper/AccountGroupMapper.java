@@ -3,7 +3,7 @@ package com.codymitra.shared_service.modules.account_group.mapper;
 import com.codymitra.shared_service.modules.account_group.dtos.AccountGroupDTO;
 import com.codymitra.shared_service.modules.account_group.dtos.CreateAccountGroupDTO;
 import com.codymitra.shared_service.modules.account_group.entities.AccountGroupEntity;
-import com.codymitra.shared_service.modules.accounting_nature.entities.AccountNatureEntity;
+import com.codymitra.shared_service.modules.account_nature.entities.AccountNatureEntity;
 
 public final class AccountGroupMapper {
 

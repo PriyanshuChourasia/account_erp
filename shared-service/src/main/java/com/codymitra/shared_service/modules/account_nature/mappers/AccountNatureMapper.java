@@ -1,8 +1,8 @@
-package com.codymitra.shared_service.modules.accounting_nature.mappers;
+package com.codymitra.shared_service.modules.account_nature.mappers;
 
-import com.codymitra.shared_service.modules.accounting_nature.dtos.AccountNatureDTO;
-import com.codymitra.shared_service.modules.accounting_nature.dtos.CreateAccountNatureDTO;
-import com.codymitra.shared_service.modules.accounting_nature.entities.AccountNatureEntity;
+import com.codymitra.shared_service.modules.account_nature.dtos.AccountNatureDTO;
+import com.codymitra.shared_service.modules.account_nature.dtos.CreateAccountNatureDTO;
+import com.codymitra.shared_service.modules.account_nature.entities.AccountNatureEntity;
 
 public final class AccountNatureMapper {
 

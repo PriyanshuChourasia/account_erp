@@ -1,6 +1,6 @@
 package com.codymitra.shared_service.modules.account_group.dtos;
 
-import com.codymitra.shared_service.modules.accounting_nature.dtos.AccountNatureDTO;
+import com.codymitra.shared_service.modules.account_nature.dtos.AccountNatureDTO;
 
 public record AccountGroupHierarchyDTO(
     Long id,

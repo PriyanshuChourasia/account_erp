@@ -12,8 +12,7 @@ public final class UQCMapper {
                 uqc.getName(),
                 uqc.getCode(),
                 uqc.getAlias(),
-                uqc.getDescription(),
-                uqc.getActive()
+                uqc.getDescription()
         );
     }
 
@@ -23,7 +22,6 @@ public final class UQCMapper {
         uqc.setCode(request.code().toUpperCase());
         uqc.setAlias(request.alias());
         uqc.setDescription(request.description());
-        uqc.setActive(true);
         return uqc;
     }
 }

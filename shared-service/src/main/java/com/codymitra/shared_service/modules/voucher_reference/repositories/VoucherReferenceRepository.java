@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface VoucherReferenceRepository extends JpaRepository<VoucherReferenceEntity, Long> {
 
-    Boolean existsByVoucher_IdAndRefVoucher_Id(Long voucherId, Long refVoucherId);
+    Boolean existsByVoucherIdAndRefVoucherId(Long voucherId, Long refVoucherId);
 
-    List<VoucherReferenceEntity> findByVoucher_Id(Long voucherId);
+    List<VoucherReferenceEntity> findByVoucherId(Long voucherId);
 
-    List<VoucherReferenceEntity> findByRefVoucher_Id(Long refVoucherId);
+    List<VoucherReferenceEntity> findByRefVoucherId(Long refVoucherId);
 }

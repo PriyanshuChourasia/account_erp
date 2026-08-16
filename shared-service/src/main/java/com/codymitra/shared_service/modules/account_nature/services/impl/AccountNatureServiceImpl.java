@@ -1,14 +1,14 @@
-package com.codymitra.shared_service.modules.accounting_nature.services.impl;
+package com.codymitra.shared_service.modules.account_nature.services.impl;
 
 
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
-import com.codymitra.shared_service.modules.accounting_nature.dtos.AccountNatureDTO;
-import com.codymitra.shared_service.modules.accounting_nature.dtos.CreateAccountNatureDTO;
-import com.codymitra.shared_service.modules.accounting_nature.entities.AccountNatureEntity;
-import com.codymitra.shared_service.modules.accounting_nature.mappers.AccountNatureMapper;
-import com.codymitra.shared_service.modules.accounting_nature.repositories.AccountNatureRepository;
-import com.codymitra.shared_service.modules.accounting_nature.services.AccountNatureService;
+import com.codymitra.shared_service.modules.account_nature.dtos.AccountNatureDTO;
+import com.codymitra.shared_service.modules.account_nature.dtos.CreateAccountNatureDTO;
+import com.codymitra.shared_service.modules.account_nature.entities.AccountNatureEntity;
+import com.codymitra.shared_service.modules.account_nature.mappers.AccountNatureMapper;
+import com.codymitra.shared_service.modules.account_nature.repositories.AccountNatureRepository;
+import com.codymitra.shared_service.modules.account_nature.services.AccountNatureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

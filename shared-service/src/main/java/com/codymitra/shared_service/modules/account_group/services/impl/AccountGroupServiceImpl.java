@@ -8,8 +8,8 @@ import com.codymitra.shared_service.modules.account_group.entities.AccountGroupE
 import com.codymitra.shared_service.modules.account_group.mapper.AccountGroupMapper;
 import com.codymitra.shared_service.modules.account_group.repositories.AccountGroupRepository;
 import com.codymitra.shared_service.modules.account_group.services.AccountGroupService;
-import com.codymitra.shared_service.modules.accounting_nature.entities.AccountNatureEntity;
-import com.codymitra.shared_service.modules.accounting_nature.services.AccountNatureService;
+import com.codymitra.shared_service.modules.account_nature.entities.AccountNatureEntity;
+import com.codymitra.shared_service.modules.account_nature.services.AccountNatureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +41,7 @@ public class AccountGroupServiceImpl implements AccountGroupService {
     public String create(CreateAccountGroupDTO createAccountGroupDTO){
         AccountNatureEntity accountNature = natureService.show(createAccountGroupDTO.accountNatureId());
         AccountGroupEntity accountGroupEntity = AccountGroupMapper.accountGroup(createAccountGroupDTO,true,accountNature);
+        accountGroupRepository.save(accountGroupEntity);
         return "Account Group created successfully";
     }
 }

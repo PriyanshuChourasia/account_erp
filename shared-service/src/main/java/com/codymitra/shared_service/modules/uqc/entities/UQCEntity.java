@@ -33,7 +33,4 @@ public class UQCEntity extends BaseEntity {
 
     @Column(name = "description")
     private String description;
-
-    @Column(name = "active")
-    private Boolean active;
 }

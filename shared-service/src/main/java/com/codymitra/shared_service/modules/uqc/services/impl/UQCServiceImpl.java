@@ -59,10 +59,8 @@ public class UQCServiceImpl implements UQCService {
 
     @Override
     public String delete(Long id) {
-        UQCEntity uqc = findById(id);
-        uqc.setActive(false);
-        uqcRepository.save(uqc);
-        return "UQC deactivated successfully";
+        uqcRepository.delete(findById(id));
+        return "UQC deleted successfully";
     }
 
     private UQCEntity findById(Long id) {

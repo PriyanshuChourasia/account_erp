@@ -10,12 +10,12 @@ public final class VoucherReferenceMapper {
     public static VoucherReferenceDTO voucherReferenceDTO(VoucherReferenceEntity voucherReference) {
         return new VoucherReferenceDTO(
                 voucherReference.getId(),
-                voucherReference.getVoucherId().getId(),
-                voucherReference.getVoucherId().getVoucherNo(),
-                voucherReference.getVoucherId().getVoucherDate(),
-                voucherReference.getRefVoucherId().getId(),
-                voucherReference.getRefVoucherId().getVoucherNo(),
-                voucherReference.getRefVoucherId().getVoucherDate()
+                voucherReference.getVoucher().getId(),
+                voucherReference.getVoucher().getVoucherNo(),
+                voucherReference.getVoucher().getVoucherDate(),
+                voucherReference.getRefVoucher().getId(),
+                voucherReference.getRefVoucher().getVoucherNo(),
+                voucherReference.getRefVoucher().getVoucherDate()
         );
     }
 
@@ -23,8 +23,8 @@ public final class VoucherReferenceMapper {
                                                                 VoucherEntity voucher,
                                                                 VoucherEntity refVoucher) {
         VoucherReferenceEntity voucherReference = new VoucherReferenceEntity();
-        voucherReference.setVoucherId(voucher);
-        voucherReference.setRefVoucherId(refVoucher);
+        voucherReference.setVoucher(voucher);
+        voucherReference.setRefVoucher(refVoucher);
         return voucherReference;
     }
 }

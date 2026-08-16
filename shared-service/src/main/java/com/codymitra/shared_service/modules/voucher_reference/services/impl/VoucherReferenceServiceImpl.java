@@ -40,7 +40,7 @@ public class VoucherReferenceServiceImpl implements VoucherReferenceService {
     @Override
     @Transactional(readOnly = true)
     public List<VoucherReferenceDTO> getByVoucherId(Long voucherId) {
-        return voucherReferenceRepository.findByVoucher_Id(voucherId).stream()
+        return voucherReferenceRepository.findByVoucherId(voucherId).stream()
                 .map(VoucherReferenceMapper::voucherReferenceDTO)
                 .toList();
     }
@@ -48,7 +48,7 @@ public class VoucherReferenceServiceImpl implements VoucherReferenceService {
     @Override
     @Transactional(readOnly = true)
     public List<VoucherReferenceDTO> getByRefVoucherId(Long refVoucherId) {
-        return voucherReferenceRepository.findByRefVoucher_Id(refVoucherId).stream()
+        return voucherReferenceRepository.findByRefVoucherId(refVoucherId).stream()
                 .map(VoucherReferenceMapper::voucherReferenceDTO)
                 .toList();
     }
@@ -61,7 +61,7 @@ public class VoucherReferenceServiceImpl implements VoucherReferenceService {
         }
         VoucherEntity voucher = findVoucher(request.voucherId());
         VoucherEntity refVoucher = findVoucher(request.refVoucherId());
-        if (voucherReferenceRepository.existsByVoucher_IdAndRefVoucher_Id(request.voucherId(), request.refVoucherId())) {
+        if (voucherReferenceRepository.existsByVoucherIdAndRefVoucherId(request.voucherId(), request.refVoucherId())) {
             throw new DataAlreadyExistsException("Voucher reference already exists");
         }
         VoucherReferenceEntity saved = voucherReferenceRepository.save(
@@ -79,14 +79,14 @@ public class VoucherReferenceServiceImpl implements VoucherReferenceService {
         }
         VoucherEntity voucher = findVoucher(request.voucherId());
         VoucherEntity refVoucher = findVoucher(request.refVoucherId());
-        boolean sameReference = voucherReference.getVoucherId().getId().equals(request.voucherId())
-                && voucherReference.getRefVoucherId().getId().equals(request.refVoucherId());
+        boolean sameReference = voucherReference.getVoucher().getId().equals(request.voucherId())
+                && voucherReference.getRefVoucher().getId().equals(request.refVoucherId());
         if (!sameReference
-                && voucherReferenceRepository.existsByVoucher_IdAndRefVoucher_Id(request.voucherId(), request.refVoucherId())) {
+                && voucherReferenceRepository.existsByVoucherIdAndRefVoucherId(request.voucherId(), request.refVoucherId())) {
             throw new DataAlreadyExistsException("Voucher reference already exists");
         }
-        voucherReference.setVoucherId(voucher);
-        voucherReference.setRefVoucherId(refVoucher);
+        voucherReference.setVoucher(voucher);
+        voucherReference.setRefVoucher(refVoucher);
         return VoucherReferenceMapper.voucherReferenceDTO(voucherReferenceRepository.save(voucherReference));
     }
 

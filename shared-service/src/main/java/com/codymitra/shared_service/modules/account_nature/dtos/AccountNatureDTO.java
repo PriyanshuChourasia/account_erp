@@ -1,4 +1,4 @@
-package com.codymitra.shared_service.modules.accounting_nature.dtos;
+package com.codymitra.shared_service.modules.account_nature.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

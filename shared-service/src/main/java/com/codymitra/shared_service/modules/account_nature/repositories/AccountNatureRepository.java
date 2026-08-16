@@ -1,6 +1,6 @@
-package com.codymitra.shared_service.modules.accounting_nature.repositories;
+package com.codymitra.shared_service.modules.account_nature.repositories;
 
-import com.codymitra.shared_service.modules.accounting_nature.entities.AccountNatureEntity;
+import com.codymitra.shared_service.modules.account_nature.entities.AccountNatureEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

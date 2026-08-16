@@ -11,6 +11,7 @@ public record CreateStockUnitRequestDTO(
         String description,
         String code,
         String unitType,
+        Long uqcId,
         Long primaryUnitId,
         Long secondaryUnitId,
         BigDecimal conversionFactor,

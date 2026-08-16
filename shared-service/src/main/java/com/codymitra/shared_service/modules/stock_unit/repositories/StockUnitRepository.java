@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface StockUnitRepository extends JpaRepository<StockUnitEntity,Long> {
 
     Boolean existsByName(String name);
+
+    Boolean existsByNameAndIdNot(String name, Long id);
 }

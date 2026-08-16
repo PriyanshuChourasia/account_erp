@@ -1,4 +1,4 @@
-package com.codymitra.shared_service.modules.accounting_nature.entities;
+package com.codymitra.shared_service.modules.account_nature.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
