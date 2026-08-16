@@ -1,4 +1,4 @@
-package com.codymitra.shared_service.modules.uqc.entities;
+package com.codymitra.shared_service.modules.unique_quantity_code.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity(name = "unique_quantity_codes")
 @Table(name = "unique_quantity_codes")
 @EqualsAndHashCode(callSuper = true)
-public class UQCEntity extends BaseEntity {
+public class UniqueQuantityCodeEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

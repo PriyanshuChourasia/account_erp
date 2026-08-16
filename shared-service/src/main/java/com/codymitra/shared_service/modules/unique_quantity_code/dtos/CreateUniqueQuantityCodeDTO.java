@@ -1,9 +1,9 @@
-package com.codymitra.shared_service.modules.uqc.dtos;
+package com.codymitra.shared_service.modules.unique_quantity_code.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record CreateUQCDTO(
+public record CreateUniqueQuantityCodeDTO(
         @NotBlank(message = "Name is required")
         String name,
         @NotBlank(message = "Code is required")

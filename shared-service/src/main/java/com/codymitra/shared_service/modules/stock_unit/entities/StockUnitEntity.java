@@ -2,7 +2,7 @@ package com.codymitra.shared_service.modules.stock_unit.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
 import com.codymitra.shared_service.modules.stock_unit.enums.StockUnitTypeEnum;
-import com.codymitra.shared_service.modules.uqc.entities.UQCEntity;
+import com.codymitra.shared_service.modules.unique_quantity_code.entities.UniqueQuantityCodeEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,7 +45,7 @@ public class StockUnitEntity extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "unique_quantity_code_id")
-    private UQCEntity uqc;
+    private UniqueQuantityCodeEntity uqc;
 
     /// example can be Box 1 piece conversion factor = 10 means 1 box = 10 piece
     @Column(name = "primary_unit_id")

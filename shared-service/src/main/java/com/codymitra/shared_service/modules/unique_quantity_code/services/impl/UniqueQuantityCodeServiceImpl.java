@@ -1,13 +1,13 @@
-package com.codymitra.shared_service.modules.uqc.services.impl;
+package com.codymitra.shared_service.modules.unique_quantity_code.services.impl;
 
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
-import com.codymitra.shared_service.modules.uqc.dtos.CreateUQCDTO;
-import com.codymitra.shared_service.modules.uqc.dtos.UQCDTO;
-import com.codymitra.shared_service.modules.uqc.entities.UQCEntity;
-import com.codymitra.shared_service.modules.uqc.mappers.UQCMapper;
-import com.codymitra.shared_service.modules.uqc.repositories.UQCRepository;
-import com.codymitra.shared_service.modules.uqc.services.UQCService;
+import com.codymitra.shared_service.modules.unique_quantity_code.dtos.CreateUniqueQuantityCodeDTO;
+import com.codymitra.shared_service.modules.unique_quantity_code.dtos.UniqueQuantityCodeDTO;
+import com.codymitra.shared_service.modules.unique_quantity_code.entities.UniqueQuantityCodeEntity;
+import com.codymitra.shared_service.modules.unique_quantity_code.mappers.UniqueQuantityCodeMapper;
+import com.codymitra.shared_service.modules.unique_quantity_code.repositories.UniqueQuantityCodeRepository;
+import com.codymitra.shared_service.modules.unique_quantity_code.services.UniqueQuantityCodeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,35 +15,35 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UQCServiceImpl implements UQCService {
+public class UniqueQuantityCodeServiceImpl implements UniqueQuantityCodeService {
 
-    private final UQCRepository uqcRepository;
+    private final UniqueQuantityCodeRepository uqcRepository;
 
     @Override
-    public List<UQCDTO> getAll() {
-        return uqcRepository.findAll().stream().map(UQCMapper::uqcDTO).toList();
+    public List<UniqueQuantityCodeDTO> getAll() {
+        return uqcRepository.findAll().stream().map(UniqueQuantityCodeMapper::uqcDTO).toList();
     }
 
     @Override
-    public UQCDTO getById(Long id) {
-        return UQCMapper.uqcDTO(findById(id));
+    public UniqueQuantityCodeDTO getById(Long id) {
+        return UniqueQuantityCodeMapper.uqcDTO(findById(id));
     }
 
     @Override
-    public UQCDTO create(CreateUQCDTO request) {
+    public UniqueQuantityCodeDTO create(CreateUniqueQuantityCodeDTO request) {
         if (uqcRepository.existsByCode(request.code().toUpperCase())) {
             throw new DataAlreadyExistsException("UQC with code " + request.code() + " already exists");
         }
         if (uqcRepository.existsByName(request.name())) {
             throw new DataAlreadyExistsException("UQC already exists");
         }
-        UQCEntity saved = uqcRepository.save(UQCMapper.uqcEntity(request));
-        return UQCMapper.uqcDTO(saved);
+        UniqueQuantityCodeEntity saved = uqcRepository.save(UniqueQuantityCodeMapper.uqcEntity(request));
+        return UniqueQuantityCodeMapper.uqcDTO(saved);
     }
 
     @Override
-    public UQCDTO update(Long id, CreateUQCDTO request) {
-        UQCEntity uqc = findById(id);
+    public UniqueQuantityCodeDTO update(Long id, CreateUniqueQuantityCodeDTO request) {
+        UniqueQuantityCodeEntity uqc = findById(id);
         if (uqcRepository.existsByCode(request.code().toUpperCase()) && !uqc.getCode().equalsIgnoreCase(request.code())) {
             throw new DataAlreadyExistsException("UQC with code " + request.code() + " already exists");
         }
@@ -54,7 +54,7 @@ public class UQCServiceImpl implements UQCService {
         uqc.setCode(request.code().toUpperCase());
         uqc.setAlias(request.alias());
         uqc.setDescription(request.description());
-        return UQCMapper.uqcDTO(uqcRepository.save(uqc));
+        return UniqueQuantityCodeMapper.uqcDTO(uqcRepository.save(uqc));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class UQCServiceImpl implements UQCService {
         return "UQC deleted successfully";
     }
 
-    private UQCEntity findById(Long id) {
+    private UniqueQuantityCodeEntity findById(Long id) {
         return uqcRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("UQC does not exist")
         );

@@ -5,8 +5,8 @@ import com.codymitra.shared_service.modules.stock_unit.dtos.CreateStockUnitReque
 import com.codymitra.shared_service.modules.stock_unit.dtos.StockUnitDTO;
 import com.codymitra.shared_service.modules.stock_unit.entities.StockUnitEntity;
 import com.codymitra.shared_service.modules.stock_unit.enums.StockUnitTypeEnum;
-import com.codymitra.shared_service.modules.uqc.entities.UQCEntity;
-import com.codymitra.shared_service.modules.uqc.mappers.UQCMapper;
+import com.codymitra.shared_service.modules.unique_quantity_code.entities.UniqueQuantityCodeEntity;
+import com.codymitra.shared_service.modules.unique_quantity_code.mappers.UniqueQuantityCodeMapper;
 
 public final class StockUnitMapper {
 
@@ -19,7 +19,7 @@ public final class StockUnitMapper {
                 unit.getAlias(),
                 unit.getDescription(),
                 unit.getUnitType(),
-                unit.getUqc() != null ? UQCMapper.uqcDTO(unit.getUqc()) : null,
+                unit.getUqc() != null ? UniqueQuantityCodeMapper.uqcDTO(unit.getUqc()) : null,
                 baseStockUnitDTO(baseUnit1),
                 baseStockUnitDTO(baseUnit2),
                 unit.getConversionFactor(),
@@ -27,16 +27,16 @@ public final class StockUnitMapper {
         );
     }
 
-    public static StockUnitEntity stockUnitEntity(CreateStockUnitRequestDTO unitRequest, UQCEntity uqc) {
+    public static StockUnitEntity stockUnitEntity(CreateStockUnitRequestDTO unitRequest, UniqueQuantityCodeEntity uqc) {
         StockUnitEntity unit = new StockUnitEntity();
         return applyRequest(unit, unitRequest, uqc);
     }
 
-    public static StockUnitEntity stockUnitEntity(StockUnitEntity unit, CreateStockUnitRequestDTO unitRequest, UQCEntity uqc) {
+    public static StockUnitEntity stockUnitEntity(StockUnitEntity unit, CreateStockUnitRequestDTO unitRequest, UniqueQuantityCodeEntity uqc) {
         return applyRequest(unit, unitRequest, uqc);
     }
 
-    private static StockUnitEntity applyRequest(StockUnitEntity unit, CreateStockUnitRequestDTO unitRequest, UQCEntity uqc) {
+    private static StockUnitEntity applyRequest(StockUnitEntity unit, CreateStockUnitRequestDTO unitRequest, UniqueQuantityCodeEntity uqc) {
         unit.setName(unitRequest.name());
         String codeName = unitRequest.name().replace(" ", "_");
         unit.setCode(codeName.toUpperCase());

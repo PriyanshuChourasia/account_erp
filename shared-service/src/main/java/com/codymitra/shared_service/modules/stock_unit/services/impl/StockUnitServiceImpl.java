@@ -9,8 +9,8 @@ import com.codymitra.shared_service.modules.stock_unit.entities.StockUnitEntity;
 import com.codymitra.shared_service.modules.stock_unit.mappers.StockUnitMapper;
 import com.codymitra.shared_service.modules.stock_unit.repositories.StockUnitRepository;
 import com.codymitra.shared_service.modules.stock_unit.services.StockUnitService;
-import com.codymitra.shared_service.modules.uqc.entities.UQCEntity;
-import com.codymitra.shared_service.modules.uqc.repositories.UQCRepository;
+import com.codymitra.shared_service.modules.unique_quantity_code.entities.UniqueQuantityCodeEntity;
+import com.codymitra.shared_service.modules.unique_quantity_code.repositories.UniqueQuantityCodeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ import java.util.List;
 public class StockUnitServiceImpl implements StockUnitService {
 
     private final StockUnitRepository stockUnitRepository;
-    private final UQCRepository uqcRepository;
+    private final UniqueQuantityCodeRepository uqcRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -47,7 +47,7 @@ public class StockUnitServiceImpl implements StockUnitService {
             throw new DataAlreadyExistsException("Unit already exists");
         }
 
-        UQCEntity uqc = resolveUqc(createStockUnitRequestDTO.uqcId());
+        UniqueQuantityCodeEntity uqc = resolveUqc(createStockUnitRequestDTO.uqcId());
         StockUnitEntity unitEntity = StockUnitMapper.stockUnitEntity(createStockUnitRequestDTO, uqc);
         StockUnitEntity createUnit = stockUnitRepository.save(unitEntity);
 
@@ -66,7 +66,7 @@ public class StockUnitServiceImpl implements StockUnitService {
             throw new DataAlreadyExistsException("Unit already exists");
         }
 
-        UQCEntity uqc = resolveUqc(createStockUnitRequestDTO.uqcId());
+        UniqueQuantityCodeEntity uqc = resolveUqc(createStockUnitRequestDTO.uqcId());
         StockUnitEntity updatedUnit = StockUnitMapper.stockUnitEntity(unit, createStockUnitRequestDTO, uqc);
         StockUnitEntity savedUnit = stockUnitRepository.save(updatedUnit);
 
@@ -105,7 +105,7 @@ public class StockUnitServiceImpl implements StockUnitService {
         return stockUnitRepository.findById(id).orElse(new StockUnitEntity());
     }
 
-    private UQCEntity resolveUqc(Long id) {
+    private UniqueQuantityCodeEntity resolveUqc(Long id) {
         if (id == null) {
             return null;
         }

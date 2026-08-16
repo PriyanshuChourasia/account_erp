@@ -1,13 +1,15 @@
-package com.codymitra.shared_service.modules.uqc.dtos;
+package com.codymitra.shared_service.modules.storage_location.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record UQCDTO(
+public record StorageLocationDTO(
         Long id,
         String name,
         String code,
         String alias,
-        String description
+        Long parentId,
+        String description,
+        Boolean isActive
 ) {
 }
