@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.storage_unit.services.impl;
 
+import java.util.UUID;
 
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
@@ -23,7 +24,7 @@ public class StorageUnitServiceImpl implements StorageUnitService {
 
 
     @Override
-    public StorageUnitEntity show(Long id){
+    public StorageUnitEntity show(UUID id){
         return storageUnitRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Storage Unit does not exists")
         );

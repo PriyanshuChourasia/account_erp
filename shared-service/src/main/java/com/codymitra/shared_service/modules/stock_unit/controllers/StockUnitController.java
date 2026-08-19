@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.stock_unit.controllers;
 
+import java.util.UUID;
 
 import com.codymitra.shared_service.modules.stock_unit.dtos.CreateStockUnitRequestDTO;
 import com.codymitra.shared_service.modules.stock_unit.dtos.StockUnitDTO;
@@ -29,7 +30,7 @@ public class StockUnitController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> getById(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> getById(@PathVariable UUID id) {
         StockUnitDTO dto = stockUnitService.getById(id);
         return ResponseHandler.generateResponse(dto, "Unit fetched successfully", HttpStatus.OK);
     }
@@ -41,13 +42,13 @@ public class StockUnitController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @Valid @RequestBody CreateStockUnitRequestDTO createStockUnitRequestDTO) {
+    public ResponseEntity<Map<String, Object>> update(@PathVariable UUID id, @Valid @RequestBody CreateStockUnitRequestDTO createStockUnitRequestDTO) {
         StockUnitDTO dto = stockUnitService.update(id, createStockUnitRequestDTO);
         return ResponseHandler.generateResponse(dto, "Unit updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable UUID id) {
         String message = stockUnitService.delete(id);
         return ResponseHandler.generateResponse(message, HttpStatus.OK);
     }

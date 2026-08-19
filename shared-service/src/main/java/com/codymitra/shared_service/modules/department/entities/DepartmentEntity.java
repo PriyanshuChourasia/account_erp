@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -15,10 +17,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class DepartmentEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "name",nullable = false,unique = true)
     private String name;
 
@@ -26,7 +24,7 @@ public class DepartmentEntity extends BaseEntity {
     private String code;
 
     @Column(name = "parent_id")
-    private Long parentId;
+    private UUID parentId;
 
     @Column(name = "description")
     private String description;

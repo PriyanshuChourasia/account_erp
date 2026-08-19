@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.storage_location.services.impl;
 
+import java.util.UUID;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.storage_location.dtos.CreateStorageLocationRequestDTO;
@@ -38,7 +39,7 @@ public class StorageLocationServiceImpl implements StorageLocationService {
 
     @Override
     @Transactional(readOnly = true)
-    public StorageLocationDTO getById(Long id) {
+    public StorageLocationDTO getById(UUID id) {
         return StorageLocationMapper.storageLocationDTO(findById(id));
     }
 
@@ -54,7 +55,7 @@ public class StorageLocationServiceImpl implements StorageLocationService {
 
     @Override
     @Transactional
-    public StorageLocationDTO update(Long id, CreateStorageLocationRequestDTO request) {
+    public StorageLocationDTO update(UUID id, CreateStorageLocationRequestDTO request) {
         StorageLocationEntity storageLocation = findById(id);
         if (storageLocationRepository.existsByNameAndIdNot(request.name(), id)) {
             throw new DataAlreadyExistsException("Storage location already exists with this name");
@@ -65,12 +66,12 @@ public class StorageLocationServiceImpl implements StorageLocationService {
 
     @Override
     @Transactional
-    public String delete(Long id) {
+    public String delete(UUID id) {
         storageLocationRepository.delete(findById(id));
         return "Storage location deleted successfully";
     }
 
-    private StorageLocationEntity findById(Long id) {
+    private StorageLocationEntity findById(UUID id) {
         return storageLocationRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Storage location does not exist")
         );

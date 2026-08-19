@@ -1,6 +1,9 @@
 package com.codymitra.shared_service.modules.stock_category.services.impl;
 
+import java.util.UUID;
+
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
+import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.stock_category.dtos.CreateStockCategoryRequest;
 import com.codymitra.shared_service.modules.stock_category.dtos.StockCategoryDTO;
 import com.codymitra.shared_service.modules.stock_category.dtos.StockCategoryHierarchyDTO;
@@ -42,8 +45,14 @@ public class StockCategoryServiceImpl implements StockCategoryService {
             throw new DataAlreadyExistsException("Stock Category Already exists with this name");
         }
         StockCategoryEntity category = StockCategoryMapper.stockCategoryEntity(createStockCategoryRequest);
-        StockCategoryEntity createCategory = stockCategoryRepository.save(category);
+        StockCategoryEntity createCategory =         stockCategoryRepository.save(category);
         return "Stock Category Created successfully";
     }
 
+    @Override
+    public StockCategoryEntity getById(UUID id){
+        return stockCategoryRepository.findById(id).orElseThrow(
+                () -> new DataNotFoundException("Stock Category does not exists with this id")
+        );
+    }
 }

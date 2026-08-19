@@ -1,5 +1,7 @@
 package com.codymitra.shared_service.modules.storage_location.entities;
 
+import java.util.UUID;
+
 
 import com.codymitra.shared_service.entities.BaseEntity;
 import jakarta.persistence.*;
@@ -16,10 +18,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class StorageLocationEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "name",unique = true,nullable = false)
     private String name;
 
@@ -30,7 +28,7 @@ public class StorageLocationEntity extends BaseEntity {
     private String alias;
 
     @Column(name = "parent_id")
-    private Long parentId;
+    private UUID parentId;
 
     @Column(name = "description")
     private String description;

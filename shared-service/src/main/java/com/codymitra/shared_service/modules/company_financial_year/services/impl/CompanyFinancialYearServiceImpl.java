@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.company_financial_year.services.impl;
 
+import java.util.UUID;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.company.entities.CompanyEntity;
@@ -33,12 +34,12 @@ public class CompanyFinancialYearServiceImpl implements CompanyFinancialYearServ
     }
 
     @Override
-    public CompanyFinancialYearDTO getById(Long id) {
+    public CompanyFinancialYearDTO getById(UUID id) {
         return CompanyFinancialYearMapper.companyFinancialYearDTO(findById(id));
     }
 
     @Override
-    public List<CompanyFinancialYearDTO> getByCompanyId(Long companyId) {
+    public List<CompanyFinancialYearDTO> getByCompanyId(UUID companyId) {
         return companyFinancialYearRepository.findByCompany_Id(companyId).stream()
                 .map(CompanyFinancialYearMapper::companyFinancialYearDTO)
                 .toList();
@@ -62,7 +63,7 @@ public class CompanyFinancialYearServiceImpl implements CompanyFinancialYearServ
     }
 
     @Override
-    public CompanyFinancialYearDTO update(Long id, CreateCompanyFinancialYearDTO request) {
+    public CompanyFinancialYearDTO update(UUID id, CreateCompanyFinancialYearDTO request) {
         CompanyFinancialYearEntity companyFinancialYear = findById(id);
         CompanyEntity company = companyRepository.findById(request.companyId()).orElseThrow(
                 () -> new DataNotFoundException("No such company exists")
@@ -82,14 +83,14 @@ public class CompanyFinancialYearServiceImpl implements CompanyFinancialYearServ
     }
 
     @Override
-    public String delete(Long id) {
+    public String delete(UUID id) {
         CompanyFinancialYearEntity companyFinancialYear = findById(id);
         companyFinancialYear.setActive(false);
         companyFinancialYearRepository.save(companyFinancialYear);
         return "Company financial year deactivated successfully";
     }
 
-    private CompanyFinancialYearEntity findById(Long id) {
+    private CompanyFinancialYearEntity findById(UUID id) {
         return companyFinancialYearRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Company financial year does not exist")
         );

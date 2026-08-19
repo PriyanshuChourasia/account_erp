@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.unique_quantity_code.services.impl;
 
+import java.util.UUID;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.unique_quantity_code.dtos.CreateUniqueQuantityCodeDTO;
@@ -25,7 +26,7 @@ public class UniqueQuantityCodeServiceImpl implements UniqueQuantityCodeService 
     }
 
     @Override
-    public UniqueQuantityCodeDTO getById(Long id) {
+    public UniqueQuantityCodeDTO getById(UUID id) {
         return UniqueQuantityCodeMapper.uqcDTO(findById(id));
     }
 
@@ -42,7 +43,7 @@ public class UniqueQuantityCodeServiceImpl implements UniqueQuantityCodeService 
     }
 
     @Override
-    public UniqueQuantityCodeDTO update(Long id, CreateUniqueQuantityCodeDTO request) {
+    public UniqueQuantityCodeDTO update(UUID id, CreateUniqueQuantityCodeDTO request) {
         UniqueQuantityCodeEntity uqc = findById(id);
         if (uqcRepository.existsByCode(request.code().toUpperCase()) && !uqc.getCode().equalsIgnoreCase(request.code())) {
             throw new DataAlreadyExistsException("UQC with code " + request.code() + " already exists");
@@ -58,12 +59,12 @@ public class UniqueQuantityCodeServiceImpl implements UniqueQuantityCodeService 
     }
 
     @Override
-    public String delete(Long id) {
+    public String delete(UUID id) {
         uqcRepository.delete(findById(id));
         return "UQC deleted successfully";
     }
 
-    private UniqueQuantityCodeEntity findById(Long id) {
+    private UniqueQuantityCodeEntity findById(UUID id) {
         return uqcRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("UQC does not exist")
         );

@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.voucher_reference.repositories;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.voucher_reference.entities.VoucherReferenceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -7,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface VoucherReferenceRepository extends JpaRepository<VoucherReferenceEntity, Long> {
+public interface VoucherReferenceRepository extends JpaRepository<VoucherReferenceEntity, UUID> {
 
-    Boolean existsByVoucherIdAndRefVoucherId(Long voucherId, Long refVoucherId);
+    Boolean existsByVoucherIdAndRefVoucherId(UUID voucherId, UUID refVoucherId);
 
-    List<VoucherReferenceEntity> findByVoucherId(Long voucherId);
+    List<VoucherReferenceEntity> findByVoucherId(UUID voucherId);
 
-    List<VoucherReferenceEntity> findByRefVoucherId(Long refVoucherId);
+    List<VoucherReferenceEntity> findByRefVoucherId(UUID refVoucherId);
 }

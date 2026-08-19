@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.voucher_reference.services.impl;
 
+import java.util.UUID;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.voucher.entities.VoucherEntity;
@@ -33,13 +34,13 @@ public class VoucherReferenceServiceImpl implements VoucherReferenceService {
 
     @Override
     @Transactional(readOnly = true)
-    public VoucherReferenceDTO getById(Long id) {
+    public VoucherReferenceDTO getById(UUID id) {
         return VoucherReferenceMapper.voucherReferenceDTO(findById(id));
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<VoucherReferenceDTO> getByVoucherId(Long voucherId) {
+    public List<VoucherReferenceDTO> getByVoucherId(UUID voucherId) {
         return voucherReferenceRepository.findByVoucherId(voucherId).stream()
                 .map(VoucherReferenceMapper::voucherReferenceDTO)
                 .toList();
@@ -47,7 +48,7 @@ public class VoucherReferenceServiceImpl implements VoucherReferenceService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<VoucherReferenceDTO> getByRefVoucherId(Long refVoucherId) {
+    public List<VoucherReferenceDTO> getByRefVoucherId(UUID refVoucherId) {
         return voucherReferenceRepository.findByRefVoucherId(refVoucherId).stream()
                 .map(VoucherReferenceMapper::voucherReferenceDTO)
                 .toList();
@@ -72,7 +73,7 @@ public class VoucherReferenceServiceImpl implements VoucherReferenceService {
 
     @Override
     @Transactional
-    public VoucherReferenceDTO update(Long id, CreateVoucherReferenceDTO request) {
+    public VoucherReferenceDTO update(UUID id, CreateVoucherReferenceDTO request) {
         VoucherReferenceEntity voucherReference = findById(id);
         if (request.voucherId().equals(request.refVoucherId())) {
             throw new IllegalArgumentException("Voucher cannot reference itself");
@@ -92,18 +93,18 @@ public class VoucherReferenceServiceImpl implements VoucherReferenceService {
 
     @Override
     @Transactional
-    public String delete(Long id) {
+    public String delete(UUID id) {
         voucherReferenceRepository.delete(findById(id));
         return "Voucher reference deleted successfully";
     }
 
-    private VoucherReferenceEntity findById(Long id) {
+    private VoucherReferenceEntity findById(UUID id) {
         return voucherReferenceRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Voucher reference does not exist")
         );
     }
 
-    private VoucherEntity findVoucher(Long id) {
+    private VoucherEntity findVoucher(UUID id) {
         return voucherRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("No such voucher exists")
         );

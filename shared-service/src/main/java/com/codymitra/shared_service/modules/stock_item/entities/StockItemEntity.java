@@ -23,10 +23,6 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 public class StockItemEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "name")
     private String name;
 

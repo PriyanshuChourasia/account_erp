@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.account_nature.services.impl;
 
+import java.util.UUID;
 
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
@@ -23,7 +24,7 @@ public class AccountNatureServiceImpl implements AccountNatureService {
 
 
     @Override
-    public AccountNatureEntity show(Long id){
+    public AccountNatureEntity show(UUID id){
         return accountNatureRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Account Nature does not exists")
         );

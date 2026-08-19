@@ -1,13 +1,14 @@
 package com.codymitra.shared_service.modules.department.dtos;
 
+import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record DepartmentDTO(
-        Long id,
+        UUID id,
         String name,
         String code,
-        Long parentId,
+        UUID parentId,
         String description,
         Boolean active
 ) {

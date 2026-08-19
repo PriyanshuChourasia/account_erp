@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.financial_year.services.impl;
 
+import java.util.UUID;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.financial_year.dtos.CreateFinancialYearDTO;
@@ -26,7 +27,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
     }
 
     @Override
-    public FinancialYearDTO getById(Long id) {
+    public FinancialYearDTO getById(UUID id) {
         return FinancialYearMapper.financialYearDTO(findById(id));
     }
 
@@ -55,7 +56,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 
     @Override
     @Transactional
-    public FinancialYearDTO update(Long id, CreateFinancialYearDTO request) {
+    public FinancialYearDTO update(UUID id, CreateFinancialYearDTO request) {
         FinancialYearEntity financialYear = findById(id);
         if (request.endDate().isBefore(request.startDate())) {
             throw new IllegalArgumentException("End date cannot be before start date");
@@ -80,7 +81,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 
     @Override
     @Transactional
-    public String updateCurrentFinancialYear(Long id, Boolean current){
+    public String updateCurrentFinancialYear(UUID id, Boolean current){
         FinancialYearEntity financialYear = financialYearRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("No such financial year found")
         );
@@ -91,7 +92,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
     }
 
     @Override
-    public String delete(Long id) {
+    public String delete(UUID id) {
         FinancialYearEntity financialYear = findById(id);
         financialYearRepository.delete(financialYear);
         return "Financial year deleted successfully";
@@ -103,7 +104,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
         financialYearRepository.saveAll(currentYears);
     }
 
-    private FinancialYearEntity findById(Long id) {
+    private FinancialYearEntity findById(UUID id) {
         return financialYearRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Financial year does not exist")
         );

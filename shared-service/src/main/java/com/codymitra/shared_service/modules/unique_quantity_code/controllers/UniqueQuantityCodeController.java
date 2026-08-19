@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.unique_quantity_code.controllers;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.unique_quantity_code.dtos.CreateUniqueQuantityCodeDTO;
 import com.codymitra.shared_service.modules.unique_quantity_code.dtos.UniqueQuantityCodeDTO;
 import com.codymitra.shared_service.modules.unique_quantity_code.services.UniqueQuantityCodeService;
@@ -28,7 +29,7 @@ public class UniqueQuantityCodeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> getById(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> getById(@PathVariable UUID id) {
         UniqueQuantityCodeDTO dto = uqcService.getById(id);
         return ResponseHandler.generateResponse(dto, "UQC fetched successfully", HttpStatus.OK);
     }
@@ -40,13 +41,13 @@ public class UniqueQuantityCodeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @Valid @RequestBody CreateUniqueQuantityCodeDTO request) {
+    public ResponseEntity<Map<String, Object>> update(@PathVariable UUID id, @Valid @RequestBody CreateUniqueQuantityCodeDTO request) {
         UniqueQuantityCodeDTO dto = uqcService.update(id, request);
         return ResponseHandler.generateResponse(dto, "UQC updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable UUID id) {
         String message = uqcService.delete(id);
         return ResponseHandler.generateResponse(message, HttpStatus.OK);
     }

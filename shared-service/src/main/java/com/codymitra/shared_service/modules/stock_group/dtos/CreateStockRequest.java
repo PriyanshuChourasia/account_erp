@@ -1,5 +1,7 @@
 package com.codymitra.shared_service.modules.stock_group.dtos;
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 
@@ -9,7 +11,7 @@ public record CreateStockRequest(
         String alias,
         String code,
         String description,
-        Long parentId,
+        UUID parentId,
         Boolean shouldAddQuantities,
         Boolean setAlterGstDetail
 ) {

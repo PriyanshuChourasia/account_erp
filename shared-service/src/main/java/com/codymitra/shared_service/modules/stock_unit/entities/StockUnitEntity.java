@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 
 @AllArgsConstructor
@@ -20,10 +21,6 @@ import java.math.BigDecimal;
 @Entity(name = "stock_units")
 @Table(name = "stock_units")
 public class StockUnitEntity extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "name",unique = true,nullable = false)
     private String name;
@@ -49,10 +46,10 @@ public class StockUnitEntity extends BaseEntity {
 
     /// example can be Box 1 piece conversion factor = 10 means 1 box = 10 piece
     @Column(name = "primary_unit_id")
-    private Long primaryUnitId;
+    private UUID primaryUnitId;
 
     @Column(name = "secondary_unit_id")
-    private Long secondaryUnitId;
+    private UUID secondaryUnitId;
 
     /// decimal 12,4
     @Column(name = "conversion_factor", precision = 12, scale = 4)

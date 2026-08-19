@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.unique_quantity_code.services;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.unique_quantity_code.dtos.CreateUniqueQuantityCodeDTO;
 import com.codymitra.shared_service.modules.unique_quantity_code.dtos.UniqueQuantityCodeDTO;
 
@@ -9,11 +10,11 @@ public interface UniqueQuantityCodeService {
 
     List<UniqueQuantityCodeDTO> getAll();
 
-    UniqueQuantityCodeDTO getById(Long id);
+    UniqueQuantityCodeDTO getById(UUID id);
 
     UniqueQuantityCodeDTO create(CreateUniqueQuantityCodeDTO request);
 
-    UniqueQuantityCodeDTO update(Long id, CreateUniqueQuantityCodeDTO request);
+    UniqueQuantityCodeDTO update(UUID id, CreateUniqueQuantityCodeDTO request);
 
-    String delete(Long id);
+    String delete(UUID id);
 }

@@ -18,10 +18,6 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 public class FinancialYearEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "name",nullable = false,unique = true)
     private String name;
 

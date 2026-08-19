@@ -3,16 +3,13 @@ package com.codymitra.shared_service.modules.storage_location.utils;
 import com.codymitra.shared_service.modules.storage_location.dtos.StorageLocationHierarchyDTO;
 import com.codymitra.shared_service.modules.storage_location.entities.StorageLocationEntity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class StorageLocationHierarchy {
 
     public static List<StorageLocationHierarchyDTO> storageLocationDTO(List<StorageLocationEntity> storageLocationEntities) {
 
-        Map<Long, StorageLocationHierarchyDTO> storageLocationDTOMap = new HashMap<>();
+        Map<UUID, StorageLocationHierarchyDTO> storageLocationDTOMap = new HashMap<>();
 
         for (StorageLocationEntity storageLocation : storageLocationEntities) {
             storageLocationDTOMap.put(storageLocation.getId(),

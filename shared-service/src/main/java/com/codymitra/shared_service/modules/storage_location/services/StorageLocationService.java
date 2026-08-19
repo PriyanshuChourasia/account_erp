@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.storage_location.services;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.storage_location.dtos.CreateStorageLocationRequestDTO;
 import com.codymitra.shared_service.modules.storage_location.dtos.StorageLocationDTO;
 import com.codymitra.shared_service.modules.storage_location.dtos.StorageLocationHierarchyDTO;
@@ -12,11 +13,11 @@ public interface StorageLocationService {
 
     List<StorageLocationHierarchyDTO> getAllWithChildren();
 
-    StorageLocationDTO getById(Long id);
+    StorageLocationDTO getById(UUID id);
 
     StorageLocationDTO create(CreateStorageLocationRequestDTO request);
 
-    StorageLocationDTO update(Long id, CreateStorageLocationRequestDTO request);
+    StorageLocationDTO update(UUID id, CreateStorageLocationRequestDTO request);
 
-    String delete(Long id);
+    String delete(UUID id);
 }

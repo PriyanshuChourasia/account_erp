@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.storage_unit.services;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.storage_unit.dtos.StorageUnitDTO;
 import com.codymitra.shared_service.modules.storage_unit.dtos.CreateStorageUnitDTO;
 import com.codymitra.shared_service.modules.storage_unit.entities.StorageUnitEntity;
@@ -12,5 +13,5 @@ public interface StorageUnitService {
 
     String create(CreateStorageUnitDTO createStorageUnitDTO);
 
-    StorageUnitEntity show(Long id);
+    StorageUnitEntity show(UUID id);
 }

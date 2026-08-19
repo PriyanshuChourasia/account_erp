@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.stock_unit.services.impl;
 
+import java.util.UUID;
 
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
@@ -34,9 +35,15 @@ public class StockUnitServiceImpl implements StockUnitService {
 
     @Override
     @Transactional(readOnly = true)
-    public StockUnitDTO getById(Long id) {
+    public StockUnitDTO getById(UUID id) {
         StockUnitEntity unit = findById(id);
         return StockUnitMapper.stockUnitDTO(unit, resolveUnit(unit.getPrimaryUnitId()), resolveUnit(unit.getSecondaryUnitId()));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public StockUnitEntity getEntityById(UUID id) {
+        return findById(id);
     }
 
     @Override
@@ -59,7 +66,7 @@ public class StockUnitServiceImpl implements StockUnitService {
 
     @Override
     @Transactional
-    public StockUnitDTO update(Long id, CreateStockUnitRequestDTO createStockUnitRequestDTO) {
+    public StockUnitDTO update(UUID id, CreateStockUnitRequestDTO createStockUnitRequestDTO) {
         StockUnitEntity unit = findById(id);
 
         if (stockUnitRepository.existsByNameAndIdNot(createStockUnitRequestDTO.name(), id)) {
@@ -78,18 +85,18 @@ public class StockUnitServiceImpl implements StockUnitService {
 
     @Override
     @Transactional
-    public String delete(Long id) {
+    public String delete(UUID id) {
         stockUnitRepository.delete(findById(id));
         return "Unit deleted successfully";
     }
 
-    private StockUnitEntity findById(Long id) {
+    private StockUnitEntity findById(UUID id) {
         return stockUnitRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("No such unit found")
         );
     }
 
-    private StockUnitEntity resolveRequiredUnit(Long id) {
+    private StockUnitEntity resolveRequiredUnit(UUID id) {
         if (id == null) {
             return new StockUnitEntity();
         }
@@ -98,14 +105,14 @@ public class StockUnitServiceImpl implements StockUnitService {
         );
     }
 
-    private StockUnitEntity resolveUnit(Long id) {
+    private StockUnitEntity resolveUnit(UUID id) {
         if (id == null) {
             return new StockUnitEntity();
         }
         return stockUnitRepository.findById(id).orElse(new StockUnitEntity());
     }
 
-    private UniqueQuantityCodeEntity resolveUqc(Long id) {
+    private UniqueQuantityCodeEntity resolveUqc(UUID id) {
         if (id == null) {
             return null;
         }

@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.account_nature.services;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.account_nature.dtos.AccountNatureDTO;
 import com.codymitra.shared_service.modules.account_nature.dtos.CreateAccountNatureDTO;
 import com.codymitra.shared_service.modules.account_nature.entities.AccountNatureEntity;
@@ -12,5 +13,5 @@ public interface AccountNatureService {
 
     String create(CreateAccountNatureDTO createAccountNatureDTO);
 
-    AccountNatureEntity show(Long id);
+    AccountNatureEntity show(UUID id);
 }

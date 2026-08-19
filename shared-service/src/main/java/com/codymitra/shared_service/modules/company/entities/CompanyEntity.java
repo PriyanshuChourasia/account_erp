@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class CompanyEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "name",nullable = false,unique = true)
     private String name;
 
     @Column(name = "code",unique = true)
     private String code;
+
+    @Column(name = "mailing_name")
+    private String mailingName;
+
 }

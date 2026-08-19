@@ -1,5 +1,7 @@
 package com.codymitra.shared_service.modules.stock_group.entities;
 
+import java.util.UUID;
+
 
 import com.codymitra.shared_service.entities.BaseEntity;
 import jakarta.persistence.*;
@@ -16,9 +18,6 @@ import org.hibernate.annotations.Comment;
 @Table(name = "stock_groups")
 @EqualsAndHashCode(callSuper = true)
 public class StockGroupEntity extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     @Column(name = "name",unique = true)
     private String name;
@@ -30,7 +29,7 @@ public class StockGroupEntity extends BaseEntity {
     private String alias;
 
     @Column(name = "parent_id")
-    private Long parentId;
+    private UUID parentId;
 
     @Column(name = "description")
     private String description;

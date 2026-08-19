@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.account_group.services;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.account_group.dtos.AccountGroupDTO;
 import com.codymitra.shared_service.modules.account_group.dtos.CreateAccountGroupDTO;
 import com.codymitra.shared_service.modules.account_group.entities.AccountGroupEntity;
@@ -12,5 +13,5 @@ public interface AccountGroupService {
 
     String create(CreateAccountGroupDTO createAccountGroupDTO);
 
-    AccountGroupEntity getById(Long id);
+    AccountGroupEntity getById(UUID id);
 }

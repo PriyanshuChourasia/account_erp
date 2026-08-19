@@ -1,6 +1,7 @@
 package com.codymitra.auth_service.security;
 
 
+import com.codymitra.shared_service.modules.user.entities.UserEntity;
 import com.codymitra.shared_service.modules.user.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+
+        UserEntity user = userRepository.findByUsername(username).orElseThrow(
+                () -> new UsernameNotFoundException("Username not found")
+        );
+        return new UserPrincipal(user);
     }
 }

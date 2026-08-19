@@ -1,5 +1,7 @@
 package com.codymitra.shared_service.modules.account_ledger.entities;
 
+import java.util.UUID;
+
 
 import com.codymitra.shared_service.entities.BaseEntity;
 import com.codymitra.shared_service.modules.account_ledger.interfaces.Ledgerable;
@@ -23,10 +25,6 @@ import org.hibernate.annotations.AnyKeyJavaClass;
 @EqualsAndHashCode(callSuper = true)
 public class AccountLedgerEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "name",unique = true)
     private String name;
 
@@ -34,7 +32,7 @@ public class AccountLedgerEntity extends BaseEntity {
     private String code;
 
     @Column(name = "parent_id")
-    private Long parentId;
+    private UUID parentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "financial_year_id")

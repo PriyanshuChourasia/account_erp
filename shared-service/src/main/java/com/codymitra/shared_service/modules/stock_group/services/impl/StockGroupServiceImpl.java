@@ -1,6 +1,9 @@
 package com.codymitra.shared_service.modules.stock_group.services.impl;
 
+import java.util.UUID;
+
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
+import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.stock_group.dtos.CreateStockRequest;
 import com.codymitra.shared_service.modules.stock_group.dtos.StockGroupDTO;
 import com.codymitra.shared_service.modules.stock_group.entities.StockGroupEntity;
@@ -35,4 +38,10 @@ public class StockGroupServiceImpl implements StockGroupService {
         return StockGroupMapper.stockDTO(createGroup);
     }
 
+    @Override
+    public StockGroupEntity getById(UUID id){
+        return stockGroupRepository.findById(id).orElseThrow(
+                () -> new DataNotFoundException("Stock Group does not exists with this id")
+        );
+    }
 }

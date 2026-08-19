@@ -1,5 +1,7 @@
 package com.codymitra.shared_service.modules.storage_location.dtos;
 
+import java.util.UUID;
+
 import jakarta.validation.constraints.NotBlank;
 
 public record CreateStorageLocationRequestDTO(
@@ -7,7 +9,7 @@ public record CreateStorageLocationRequestDTO(
         String name,
         String code,
         String alias,
-        Long parentId,
+        UUID parentId,
         String description
 ) {
 }

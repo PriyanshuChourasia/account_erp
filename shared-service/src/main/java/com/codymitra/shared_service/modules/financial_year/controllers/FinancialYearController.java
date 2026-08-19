@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.financial_year.controllers;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.financial_year.dtos.CreateFinancialYearDTO;
 import com.codymitra.shared_service.modules.financial_year.dtos.FinancialYearDTO;
 import com.codymitra.shared_service.modules.financial_year.services.FinancialYearService;
@@ -28,7 +29,7 @@ public class FinancialYearController {
     }
 
     @GetMapping("/current")
-    public ResponseEntity<Map<String, Object>> updateCurrent(@Valid @RequestParam Long id, @RequestParam Boolean current) {
+    public ResponseEntity<Map<String, Object>> updateCurrent(@Valid @RequestParam UUID id, @RequestParam Boolean current) {
         String message = financialYearService.updateCurrentFinancialYear(id,current);
         return ResponseHandler.generateResponse(message, "Financial year updated successfully", HttpStatus.OK);
     }
@@ -40,7 +41,7 @@ public class FinancialYearController {
     }
 
 //    @PutMapping("/{id}")
-//    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @Valid @RequestBody CreateFinancialYearDTO request) {
+//    public ResponseEntity<Map<String, Object>> update(@PathVariable UUID id, @Valid @RequestBody CreateFinancialYearDTO request) {
 //        FinancialYearDTO dto = financialYearService.update(id, request);
 //        return ResponseHandler.generateResponse(dto, "Financial year updated successfully", HttpStatus.OK);
 //    }

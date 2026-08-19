@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.financial_year.services;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.financial_year.dtos.CreateFinancialYearDTO;
 import com.codymitra.shared_service.modules.financial_year.dtos.FinancialYearDTO;
 
@@ -9,13 +10,13 @@ public interface FinancialYearService {
 
     List<FinancialYearDTO> getAll();
 
-    FinancialYearDTO getById(Long id);
+    FinancialYearDTO getById(UUID id);
 
     FinancialYearDTO create(CreateFinancialYearDTO request);
 
-    FinancialYearDTO update(Long id, CreateFinancialYearDTO request);
+    FinancialYearDTO update(UUID id, CreateFinancialYearDTO request);
 
-    String updateCurrentFinancialYear(Long id, Boolean current);
+    String updateCurrentFinancialYear(UUID id, Boolean current);
 
-    String delete(Long id);
+    String delete(UUID id);
 }

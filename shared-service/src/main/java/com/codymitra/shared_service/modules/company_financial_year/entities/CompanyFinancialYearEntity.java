@@ -21,10 +21,6 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 public class CompanyFinancialYearEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "company_id", nullable = false)
     private CompanyEntity company;

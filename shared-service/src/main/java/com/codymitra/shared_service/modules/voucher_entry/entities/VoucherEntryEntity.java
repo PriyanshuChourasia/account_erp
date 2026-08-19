@@ -10,13 +10,8 @@ import lombok.NoArgsConstructor;
 
 @Entity(name = "voucher_entries")
 @Table(name = "voucher_entries")
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class VoucherEntryEntity extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 }

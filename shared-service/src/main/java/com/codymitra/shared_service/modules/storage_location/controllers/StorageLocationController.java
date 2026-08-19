@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.storage_location.controllers;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.storage_location.dtos.CreateStorageLocationRequestDTO;
 import com.codymitra.shared_service.modules.storage_location.dtos.StorageLocationDTO;
 import com.codymitra.shared_service.modules.storage_location.dtos.StorageLocationHierarchyDTO;
@@ -36,7 +37,7 @@ public class StorageLocationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> getById(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> getById(@PathVariable UUID id) {
         StorageLocationDTO dto = storageLocationService.getById(id);
         return ResponseHandler.generateResponse(dto, "Storage location fetched successfully", HttpStatus.OK);
     }
@@ -48,13 +49,13 @@ public class StorageLocationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @Valid @RequestBody CreateStorageLocationRequestDTO request) {
+    public ResponseEntity<Map<String, Object>> update(@PathVariable UUID id, @Valid @RequestBody CreateStorageLocationRequestDTO request) {
         StorageLocationDTO dto = storageLocationService.update(id, request);
         return ResponseHandler.generateResponse(dto, "Storage location updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable UUID id) {
         String message = storageLocationService.delete(id);
         return ResponseHandler.generateResponse(message, HttpStatus.OK);
     }

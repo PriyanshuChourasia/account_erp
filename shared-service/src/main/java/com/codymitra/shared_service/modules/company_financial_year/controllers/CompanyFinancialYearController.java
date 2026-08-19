@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.company_financial_year.controllers;
 
+import java.util.UUID;
 import com.codymitra.shared_service.modules.company_financial_year.dtos.CompanyFinancialYearDTO;
 import com.codymitra.shared_service.modules.company_financial_year.dtos.CreateCompanyFinancialYearDTO;
 import com.codymitra.shared_service.modules.company_financial_year.services.CompanyFinancialYearService;
@@ -28,14 +29,14 @@ public class CompanyFinancialYearController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> getById(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> getById(@PathVariable UUID id) {
         CompanyFinancialYearDTO dto = companyFinancialYearService.getById(id);
         return ResponseHandler.generateResponse(dto, "Company financial year fetched successfully", HttpStatus.OK);
     }
 
     @GetMapping("/company/{companyId}")
-    public ResponseEntity<Map<String, Object>> getByCompanyId(@PathVariable Long companyId) {
-        List<CompanyFinancialYearDTO> dtos = companyFinancialYearService.getByCompanyId(companyId);
+    public ResponseEntity<Map<String, Object>> getByCompanyId(@PathVariable String companyId) {
+        List<CompanyFinancialYearDTO> dtos = companyFinancialYearService.getByCompanyId(UUID.fromString(companyId));
         String message = dtos.size() + " total financial years fetched for company";
         return ResponseHandler.generateResponse(dtos, message, HttpStatus.OK);
     }
@@ -47,13 +48,13 @@ public class CompanyFinancialYearController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @Valid @RequestBody CreateCompanyFinancialYearDTO request) {
+    public ResponseEntity<Map<String, Object>> update(@PathVariable UUID id, @Valid @RequestBody CreateCompanyFinancialYearDTO request) {
         CompanyFinancialYearDTO dto = companyFinancialYearService.update(id, request);
         return ResponseHandler.generateResponse(dto, "Company financial year updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable UUID id) {
         String message = companyFinancialYearService.delete(id);
         return ResponseHandler.generateResponse(message, HttpStatus.OK);
     }

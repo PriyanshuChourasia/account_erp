@@ -3,16 +3,13 @@ package com.codymitra.shared_service.modules.department.utils;
 import com.codymitra.shared_service.modules.department.dtos.DepartmentHierarchyDTO;
 import com.codymitra.shared_service.modules.department.entities.DepartmentEntity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class DepartmentHierarchy {
 
     public static List<DepartmentHierarchyDTO> departmentDTO(List<DepartmentEntity> departmentEntities) {
 
-        Map<Long, DepartmentHierarchyDTO> departmentDTOMap = new HashMap<>();
+        Map<UUID, DepartmentHierarchyDTO> departmentDTOMap = new HashMap<>();
 
         for (DepartmentEntity department : departmentEntities) {
             departmentDTOMap.put(department.getId(),

@@ -20,10 +20,6 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 public class VoucherEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "voucher_number")
     private String voucherNo;
 

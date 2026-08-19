@@ -3,16 +3,13 @@ package com.codymitra.shared_service.modules.stock_category.utils;
 import com.codymitra.shared_service.modules.stock_category.dtos.StockCategoryHierarchyDTO;
 import com.codymitra.shared_service.modules.stock_category.entities.StockCategoryEntity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class StockCategoryHierarchy {
 
     public static List<StockCategoryHierarchyDTO> stockCategoryDTO(List<StockCategoryEntity> stockCategoryEntities){
 
-        Map<Long,StockCategoryHierarchyDTO> stockCategoryDTOMap = new HashMap<>();
+        Map<UUID,StockCategoryHierarchyDTO> stockCategoryDTOMap = new HashMap<>();
 
         for(StockCategoryEntity stockCategory: stockCategoryEntities){
             stockCategoryDTOMap.put(stockCategory.getId(),

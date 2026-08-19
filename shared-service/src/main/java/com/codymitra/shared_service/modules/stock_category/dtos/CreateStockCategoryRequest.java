@@ -1,5 +1,7 @@
 package com.codymitra.shared_service.modules.stock_category.dtos;
 
+import java.util.UUID;
+
 import jakarta.validation.constraints.NotBlank;
 
 public record CreateStockCategoryRequest(
@@ -7,7 +9,7 @@ public record CreateStockCategoryRequest(
         String name,
         String code,
         String alias,
-        Long parentId,
+        UUID parentId,
         String description
 ) {
 }

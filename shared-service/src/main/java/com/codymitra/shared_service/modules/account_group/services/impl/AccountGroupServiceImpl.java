@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.account_group.services.impl;
 
+import java.util.UUID;
 
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.account_group.dtos.AccountGroupDTO;
@@ -31,7 +32,7 @@ public class AccountGroupServiceImpl implements AccountGroupService {
 
 
     @Override
-    public AccountGroupEntity getById(Long id){
+    public AccountGroupEntity getById(UUID id){
         return accountGroupRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException("Account Group does not exists with this id")
         );

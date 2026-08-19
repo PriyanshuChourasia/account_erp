@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -15,10 +17,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "stock_categories")
 @EqualsAndHashCode(callSuper = true)
 public class StockCategoryEntity extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     @Column(name = "name",unique = true)
     private String name;
@@ -30,7 +28,7 @@ public class StockCategoryEntity extends BaseEntity {
     private String alias;
 
     @Column(name = "parent_id")
-    private Long parentId;
+    private UUID parentId;
 
     @Column(name = "description")
     private String description;
