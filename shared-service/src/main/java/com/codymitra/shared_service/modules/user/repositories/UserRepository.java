@@ -11,4 +11,12 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     Optional<UserEntity> findByUsername(String username);
+
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String email);
+
+    Boolean existsByContactNo(Long contactNo);
+
+    Boolean existsByCode(String code);
 }

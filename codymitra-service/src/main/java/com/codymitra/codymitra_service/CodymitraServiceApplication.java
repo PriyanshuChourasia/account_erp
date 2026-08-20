@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.codymitra")
 @EnableJpaRepositories("com.codymitra")
 @ComponentScan("com.codymitra")
-@ConfigurationPropertiesScan
+@ConfigurationPropertiesScan("com.codymitra")
 @Slf4j
 public class CodymitraServiceApplication implements CommandLineRunner {
 
@@ -22,17 +22,18 @@ public class CodymitraServiceApplication implements CommandLineRunner {
 		SpringApplication.run(CodymitraServiceApplication.class, args);
 	}
 
-    @Value("spring.localUrl")
+    @Value("${spring.localUrl}")
     private String springUrl;
 
-    @Value("server.servlet.context-path")
+    @Value("${server.servlet.context-path}")
     private String path;
 
-    @Value("server.port")
+    @Value("${server.port}")
     private String port;
 
-    @Value("spring.application.name")
+    @Value("${spring.application.name}")
     private String applicationName;
+
 
     @Override
     public void run(String... args) throws Exception {

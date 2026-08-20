@@ -37,7 +37,7 @@ public class SecurityConfig {
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                         )
                 .authorizeHttpRequests( authorizeRequest ->{
-                    authorizeRequest.requestMatchers("/auth/authenticate").permitAll();
+                    authorizeRequest.requestMatchers("/auth/authenticate","/auth/register").permitAll();
                     authorizeRequest.anyRequest().permitAll();
                 })
                 .addFilterBefore(accountERPFilter, UsernamePasswordAuthenticationFilter.class)

@@ -28,6 +28,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "email",unique = true,nullable = false)
     private String email;
 
+    @Column(name = "country_code",nullable = false)
+    private String countryCode;
+
     @Column(name = "contact_no",nullable = false,unique = true)
     private Long contactNo;
 
