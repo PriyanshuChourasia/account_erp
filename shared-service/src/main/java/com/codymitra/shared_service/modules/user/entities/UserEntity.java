@@ -31,11 +31,23 @@ public class UserEntity extends BaseEntity {
     @Column(name = "country_code",nullable = false)
     private String countryCode;
 
+    @Column(name = "license_no",unique = true)
+    private String licenseNo;
+
     @Column(name = "contact_no",nullable = false,unique = true)
     private Long contactNo;
 
     @Column(name = "alt_contact_no")
     private Long altContactNo;
+
+    @Column(name = "telephone_no")
+    private String telePhoneNo;
+
+    @Column(name = "fax_no")
+    private String faxNo;
+
+    @Column(name = "website")
+    private String website;
 
     @Column(name = "code", unique = true,nullable = false)
     private String code;

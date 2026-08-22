@@ -22,7 +22,7 @@ public class CompanyEntity extends BaseEntity {
     @Column(name = "code",unique = true)
     private String code;
 
-    @Column(name = "mailing_name")
+    @Column(name = "mailing_name",nullable = false)
     private String mailingName;
 
 }

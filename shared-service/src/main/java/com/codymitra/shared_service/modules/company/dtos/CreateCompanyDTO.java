@@ -1,5 +1,7 @@
 package com.codymitra.shared_service.modules.company.dtos;
 
+import com.codymitra.shared_service.modules.address.dtos.CreateAddressDTO;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
@@ -13,5 +15,7 @@ public record CreateCompanyDTO(
         UUID financialYearId,
         @NotBlank(message = "Books beginning from is required")
         LocalDate bookBeginFrom,
-        String mailingName
+        String mailingName,
+        @Valid
+        CreateAddressDTO address
 ) {}

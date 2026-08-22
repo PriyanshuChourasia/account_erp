@@ -49,6 +49,9 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsByContactNo(createUserDTO.contactNo())) {
             throw new DataAlreadyExistsException("User already exists with this contact number");
         }
+        if (createUserDTO.licenseNo() != null && userRepository.existsByLicenseNo(createUserDTO.licenseNo())) {
+            throw new DataAlreadyExistsException("User already exists with this license number");
+        }
 
         UserEntity entity = UserMapper.userEntity(createUserDTO);
 
@@ -79,6 +82,12 @@ public class UserServiceImpl implements UserService {
         if (updateUserDTO.contactNo() != null && !updateUserDTO.contactNo().equals(entity.getContactNo())) {
             if (userRepository.existsByContactNo(updateUserDTO.contactNo())) {
                 throw new DataAlreadyExistsException("User already exists with this contact number");
+            }
+        }
+
+        if (updateUserDTO.licenseNo() != null && !updateUserDTO.licenseNo().equals(entity.getLicenseNo())) {
+            if (userRepository.existsByLicenseNo(updateUserDTO.licenseNo())) {
+                throw new DataAlreadyExistsException("User already exists with this license number");
             }
         }
 

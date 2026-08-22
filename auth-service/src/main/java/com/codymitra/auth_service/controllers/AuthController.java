@@ -29,9 +29,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<Map<String, Object>> registerUser(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
-        log.info("Came to register");
         AuthResponseDTO authResponseDTO = authService.registerUser(userRegisterDTO);
-        log.info("auth response {}",authResponseDTO);
         return ResponseHandler.generateResponse(authResponseDTO, "User registered successfully", HttpStatus.CREATED);
     }
 

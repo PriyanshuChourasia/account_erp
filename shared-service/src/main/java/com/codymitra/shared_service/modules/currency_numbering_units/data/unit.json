@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "numbering_system_id": 1,
+    "name": "Thousand",
+    "symbol": "Thousand",
+    "value": 1000,
+    "sequence": 1
+  },
+  {
+    "id": 2,
+    "numbering_system_id": 1,
+    "name": "Lakh",
+    "symbol": "Lakh",
+    "value": 100000,
+    "sequence": 2
+  },
+  {
+    "id": 3,
+    "numbering_system_id": 1,
+    "name": "Crore",
+    "symbol": "Crore",
+    "value": 10000000,
+    "sequence": 3
+  },
+  {
+    "id": 4,
+    "numbering_system_id": 2,
+    "name": "Thousand",
+    "symbol": "Thousand",
+    "value": 1000,
+    "sequence": 1
+  },
+  {
+    "id": 5,
+    "numbering_system_id": 2,
+    "name": "Million",
+    "symbol": "Million",
+    "value": 1000000,
+    "sequence": 2
+  },
+  {
+    "id": 6,
+    "numbering_system_id": 2,
+    "name": "Billion",
+    "symbol": "Billion",
+    "value": 1000000000,
+    "sequence": 3
+  },
+  {
+    "id": 7,
+    "numbering_system_id": 2,
+    "name": "Trillion",
+    "symbol": "Trillion",
+    "value": 1000000000000,
+    "sequence": 4
+  },
+  {
+    "id": 8,
+    "numbering_system_id": 3,
+    "name": "Man",
+    "symbol": "万",
+    "value": 10000,
+    "sequence": 1
+  },
+  {
+    "id": 9,
+    "numbering_system_id": 3,
+    "name": "Oku",
+    "symbol": "億",
+    "value": 100000000,
+    "sequence": 2
+  },
+  {
+    "id": 10,
+    "numbering_system_id": 3,
+    "name": "Cho",
+    "symbol": "兆",
+    "value": 1000000000000,
+    "sequence": 3
+  }
+]

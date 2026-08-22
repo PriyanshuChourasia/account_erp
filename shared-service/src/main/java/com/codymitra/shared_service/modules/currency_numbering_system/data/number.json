@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "code": "INDIAN",
+    "name": "Indian / South Asian",
+    "description": "Uses lakh and crore based numbering."
+  },
+  {
+    "id": 2,
+    "code": "INTERNATIONAL",
+    "name": "International / Western",
+    "description": "Uses thousand, million, billion and trillion based numbering."
+  },
+  {
+    "id": 3,
+    "code": "EAST_ASIAN",
+    "name": "East Asian",
+    "description": "Uses units based on powers of ten thousand, such as 万, 億 and 兆."
+  }
+]

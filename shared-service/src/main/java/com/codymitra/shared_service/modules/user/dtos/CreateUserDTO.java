@@ -19,6 +19,14 @@ public record CreateUserDTO(
 
         Long altContactNo,
 
+        String licenseNo,
+
+        String telePhoneNo,
+
+        String faxNo,
+
+        String website,
+
         @NotBlank(message = "Password is required")
         String password,
 

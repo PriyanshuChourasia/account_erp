@@ -13,6 +13,10 @@ public record UserDTO(
         String email,
         Long contactNo,
         Long altContactNo,
+        String licenseNo,
+        String telePhoneNo,
+        String faxNo,
+        String website,
         String code,
         LocalDate dateOfBirth,
         Boolean active

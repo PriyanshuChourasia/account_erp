@@ -14,6 +14,14 @@ public record UpdateUserDTO(
 
         Long altContactNo,
 
+        String licenseNo,
+
+        String telePhoneNo,
+
+        String faxNo,
+
+        String website,
+
         String password,
 
         LocalDate dateOfBirth,

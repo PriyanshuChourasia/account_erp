@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
+import com.codymitra.shared_service.modules.address.services.AddressService;
 import com.codymitra.shared_service.modules.company.dtos.CompanyDTO;
 import com.codymitra.shared_service.modules.company.dtos.CreateCompanyDTO;
 import com.codymitra.shared_service.modules.company.entities.CompanyEntity;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final AddressService addressService;
 
     @Override
     public List<CompanyDTO> getAllCompanies(){
@@ -39,7 +41,12 @@ public class CompanyServiceImpl implements CompanyService {
         if(companyRepository.existsByName(createCompanyDTO.name())){
             throw new DataAlreadyExistsException("Company already exists");
         }
-        companyRepository.save(CompanyMapper.companyEntity(createCompanyDTO));
+        CompanyEntity companyEntity = companyRepository.save(CompanyMapper.companyEntity(createCompanyDTO));
+
+        if (createCompanyDTO.address() != null) {
+            addressService.create(createCompanyDTO.address(), companyEntity.getId().toString(), "COMPANY");
+        }
+
         return "Company created successfully";
     }
 }

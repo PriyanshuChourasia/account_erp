@@ -1,0 +1,20 @@
+package com.codymitra.shared_service.modules.currency_numbering_units.dtos;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+public record CreateCurrencyNumberingUnitDTO(
+        @NotBlank(message = "Name is required")
+        String name,
+        String symbol,
+        BigDecimal value,
+        @NotNull(message = "Numbering system is required")
+        UUID numberingSystemId,
+        /// display order within the numbering system; defaults to next available
+        Integer sequence,
+        Boolean active
+) {
+}
