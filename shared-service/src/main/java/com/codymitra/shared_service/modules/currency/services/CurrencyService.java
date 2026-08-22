@@ -11,7 +11,13 @@ public interface CurrencyService {
 
     List<CurrencyDTO> getAll();
 
+    CurrencyDTO getById(UUID id);
+
     CurrencyEntity getEntityById(UUID id);
 
     CurrencyDTO create(CreateCurrencyDTO request);
+
+    CurrencyDTO update(UUID id, CreateCurrencyDTO request);
+
+    String delete(UUID id);
 }

@@ -10,12 +10,19 @@ import java.util.UUID;
 public record CreateCompanyDTO(
         @NotBlank(message = "Name is required")
         String name,
+        UUID parentId,
         String code,
-        @NotBlank(message = "Financial Year is required")
-        UUID financialYearId,
-        @NotBlank(message = "Books beginning from is required")
-        LocalDate bookBeginFrom,
+        String telephoneNo,
+        @NotBlank(message = "Mobile number is required")
+        String mobileNo,
+        String faxNo,
+        String email,
+        String website,
         String mailingName,
+        UUID baseCurrencyId,
+        UUID numberingSystemId,
+        UUID financialYearId,
+        LocalDate bookCommencingFrom,
         @Valid
         CreateAddressDTO address
 ) {}

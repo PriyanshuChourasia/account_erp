@@ -2,6 +2,7 @@ package com.codymitra.shared_service.modules.financial_year.entities;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
+import com.codymitra.shared_service.modules.country.entities.CountryEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

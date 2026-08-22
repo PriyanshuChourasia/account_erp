@@ -30,8 +30,8 @@ public class CurrencyMinorUnitEntity extends BaseEntity {
     @Column(name = "value", precision = 20, scale = 4)
     private BigDecimal value;
 
-    @Column(name = "decimal_place")
-
+    @Column(name = "decimal_place",nullable = false)
+    private Integer decimalPlace;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "currency_id", nullable = false)

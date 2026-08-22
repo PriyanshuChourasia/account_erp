@@ -3,6 +3,8 @@ package com.codymitra.shared_service.modules.financial_year.services.impl;
 import java.util.UUID;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
+import com.codymitra.shared_service.modules.country.entities.CountryEntity;
+import com.codymitra.shared_service.modules.country.services.CountryService;
 import com.codymitra.shared_service.modules.financial_year.dtos.CreateFinancialYearDTO;
 import com.codymitra.shared_service.modules.financial_year.dtos.FinancialYearDTO;
 import com.codymitra.shared_service.modules.financial_year.entities.FinancialYearEntity;
@@ -20,13 +22,16 @@ import java.util.List;
 public class FinancialYearServiceImpl implements FinancialYearService {
 
     private final FinancialYearRepository financialYearRepository;
+    private final CountryService countryService;
 
     @Override
+    @Transactional(readOnly = true)
     public List<FinancialYearDTO> getAll() {
         return financialYearRepository.findAll().stream().map(FinancialYearMapper::financialYearDTO).toList();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public FinancialYearDTO getById(UUID id) {
         return FinancialYearMapper.financialYearDTO(findById(id));
     }
@@ -34,68 +39,67 @@ public class FinancialYearServiceImpl implements FinancialYearService {
     @Override
     @Transactional
     public FinancialYearDTO create(CreateFinancialYearDTO request) {
-        if(financialYearRepository.existsByStartDateAndEndDate(request.startDate(),request.endDate())){
-            throw new DataAlreadyExistsException("Start Date and End Date already exists");
-        }
-        if (request.endDate().isBefore(request.startDate())) {
-            throw new IllegalArgumentException("End date cannot be before start date");
-        }
-        if (financialYearRepository.existsByCode(request.code().toUpperCase())) {
-            throw new DataAlreadyExistsException("Financial year with code " + request.code() + " already exists");
-        }
-        if (financialYearRepository.existsByName(request.name())) {
-            throw new DataAlreadyExistsException("Financial year already exists");
-        }
+        validateRequest(request, null);
+
         boolean isCurrent = request.isCurrent() != null ? request.isCurrent() : false;
         if (isCurrent) {
             clearCurrentFlag();
         }
-        FinancialYearEntity saved = financialYearRepository.save(FinancialYearMapper.financialYearEntity(request));
+        CountryEntity country = countryService.getEntityById(request.countryId());
+        FinancialYearEntity saved = financialYearRepository.save(FinancialYearMapper.financialYearEntity(request, country));
         return FinancialYearMapper.financialYearDTO(saved);
     }
 
     @Override
     @Transactional
     public FinancialYearDTO update(UUID id, CreateFinancialYearDTO request) {
-        FinancialYearEntity financialYear = findById(id);
-        if (request.endDate().isBefore(request.startDate())) {
-            throw new IllegalArgumentException("End date cannot be before start date");
-        }
-        if (financialYearRepository.existsByCode(request.code().toUpperCase()) && !financialYear.getCode().equalsIgnoreCase(request.code())) {
-            throw new DataAlreadyExistsException("Financial year with code " + request.code() + " already exists");
-        }
-        if (financialYearRepository.existsByName(request.name()) && !financialYear.getName().equals(request.name())) {
-            throw new DataAlreadyExistsException("Financial year already exists");
-        }
+        findById(id);
+        validateRequest(request, id);
+
         boolean isCurrent = request.isCurrent() != null ? request.isCurrent() : false;
         if (isCurrent) {
             clearCurrentFlag();
         }
-        financialYear.setName(request.name());
-        financialYear.setCode(request.code().toUpperCase());
-        financialYear.setStartDate(request.startDate());
-        financialYear.setEndDate(request.endDate());
-        financialYear.setIsCurrent(isCurrent);
-        return FinancialYearMapper.financialYearDTO(financialYearRepository.save(financialYear));
+        CountryEntity country = countryService.getEntityById(request.countryId());
+        FinancialYearEntity updated = financialYearRepository.save(
+                FinancialYearMapper.financialYearEntity(findById(id), request, country)
+        );
+        return FinancialYearMapper.financialYearDTO(updated);
     }
 
     @Override
     @Transactional
-    public String updateCurrentFinancialYear(UUID id, Boolean current){
-        FinancialYearEntity financialYear = financialYearRepository.findById(id).orElseThrow(
-                () -> new DataNotFoundException("No such financial year found")
-        );
-
+    public String updateCurrentFinancialYear(UUID id, Boolean current) {
+        FinancialYearEntity financialYear = findById(id);
+        if (Boolean.TRUE.equals(current)) {
+            clearCurrentFlag();
+        }
         financialYear.setIsCurrent(current);
         financialYearRepository.save(financialYear);
-        return "Financial year created successfully";
+        return "Financial year updated successfully";
     }
 
     @Override
+    @Transactional
     public String delete(UUID id) {
-        FinancialYearEntity financialYear = findById(id);
-        financialYearRepository.delete(financialYear);
+        financialYearRepository.delete(findById(id));
         return "Financial year deleted successfully";
+    }
+
+    private void validateRequest(CreateFinancialYearDTO request, UUID id) {
+        if (request.endDate().isBefore(request.startDate())) {
+            throw new IllegalArgumentException("End date cannot be before start date");
+        }
+        String code = FinancialYearMapper.resolveCode(request.code(), request.startDate(), request.endDate());
+        if (id == null ? financialYearRepository.existsByName(request.name()) : financialYearRepository.existsByNameAndIdNot(request.name(), id)) {
+            throw new DataAlreadyExistsException("Financial year already exists");
+        }
+        if (id == null ? financialYearRepository.existsByCode(code) : financialYearRepository.existsByCodeAndIdNot(code, id)) {
+            throw new DataAlreadyExistsException("Financial year with code " + code + " already exists");
+        }
+        if (id == null && financialYearRepository.existsByStartDateAndEndDate(request.startDate(), request.endDate())) {
+            throw new DataAlreadyExistsException("Start Date and End Date already exists");
+        }
     }
 
     private void clearCurrentFlag() {
@@ -106,7 +110,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
 
     private FinancialYearEntity findById(UUID id) {
         return financialYearRepository.findById(id).orElseThrow(
-                () -> new DataNotFoundException("Financial year does not exist")
+                () -> new DataNotFoundException("No such financial year found")
         );
     }
 }

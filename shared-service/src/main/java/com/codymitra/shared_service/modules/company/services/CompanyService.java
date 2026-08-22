@@ -9,9 +9,15 @@ import java.util.UUID;
 
 public interface CompanyService {
 
-    List<CompanyDTO> getAllCompanies();
+    List<CompanyDTO> getAll();
 
-    String create(CreateCompanyDTO createCompanyDTO);
+    CompanyDTO getById(UUID id);
 
-    CompanyEntity getById(UUID id);
+    CompanyEntity getEntityById(UUID id);
+
+    CompanyDTO create(CreateCompanyDTO request);
+
+    CompanyDTO update(UUID id, CreateCompanyDTO request);
+
+    String delete(UUID id);
 }

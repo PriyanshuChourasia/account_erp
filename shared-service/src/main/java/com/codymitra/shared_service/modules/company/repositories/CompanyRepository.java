@@ -9,4 +9,10 @@ import org.springframework.stereotype.Repository;
 public interface CompanyRepository extends JpaRepository<CompanyEntity, UUID> {
 
     Boolean existsByName(String name);
+
+    Boolean existsByCode(String code);
+
+    Boolean existsByNameAndIdNot(String name, UUID id);
+
+    Boolean existsByCodeAndIdNot(String code, UUID id);
 }

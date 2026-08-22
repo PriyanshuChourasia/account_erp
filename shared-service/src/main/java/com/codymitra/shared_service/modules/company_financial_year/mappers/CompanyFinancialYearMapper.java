@@ -19,6 +19,7 @@ public final class CompanyFinancialYearMapper {
                 companyFinancialYear.getFinancialYear().getCode(),
                 companyFinancialYear.getFinancialYear().getStartDate(),
                 companyFinancialYear.getFinancialYear().getEndDate(),
+                companyFinancialYear.getBookCommencingFrom(),
                 companyFinancialYear.getFinancialYear().getIsCurrent(),
                 companyFinancialYear.getActive()
         );
@@ -27,10 +28,25 @@ public final class CompanyFinancialYearMapper {
     public static CompanyFinancialYearEntity companyFinancialYearEntity(CreateCompanyFinancialYearDTO request,
                                                                         CompanyEntity company,
                                                                         FinancialYearEntity financialYear) {
-        CompanyFinancialYearEntity companyFinancialYear = new CompanyFinancialYearEntity();
-        companyFinancialYear.setCompany(company);
-        companyFinancialYear.setFinancialYear(financialYear);
-        companyFinancialYear.setActive(true);
-        return companyFinancialYear;
+        return applyRequest(new CompanyFinancialYearEntity(), request, company, financialYear);
+    }
+
+    public static CompanyFinancialYearEntity companyFinancialYearEntity(CompanyFinancialYearEntity entity,
+                                                                        CreateCompanyFinancialYearDTO request,
+                                                                        CompanyEntity company,
+                                                                        FinancialYearEntity financialYear) {
+        return applyRequest(entity, request, company, financialYear);
+    }
+
+    private static CompanyFinancialYearEntity applyRequest(CompanyFinancialYearEntity entity,
+                                                           CreateCompanyFinancialYearDTO request,
+                                                           CompanyEntity company,
+                                                           FinancialYearEntity financialYear) {
+        entity.setCompany(company);
+        entity.setFinancialYear(financialYear);
+        entity.setBookCommencingFrom(request.bookCommencingFrom() != null
+                ? request.bookCommencingFrom()
+                : financialYear.getStartDate());
+        return entity;
     }
 }

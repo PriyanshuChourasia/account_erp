@@ -28,9 +28,15 @@ public class FinancialYearController {
         return ResponseHandler.generateResponse(dtos, message, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> getById(@PathVariable UUID id) {
+        FinancialYearDTO dto = financialYearService.getById(id);
+        return ResponseHandler.generateResponse(dto, "Financial year fetched successfully", HttpStatus.OK);
+    }
+
     @GetMapping("/current")
     public ResponseEntity<Map<String, Object>> updateCurrent(@Valid @RequestParam UUID id, @RequestParam Boolean current) {
-        String message = financialYearService.updateCurrentFinancialYear(id,current);
+        String message = financialYearService.updateCurrentFinancialYear(id, current);
         return ResponseHandler.generateResponse(message, "Financial year updated successfully", HttpStatus.OK);
     }
 
@@ -40,9 +46,15 @@ public class FinancialYearController {
         return ResponseHandler.generateResponse(dto, "Financial year created successfully", HttpStatus.CREATED);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Map<String, Object>> update(@PathVariable UUID id, @Valid @RequestBody CreateFinancialYearDTO request) {
-//        FinancialYearDTO dto = financialYearService.update(id, request);
-//        return ResponseHandler.generateResponse(dto, "Financial year updated successfully", HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> update(@PathVariable UUID id, @Valid @RequestBody CreateFinancialYearDTO request) {
+        FinancialYearDTO dto = financialYearService.update(id, request);
+        return ResponseHandler.generateResponse(dto, "Financial year updated successfully", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable UUID id) {
+        String message = financialYearService.delete(id);
+        return ResponseHandler.generateResponse(message, HttpStatus.OK);
+    }
 }

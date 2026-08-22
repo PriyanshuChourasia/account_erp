@@ -4,6 +4,8 @@ import com.codymitra.shared_service.modules.financial_year.dtos.CreateFinancialY
 import com.codymitra.shared_service.modules.financial_year.dtos.FinancialYearDTO;
 import com.codymitra.shared_service.modules.financial_year.entities.FinancialYearEntity;
 
+import java.time.LocalDate;
+
 public final class FinancialYearMapper {
 
     public static FinancialYearDTO financialYearDTO(FinancialYearEntity financialYear) {
@@ -18,12 +20,29 @@ public final class FinancialYearMapper {
     }
 
     public static FinancialYearEntity financialYearEntity(CreateFinancialYearDTO request) {
-        FinancialYearEntity financialYear = new FinancialYearEntity();
-        financialYear.setName(request.name());
-        financialYear.setCode(request.code().toUpperCase());
-        financialYear.setStartDate(request.startDate());
-        financialYear.setEndDate(request.endDate());
-        financialYear.setIsCurrent(request.isCurrent() != null ? request.isCurrent() : false);
-        return financialYear;
+        return applyRequest(new FinancialYearEntity(), request);
+    }
+
+    public static FinancialYearEntity financialYearEntity(FinancialYearEntity entity, CreateFinancialYearDTO request) {
+        return applyRequest(entity, request);
+    }
+
+    private static FinancialYearEntity applyRequest(FinancialYearEntity entity, CreateFinancialYearDTO request) {
+        entity.setName(request.name());
+        entity.setCode(resolveCode(request.code(), request.startDate(), request.endDate()));
+        entity.setStartDate(request.startDate());
+        entity.setEndDate(request.endDate());
+        if (request.isCurrent() != null) {
+            entity.setIsCurrent(request.isCurrent());
+        }
+        return entity;
+    }
+
+    /// derives the code from the financial year period when not supplied, e.g. 01-04-2024 to 31-03-2025 -> 24-25
+    public static String resolveCode(String code, LocalDate startDate, LocalDate endDate) {
+        if (code != null && !code.isBlank()) {
+            return code.toUpperCase();
+        }
+        return String.format("%02d-%02d", startDate.getYear() % 100, endDate.getYear() % 100);
     }
 }

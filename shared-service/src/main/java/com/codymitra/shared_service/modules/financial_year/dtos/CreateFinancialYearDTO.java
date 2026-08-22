@@ -5,11 +5,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public record CreateFinancialYearDTO(
         @NotBlank(message = "Name is required")
         String name,
 
+        /// optional; auto-generated from the financial year period when omitted e.g. 24-25
         String code,
 
         @NotNull(message = "Start date is required")

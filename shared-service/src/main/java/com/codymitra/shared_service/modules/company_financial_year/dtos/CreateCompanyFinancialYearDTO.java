@@ -1,14 +1,18 @@
 package com.codymitra.shared_service.modules.company_financial_year.dtos;
 
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public record CreateCompanyFinancialYearDTO(
-        @NotBlank(message = "Company id is required")
+        @NotNull(message = "Company id is required")
         UUID companyId,
-        @NotBlank(message = "Financial year id is required")
-        UUID financialYearId
+        @NotNull(message = "Financial year id is required")
+        UUID financialYearId,
+        /// optional; defaults to the financial year start date when omitted
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+        LocalDate bookCommencingFrom
 ) {
 }

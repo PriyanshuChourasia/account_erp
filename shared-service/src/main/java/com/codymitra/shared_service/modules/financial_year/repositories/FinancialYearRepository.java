@@ -13,7 +13,11 @@ public interface FinancialYearRepository extends JpaRepository<FinancialYearEnti
 
     Boolean existsByName(String name);
 
+    Boolean existsByNameAndIdNot(String name, UUID id);
+
     Boolean existsByCode(String code);
+
+    Boolean existsByCodeAndIdNot(String code, UUID id);
 
     List<FinancialYearEntity> findByIsCurrentTrue();
 

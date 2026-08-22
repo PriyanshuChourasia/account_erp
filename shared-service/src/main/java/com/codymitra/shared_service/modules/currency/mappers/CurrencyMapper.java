@@ -18,12 +18,35 @@ public final class CurrencyMapper {
     }
 
     public static CurrencyEntity currencyEntity(CreateCurrencyDTO request) {
-        CurrencyEntity currency = new CurrencyEntity();
+        CurrencyEntity currency = applyRequest(new CurrencyEntity(), request);
+        if (currency.getDecimalPlace() == null) {
+            currency.setDecimalPlace(2);
+        }
+        if (currency.getIsSymbolSuffix() == null) {
+            currency.setIsSymbolSuffix(false);
+        }
+        if (currency.getSpaceBetweenAmountAndSymbol() == null) {
+            currency.setSpaceBetweenAmountAndSymbol(true);
+        }
+        return currency;
+    }
+
+    public static CurrencyEntity currencyEntity(CurrencyEntity currency, CreateCurrencyDTO request) {
+        return applyRequest(currency, request);
+    }
+
+    private static CurrencyEntity applyRequest(CurrencyEntity currency, CreateCurrencyDTO request) {
         currency.setName(request.name());
         currency.setCurrencySymbol(request.currencySymbol());
-        currency.setDecimalPlace(request.decimalPlace() != null ? request.decimalPlace() : 2);
-        currency.setIsSymbolSuffix(request.isSymbolSuffix() != null ? request.isSymbolSuffix() : false);
-        currency.setSpaceBetweenAmountAndSymbol(request.spaceBetweenAmountAndSymbol() != null ? request.spaceBetweenAmountAndSymbol() : true);
+        if (request.decimalPlace() != null) {
+            currency.setDecimalPlace(request.decimalPlace());
+        }
+        if (request.isSymbolSuffix() != null) {
+            currency.setIsSymbolSuffix(request.isSymbolSuffix());
+        }
+        if (request.spaceBetweenAmountAndSymbol() != null) {
+            currency.setSpaceBetweenAmountAndSymbol(request.spaceBetweenAmountAndSymbol());
+        }
         return currency;
     }
 }

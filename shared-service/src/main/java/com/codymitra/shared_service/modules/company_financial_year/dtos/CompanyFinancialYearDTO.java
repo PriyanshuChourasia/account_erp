@@ -16,6 +16,7 @@ public record CompanyFinancialYearDTO(
         String financialYearCode,
         LocalDate startDate,
         LocalDate endDate,
+        LocalDate bookCommencingFrom,
         Boolean isCurrent,
         Boolean active
 ) {

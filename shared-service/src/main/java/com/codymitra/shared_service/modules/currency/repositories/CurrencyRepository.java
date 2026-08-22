@@ -12,4 +12,8 @@ public interface CurrencyRepository extends JpaRepository<CurrencyEntity, UUID> 
     Boolean existsByName(String name);
 
     Boolean existsByCurrencySymbol(String currencySymbol);
+
+    Boolean existsByNameAndIdNot(String name, UUID id);
+
+    Boolean existsByCurrencySymbolAndIdNot(String currencySymbol, UUID id);
 }
