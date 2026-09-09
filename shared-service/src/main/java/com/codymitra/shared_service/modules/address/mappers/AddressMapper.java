@@ -18,8 +18,8 @@ public final class AddressMapper {
                 entity.getLandmark(),
                 entity.getArea(),
                 entity.getPostOffice(),
-                entity.getStateId() != null ? entity.getStateId().getId() : null,
-                entity.getCountryId() != null ? entity.getCountryId().getId() : null,
+                entity.getState() != null ? entity.getState().getId() : null,
+                entity.getCountry() != null ? entity.getCountry().getId() : null,
                 entity.getPinCode(),
                 entity.getLatitude(),
                 entity.getLongitude(),
@@ -39,8 +39,8 @@ public final class AddressMapper {
         entity.setLandmark(dto.landmark());
         entity.setArea(dto.area());
         entity.setPostOffice(dto.postOffice());
-        entity.setStateId(state);
-        entity.setCountryId(country);
+        entity.setState(state);
+        entity.setCountry(country);
         entity.setPinCode(dto.pinCode());
         entity.setLatitude(dto.latitude());
         entity.setLongitude(dto.longitude());

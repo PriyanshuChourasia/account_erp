@@ -45,8 +45,7 @@ public class FinancialYearServiceImpl implements FinancialYearService {
         if (isCurrent) {
             clearCurrentFlag();
         }
-        CountryEntity country = countryService.getEntityById(request.countryId());
-        FinancialYearEntity saved = financialYearRepository.save(FinancialYearMapper.financialYearEntity(request, country));
+        FinancialYearEntity saved = financialYearRepository.save(FinancialYearMapper.financialYearEntity(request));
         return FinancialYearMapper.financialYearDTO(saved);
     }
 
@@ -60,9 +59,8 @@ public class FinancialYearServiceImpl implements FinancialYearService {
         if (isCurrent) {
             clearCurrentFlag();
         }
-        CountryEntity country = countryService.getEntityById(request.countryId());
         FinancialYearEntity updated = financialYearRepository.save(
-                FinancialYearMapper.financialYearEntity(findById(id), request, country)
+                FinancialYearMapper.financialYearEntity(findById(id), request)
         );
         return FinancialYearMapper.financialYearDTO(updated);
     }

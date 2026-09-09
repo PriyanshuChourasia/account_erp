@@ -31,12 +31,9 @@ public class AccountLedgerEntity extends BaseEntity {
     @Column(name = "code",unique = true)
     private String code;
 
-    @Column(name = "parent_id")
-    private UUID parentId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "financial_year_id")
-    private FinancialYearEntity financialYearId;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "financial_year_id")
+//    private FinancialYearEntity financialYearId;
 
 
     @Column(name = "description")
@@ -45,14 +42,14 @@ public class AccountLedgerEntity extends BaseEntity {
     @Column(name = "active")
     private Boolean active;
 
-    @Any
-    @AnyDiscriminator(DiscriminatorType.STRING)
-    @AnyDiscriminatorValue(
-            discriminator = "PARTY",
-            entity = PartyEntity.class
-    )
-    @AnyKeyJavaClass(Long.class)
-    @Column(name = "ledgerable_type")
-    @JoinColumn(name = "ledgerable_id")
-    private Ledgerable ledgerable;
+//    @Any
+//    @AnyDiscriminator(DiscriminatorType.STRING)
+//    @AnyDiscriminatorValue(
+//            discriminator = "PARTY",
+//            entity = PartyEntity.class
+//    )
+//    @AnyKeyJavaClass(Long.class)
+//    @Column(name = "ledgerable_type")
+//    @JoinColumn(name = "ledgerable_id")
+//    private Ledgerable ledgerable;
 }

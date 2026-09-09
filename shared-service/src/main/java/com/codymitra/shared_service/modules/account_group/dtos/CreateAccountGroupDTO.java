@@ -14,6 +14,10 @@ public record CreateAccountGroupDTO(
         String description,
         UUID parentId,
         @NotBlank(message = "Account Nature is required")
-        UUID accountNatureId
+        UUID accountNatureId,
+
+        /// if Primary
+
+        Boolean isGroupSubLedger
 ) {
 }

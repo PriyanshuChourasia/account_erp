@@ -3,6 +3,7 @@ package com.codymitra.shared_service.modules.account_group.entities;
 import java.util.UUID;
 
 import com.codymitra.shared_service.entities.BaseEntity;
+import com.codymitra.shared_service.modules.account_group.enums.AllocationMethodEnum;
 import com.codymitra.shared_service.modules.account_nature.entities.AccountNatureEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,4 +40,19 @@ public class AccountGroupEntity extends BaseEntity {
 
     @Column(name = "active")
     private Boolean active;
+
+
+    /**
+     * if this is a primary group
+     */
+    @Column(name = "is_group_is_sub_ledger")
+    private Boolean isGroupIsSubLedger;
+
+    //
+    @Column(name = "is_nett_balance_for_reporting")
+    private Boolean isNettBalanceForReporting;
+
+    // Allocation Method
+    @Column(name = "allocation_method")
+    private AllocationMethodEnum allocationMethod;
 }

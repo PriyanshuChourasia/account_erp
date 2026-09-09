@@ -40,13 +40,13 @@ public class AddressEntity extends BaseEntity {
     @Column(name = "po_office")
     private String postOffice;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "state_id",nullable = false)
-    private StateEntity stateId;
+    private StateEntity state;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id",nullable = false)
-    private CountryEntity countryId;
+    private CountryEntity country;
 
     @Column(name = "pin_code",nullable = false)
     @Size(min = 3, max = 10,message = "PinCode cannot be less than 3 and more than 10")
