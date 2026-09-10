@@ -55,4 +55,9 @@ public class AccountGroupEntity extends BaseEntity {
     // Allocation Method
     @Column(name = "allocation_method")
     private AllocationMethodEnum allocationMethod;
+
+
+    /**
+     * statutory details
+     */
 }

@@ -1,5 +1,8 @@
 package com.codymitra.shared_service.modules.account_group.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum AllocationMethodEnum {
     VALUE(10000),
     WEIGHT(20000),
@@ -10,9 +13,5 @@ public enum AllocationMethodEnum {
 
     AllocationMethodEnum(int allocationMethod) {
         this.code = allocationMethod;
-    }
-
-    public int getCode() {
-        return code;
     }
 }
