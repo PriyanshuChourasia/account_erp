@@ -21,7 +21,7 @@ public class AccountLedgerController {
 
     private final AccountLedgerService accountLedgerService;
 
-    @GetMapping("/list")
+    @GetMapping("")
     public ResponseEntity<Map<String, Object>> getAll() {
         List<AccountLedgerDTO> dtos = accountLedgerService.getAll();
         String message = dtos.size() + " total account ledgers fetched";

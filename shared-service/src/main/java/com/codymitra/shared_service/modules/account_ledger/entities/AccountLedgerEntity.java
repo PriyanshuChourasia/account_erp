@@ -4,6 +4,7 @@ import java.util.UUID;
 
 
 import com.codymitra.shared_service.entities.BaseEntity;
+import com.codymitra.shared_service.modules.account_group.entities.AccountGroupEntity;
 import com.codymitra.shared_service.modules.account_ledger.interfaces.Ledgerable;
 import com.codymitra.shared_service.modules.financial_year.entities.FinancialYearEntity;
 import com.codymitra.shared_service.modules.party.entities.PartyEntity;
@@ -30,6 +31,14 @@ public class AccountLedgerEntity extends BaseEntity {
 
     @Column(name = "code",unique = true)
     private String code;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_group_id")
+    private AccountGroupEntity accountGroup;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "party_id")
+    private PartyEntity party;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "financial_year_id")

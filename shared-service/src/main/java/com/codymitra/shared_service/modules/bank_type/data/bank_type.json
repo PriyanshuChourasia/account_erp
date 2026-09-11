@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Commercial Bank",
+    "code": "COMMERCIAL_BANK",
+    "parentId": null,
+    "description": "Banks that accept deposits and provide loans and other banking services.",
+    "active": true
+  },
+  {
+    "name": "Public Sector Bank",
+    "code": "PUBLIC_SECTOR_BANK",
+    "parentId": "<COMMERCIAL_BANK_UUID>",
+    "description": "Banks where the government holds the majority ownership.",
+    "active": true
+  },
+  {
+    "name": "Private Sector Bank",
+    "code": "PRIVATE_SECTOR_BANK",
+    "parentId": "<COMMERCIAL_BANK_UUID>",
+    "description": "Banks primarily owned by private shareholders and corporations.",
+    "active": true
+  },
+  {
+    "name": "Foreign Bank",
+    "code": "FOREIGN_BANK",
+    "parentId": "<COMMERCIAL_BANK_UUID>",
+    "description": "Banks headquartered outside India that operate in India.",
+    "active": true
+  },
+  {
+    "name": "Regional Rural Bank",
+    "code": "REGIONAL_RURAL_BANK",
+    "parentId": "<COMMERCIAL_BANK_UUID>",
+    "description": "Banks focused on providing banking and credit services to rural and agricultural sectors.",
+    "active": true
+  },
+  {
+    "name": "Co-operative Bank",
+    "code": "COOPERATIVE_BANK",
+    "parentId": null,
+    "description": "Banks operating on a cooperative basis to serve members and local communities.",
+    "active": true
+  },
+  {
+    "name": "Urban Co-operative Bank",
+    "code": "URBAN_COOPERATIVE_BANK",
+    "parentId": "<COOPERATIVE_BANK_UUID>",
+    "description": "Co-operative banks primarily serving urban and semi-urban areas.",
+    "active": true
+  },
+  {
+    "name": "State Co-operative Bank",
+    "code": "STATE_COOPERATIVE_BANK",
+    "parentId": "<COOPERATIVE_BANK_UUID>",
+    "description": "Co-operative banks operating at the state level.",
+    "active": true
+  },
+  {
+    "name": "Payments Bank",
+    "code": "PAYMENTS_BANK",
+    "parentId": null,
+    "description": "Banks focused on deposits, payments and remittance services with restrictions on lending.",
+    "active": true
+  },
+  {
+    "name": "Small Finance Bank",
+    "code": "SMALL_FINANCE_BANK",
+    "parentId": null,
+    "description": "Banks focused on financial inclusion and serving underserved sections of the economy.",
+    "active": true
+  },
+  {
+    "name": "Development Bank",
+    "code": "DEVELOPMENT_BANK",
+    "parentId": null,
+    "description": "Specialized financial institutions providing long-term financing for development activities.",
+    "active": true
+  },
+  {
+    "name": "Central Bank",
+    "code": "CENTRAL_BANK",
+    "parentId": null,
+    "description": "The supreme monetary authority responsible for monetary policy and regulation of the banking system.",
+    "active": true
+  }
+]
