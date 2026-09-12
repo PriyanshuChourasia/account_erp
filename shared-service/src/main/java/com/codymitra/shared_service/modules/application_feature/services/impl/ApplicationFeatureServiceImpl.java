@@ -24,10 +24,8 @@ public class ApplicationFeatureServiceImpl implements ApplicationFeatureService 
 
 
     @Override
-    public ApplicationFeatureEntity show(UUID id){
-        return applicationFeatureRepository.findById(id).orElseThrow(
-                () -> new DataNotFoundException("Application Feature does not exists")
-        );
+    public ApplicationFeatureDTO show(String id){
+        return ApplicationFeatureMapper.applicationFeatureDTO(findById(id));
     }
 
     @Override
@@ -41,7 +39,37 @@ public class ApplicationFeatureServiceImpl implements ApplicationFeatureService 
         if(applicationFeatureRepository.existsByName(createApplicationFeatureDTO.name())){
             throw new DataAlreadyExistsException("Application Feature already exists");
         }
+        String resolvedCode = ApplicationFeatureMapper.resolveCode(null, createApplicationFeatureDTO.name());
+        if(applicationFeatureRepository.existsByCode(resolvedCode)){
+            throw new DataAlreadyExistsException("Application Feature already exists with this code");
+        }
         applicationFeatureRepository.save(ApplicationFeatureMapper.applicationFeatureEntity(createApplicationFeatureDTO));
         return "Application Feature created successfully";
+    }
+
+    @Override
+    public ApplicationFeatureDTO update(String id, CreateApplicationFeatureDTO createApplicationFeatureDTO){
+        findById(id);
+        validateUnique(createApplicationFeatureDTO.name(), id);
+        ApplicationFeatureEntity updated = applicationFeatureRepository.save(
+                ApplicationFeatureMapper.applicationFeatureEntity(findById(id), createApplicationFeatureDTO)
+        );
+        return ApplicationFeatureMapper.applicationFeatureDTO(updated);
+    }
+
+    private void validateUnique(String name, String id) {
+        if (applicationFeatureRepository.existsByNameAndIdNot(name, UUID.fromString(id))) {
+            throw new DataAlreadyExistsException("Application Feature already exists with this name");
+        }
+        String resolvedCode = ApplicationFeatureMapper.resolveCode(null, name);
+        if (applicationFeatureRepository.existsByCodeAndIdNot(resolvedCode, UUID.fromString(id))) {
+            throw new DataAlreadyExistsException("Application Feature already exists with this code");
+        }
+    }
+
+    private ApplicationFeatureEntity findById(String id) {
+        return applicationFeatureRepository.findById(UUID.fromString(id)).orElseThrow(
+                () -> new DataNotFoundException("Application Feature does not exists")
+        );
     }
 }

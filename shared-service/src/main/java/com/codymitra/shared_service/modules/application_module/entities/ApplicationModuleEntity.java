@@ -20,9 +20,21 @@ public class ApplicationModuleEntity extends BaseEntity {
     private String name;
 
     @Column(name = "code",unique = true)
-    private Integer code;
+    private String code;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "end_point",nullable = false)
+    private String endpoint;
+
+    @Column(name = "is_system")
+    private Boolean isSystem;
+
+    @Column(name = "version",nullable = false)
+    private Integer version;
+
+    @Column(name = "active")
+    private Boolean active;
 
 }

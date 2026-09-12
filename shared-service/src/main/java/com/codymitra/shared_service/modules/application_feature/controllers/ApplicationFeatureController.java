@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/application_features")
@@ -29,11 +30,24 @@ public class ApplicationFeatureController {
         return ResponseHandler.generateResponse(applicationFeatureDTOS,message, HttpStatus.OK);
     }
 
+    @GetMapping("/feature-by-id")
+    public ResponseEntity<Map<String,Object>> getFeatureById(@Valid @RequestParam String id){
+        ApplicationFeatureDTO applicationFeatureDTO = applicationFeatureService.show(id);
+        String message = "Feature fetched successfully";
+        return ResponseHandler.generateResponse(applicationFeatureDTO,message,HttpStatus.OK);
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity<Map<String,Object>> createApplicationFeature(@Valid @RequestBody CreateApplicationFeatureDTO createApplicationFeatureDTO){
         String message = applicationFeatureService.create(createApplicationFeatureDTO);
         return ResponseHandler.generateResponse(message,HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String,Object>> updateApplicationFeature(@PathVariable String id, @Valid @RequestBody CreateApplicationFeatureDTO createApplicationFeatureDTO){
+        ApplicationFeatureDTO applicationFeatureDTO = applicationFeatureService.update(id, createApplicationFeatureDTO);
+        return ResponseHandler.generateResponse(applicationFeatureDTO,"Application Feature updated successfully",HttpStatus.OK);
     }
 
 }

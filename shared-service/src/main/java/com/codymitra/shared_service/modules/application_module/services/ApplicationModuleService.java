@@ -13,5 +13,7 @@ public interface ApplicationModuleService {
 
     String create(CreateApplicationModuleDTO createApplicationModuleDTO);
 
+    ApplicationModuleDTO update(UUID id, CreateApplicationModuleDTO createApplicationModuleDTO);
+
     ApplicationModuleEntity show(UUID id);
 }

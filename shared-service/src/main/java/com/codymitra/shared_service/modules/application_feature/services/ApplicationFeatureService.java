@@ -13,5 +13,7 @@ public interface ApplicationFeatureService {
 
     String create(CreateApplicationFeatureDTO createApplicationFeatureDTO);
 
-    ApplicationFeatureEntity show(UUID id);
+    ApplicationFeatureDTO update(String id, CreateApplicationFeatureDTO createApplicationFeatureDTO);
+
+    ApplicationFeatureDTO show(String id);
 }

@@ -9,4 +9,10 @@ import org.springframework.stereotype.Repository;
 public interface ApplicationFeatureRepository extends JpaRepository<ApplicationFeatureEntity, UUID> {
 
     Boolean existsByName(String name);
+
+    Boolean existsByNameAndIdNot(String name, UUID id);
+
+    Boolean existsByCode(String code);
+
+    Boolean existsByCodeAndIdNot(String code, UUID id);
 }

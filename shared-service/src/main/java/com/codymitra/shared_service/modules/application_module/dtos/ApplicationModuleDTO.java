@@ -7,6 +7,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public record ApplicationModuleDTO(
         UUID id,
         String name,
-        Integer code,
-        String description
+        String code,
+        String description,
+        String endpoint,
+        Boolean isSystem,
+        Integer version,
+        Boolean active
 ) {}

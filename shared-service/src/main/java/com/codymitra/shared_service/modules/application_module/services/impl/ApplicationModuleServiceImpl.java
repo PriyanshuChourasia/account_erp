@@ -25,9 +25,7 @@ public class ApplicationModuleServiceImpl implements ApplicationModuleService {
 
     @Override
     public ApplicationModuleEntity show(UUID id){
-        return applicationModuleRepository.findById(id).orElseThrow(
-                () -> new DataNotFoundException("Application Module does not exists")
-        );
+        return findById(id);
     }
 
     @Override
@@ -41,7 +39,44 @@ public class ApplicationModuleServiceImpl implements ApplicationModuleService {
         if(applicationModuleRepository.existsByName(createApplicationModuleDTO.name())){
             throw new DataAlreadyExistsException("Application Module already exists");
         }
-        applicationModuleRepository.save(ApplicationModuleMapper.applicationModuleEntity(createApplicationModuleDTO));
+        String resolvedCode = ApplicationModuleMapper.resolveCode(null, createApplicationModuleDTO.name());
+        if(applicationModuleRepository.existsByCode(resolvedCode)){
+            throw new DataAlreadyExistsException("Application Module already exists with this code");
+        }
+        ApplicationModuleEntity applicationModule = ApplicationModuleMapper.applicationModuleEntity(createApplicationModuleDTO);
+        applicationModule.setVersion(nextVersion());
+        applicationModuleRepository.save(applicationModule);
         return "Application Module created successfully";
+    }
+
+    @Override
+    public ApplicationModuleDTO update(UUID id, CreateApplicationModuleDTO createApplicationModuleDTO){
+        ApplicationModuleEntity existing = findById(id);
+        validateUnique(createApplicationModuleDTO.name(), id);
+        ApplicationModuleEntity updated = ApplicationModuleMapper.applicationModuleEntity(existing, createApplicationModuleDTO);
+        applicationModuleRepository.save(updated);
+        return ApplicationModuleMapper.applicationModuleDTO(updated);
+    }
+
+    private Integer nextVersion(){
+        return applicationModuleRepository.findTopByOrderByVersionDesc()
+                .map(applicationModule -> applicationModule.getVersion() + 1)
+                .orElse(1);
+    }
+
+    private void validateUnique(String name, UUID id) {
+        if (applicationModuleRepository.existsByNameAndIdNot(name, id)) {
+            throw new DataAlreadyExistsException("Application Module already exists with this name");
+        }
+        String resolvedCode = ApplicationModuleMapper.resolveCode(null, name);
+        if (applicationModuleRepository.existsByCodeAndIdNot(resolvedCode, id)) {
+            throw new DataAlreadyExistsException("Application Module already exists with this code");
+        }
+    }
+
+    private ApplicationModuleEntity findById(UUID id) {
+        return applicationModuleRepository.findById(id).orElseThrow(
+                () -> new DataNotFoundException("Application Module does not exists")
+        );
     }
 }

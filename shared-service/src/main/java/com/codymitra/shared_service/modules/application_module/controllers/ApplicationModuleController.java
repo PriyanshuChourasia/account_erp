@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/application_modules")
@@ -34,6 +35,12 @@ public class ApplicationModuleController {
     public ResponseEntity<Map<String,Object>> createApplicationModule(@Valid @RequestBody CreateApplicationModuleDTO createApplicationModuleDTO){
         String message = applicationModuleService.create(createApplicationModuleDTO);
         return ResponseHandler.generateResponse(message,HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String,Object>> updateApplicationModule(@PathVariable UUID id, @Valid @RequestBody CreateApplicationModuleDTO createApplicationModuleDTO){
+        ApplicationModuleDTO applicationModuleDTO = applicationModuleService.update(id, createApplicationModuleDTO);
+        return ResponseHandler.generateResponse(applicationModuleDTO,"Application Module updated successfully",HttpStatus.OK);
     }
 
 }
