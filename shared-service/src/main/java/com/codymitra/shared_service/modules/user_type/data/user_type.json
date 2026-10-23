@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Admin",
+    "code": "ADMIN",
+    "description": "Created at registration. Has full access to the organisation.",
+    "active": true
+  },
+  {
+    "name": "Employee",
+    "code": "EMPLOYEE",
+    "description": "Internal staff user linked to an employee record.",
+    "active": true
+  },
+  {
+    "name": "Vendor",
+    "code": "VENDOR",
+    "description": "External vendor who sells goods or services to the business.",
+    "active": true
+  },
+  {
+    "name": "Supplier",
+    "code": "SUPPLIER",
+    "description": "External supplier who provides raw materials or stock.",
+    "active": true
+  }
+]

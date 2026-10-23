@@ -10,6 +10,7 @@ import com.codymitra.shared_service.modules.user.entities.UserEntity;
 import com.codymitra.shared_service.modules.user.mappers.UserMapper;
 import com.codymitra.shared_service.modules.user.repositories.UserRepository;
 import com.codymitra.shared_service.modules.user.services.UserService;
+import com.codymitra.shared_service.modules.user.services.UserableResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserableResolver userableResolver;
 
     @Override
     public List<UserDTO> getAllUsers() {
@@ -54,6 +56,10 @@ public class UserServiceImpl implements UserService {
         }
 
         UserEntity entity = UserMapper.userEntity(createUserDTO);
+
+        entity.setUserable(
+                userableResolver.resolve(createUserDTO.userableType(),createUserDTO.userableId())
+        );
 
         String username = generateUsername(createUserDTO.name());
         entity.setUsername(username);

@@ -34,10 +34,14 @@ public class CodymitraServiceApplication implements CommandLineRunner {
     @Value("${spring.application.name}")
     private String applicationName;
 
+    @Value("${swagger-path}")
+    private String swaggerPath;
+
 
     @Override
     public void run(String... args) throws Exception {
         log.info("Service Name : {}",applicationName);
         log.info("{}:{}/{}",springUrl,port,path);
+        log.info("{}{}{}",springUrl,port,swaggerPath);
     }
 }

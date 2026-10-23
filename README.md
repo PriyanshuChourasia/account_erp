@@ -27,7 +27,8 @@ Entities live under `modules/<feature>/entities`, following a package-by-feature
 
 - **Accounting**: `account_group`, `account_ledger`, `account_nature`, `journal`, `journal_entry`, `journal_reference`, `journal_type`, `voucher`, `voucher_entry`, `voucher_reference`, `voucher_type`, `financial_year`, `company_financial_year`
 - **Inventory / stock**: `stock_item`, `stock_group`, `stock_category`, `stock_unit`, `storage_location`, `storage_unit`, `inventory_type`, `costing_methods`, `bom`, `unique_quantity_code`, `tax_rate_master`
-- **Parties & master data**: `customer`, `party`, `company`, `address`, `country`, `state`, `language`, `department`, `designation`, `document`, `user`
+- **Parties & master data**: `customer`, `party`, `company`, `address`, `country`, `state`, `language`, `department`, `designation`, `document`, `user`, `user_type`
+- **HR**: `employee`, `employee_group`, `employee_category`
 
 ## Tech stack
 
@@ -84,3 +85,14 @@ mvn test                 # all reactor modules, from repo root
 ## More detail
 
 See `CLAUDE.md` for architecture conventions, known inconsistencies, and detailed dev guidance for this repo.
+
+
+
+employee 
+salary,promotion,attendance
+
+cost center : cost category
+
+
+./mvnw spring-boot:run -Dspring-boot.run.arguments=--seed                              # run every seeder                                                                                              
+./mvnw spring-boot:run -Dspring-boot.run.arguments=--seed=account_nature,bank_type     # run only the named ones  

@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -20,6 +22,9 @@ public class DesignationEntity extends BaseEntity {
 
     @Column(name = "code", unique = true)
     private String code;
+
+    @Column(name = "parent_id")
+    private UUID parentId;
 
     @Column(name = "description")
     private String description;

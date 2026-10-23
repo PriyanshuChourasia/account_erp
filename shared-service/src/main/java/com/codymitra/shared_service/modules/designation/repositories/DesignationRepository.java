@@ -7,4 +7,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DesignationRepository extends JpaRepository<DesignationEntity, UUID> {
+
+    Boolean existsByName(String name);
+
+    Boolean existsByCode(String code);
+
+    Boolean existsByNameAndIdNot(String name, UUID id);
+
+    Boolean existsByCodeAndIdNot(String code, UUID id);
+
+    Boolean existsByParentId(UUID parentId);
 }

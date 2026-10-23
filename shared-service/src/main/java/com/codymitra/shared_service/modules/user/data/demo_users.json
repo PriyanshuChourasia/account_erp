@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Demo Admin",
+    "username": "admin@accounterp.com",
+    "email": "admin@demo.codymitra.com",
+    "password": "Admin@123",
+    "countryCode": "+91",
+    "contactNo": 9000000001,
+    "code": "900001",
+    "userType": "ADMIN"
+  },
+  {
+    "name": "Ravi Kumar",
+    "username": "ravi@accounterp.com",
+    "email": "ravi@demo.codymitra.com",
+    "password": "Employee@123",
+    "countryCode": "+91",
+    "contactNo": 9000000002,
+    "code": "900002",
+    "userType": "EMPLOYEE"
+  },
+  {
+    "name": "Anita Sharma",
+    "username": "anita@accounterp.com",
+    "email": "anita@demo.codymitra.com",
+    "password": "Employee@123",
+    "countryCode": "+91",
+    "contactNo": 9000000003,
+    "code": "900003",
+    "userType": "EMPLOYEE"
+  }
+]

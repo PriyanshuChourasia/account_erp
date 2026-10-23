@@ -12,6 +12,8 @@ import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExist
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
 import com.codymitra.shared_service.modules.user.entities.UserEntity;
 import com.codymitra.shared_service.modules.user.repositories.UserRepository;
+import com.codymitra.shared_service.modules.user_type.enums.UserTypeCodeEnum;
+import com.codymitra.shared_service.modules.user_type.services.UserTypeLookup;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,6 +35,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserTypeLookup userTypeLookup;
 
     @Override
     public AuthResponseDTO registerUser(UserRegisterDTO userRegisterDTO) {
@@ -51,7 +54,6 @@ public class AuthServiceImpl implements AuthService {
         user.setContactNo(userRegisterDTO.contactNo());
         user.setCountryCode(userRegisterDTO.countryCode());
         user.setAltContactNo(userRegisterDTO.altContactNo());
-        user.setDateOfBirth(userRegisterDTO.dateOfBirth());
         user.setActive(true);
 
         String username = generateUsername(userRegisterDTO.name());
@@ -61,10 +63,9 @@ public class AuthServiceImpl implements AuthService {
         user.setCode(code);
 
         user.setPassword(passwordEncoder.encode(userRegisterDTO.password()));
-        log.info("set of suer");
+        user.setUserType(userTypeLookup.get(UserTypeCodeEnum.ADMIN));
         userRepository.save(user);
 
-        log.info("username {}",user.getUsername());
         String accessToken = jwtService.generateAccessToken(user.getUsername());
         String refreshToken = jwtService.generateRefreshToken(user.getUsername());
         return new AuthResponseDTO(accessToken, refreshToken);
