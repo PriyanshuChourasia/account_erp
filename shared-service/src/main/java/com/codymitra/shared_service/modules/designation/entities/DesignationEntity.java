@@ -17,7 +17,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class DesignationEntity extends BaseEntity {
 
-    @Column(name = "name")
+    @Column(name = "name",nullable = false,unique = true)
     private String name;
 
     @Column(name = "code", unique = true)

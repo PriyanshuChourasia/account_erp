@@ -22,7 +22,7 @@ public class DesignationController {
 
     private final DesignationService designationService;
 
-    @GetMapping("/list")
+    @GetMapping("")
     public ResponseEntity<Map<String, Object>> getAll() {
         List<DesignationDTO> dtos = designationService.getAll();
         String message = dtos.size() + " total designations fetched";

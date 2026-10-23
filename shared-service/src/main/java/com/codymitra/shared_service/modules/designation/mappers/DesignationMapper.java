@@ -4,6 +4,8 @@ import com.codymitra.shared_service.modules.designation.dtos.CreateDesignationRe
 import com.codymitra.shared_service.modules.designation.dtos.DesignationDTO;
 import com.codymitra.shared_service.modules.designation.entities.DesignationEntity;
 
+import java.util.UUID;
+
 public final class DesignationMapper {
 
     public static DesignationDTO designationDTO(DesignationEntity entity) {
@@ -19,15 +21,13 @@ public final class DesignationMapper {
 
     public static DesignationEntity designationEntity(CreateDesignationRequest request) {
         DesignationEntity entity = applyRequest(new DesignationEntity(), request);
-        entity.setActive(request.active() != null ? request.active() : true);
+        entity.setActive(true);
         return entity;
     }
 
     public static DesignationEntity designationEntity(DesignationEntity entity, CreateDesignationRequest request) {
         applyRequest(entity, request);
-        if (request.active() != null) {
-            entity.setActive(request.active());
-        }
+        entity.setActive(true);
         return entity;
     }
 
@@ -41,8 +41,20 @@ public final class DesignationMapper {
     private static DesignationEntity applyRequest(DesignationEntity entity, CreateDesignationRequest request) {
         entity.setName(request.name().trim());
         entity.setCode(resolveCode(request.code(), request.name()));
-        entity.setParentId(request.parentId());
         entity.setDescription(request.description());
+        entity.setParentId(parentId(request));
         return entity;
+    }
+
+    /** parentId arrives as a String; blank means "no parent" (top level). */
+    public static UUID parentId(CreateDesignationRequest request) {
+        if (request.parentId() == null || request.parentId().isBlank()) {
+            return null;
+        }
+        try {
+            return UUID.fromString(request.parentId().trim());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid parent id: " + request.parentId());
+        }
     }
 }

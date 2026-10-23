@@ -5,10 +5,12 @@ import com.codymitra.shared_service.modules.department.dtos.DepartmentDTO;
 import com.codymitra.shared_service.modules.department.dtos.DepartmentHierarchyDTO;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface DepartmentService {
 
     List<DepartmentDTO> getAll();
     List<DepartmentHierarchyDTO> getAllWithChildren();
     String create(CreateDepartmentRequest request);
+    DepartmentDTO update(UUID id, CreateDepartmentRequest request);
 }

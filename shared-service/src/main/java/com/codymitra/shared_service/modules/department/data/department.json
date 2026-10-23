@@ -1,0 +1,103 @@
+
+[
+  {
+    "code": "MGMT",
+    "name": "Management",
+    "description": "Oversees business strategy, planning, decision-making, and overall company performance."
+  },
+  {
+    "code": "HR",
+    "name": "Human Resources",
+    "description": "Handles recruitment, employee records, onboarding, attendance, leave, and employee welfare."
+  },
+  {
+    "code": "ACC",
+    "name": "Accounts & Finance",
+    "description": "Manages accounting, financial statements, payments, receipts, budgeting, and financial reporting."
+  },
+  {
+    "code": "SALES",
+    "name": "Sales",
+    "description": "Handles sales activities, customer relationships, quotations, orders, and revenue generation."
+  },
+  {
+    "code": "MKT",
+    "name": "Marketing",
+    "description": "Manages advertising, promotions, branding, campaigns, and market research."
+  },
+  {
+    "code": "PUR",
+    "name": "Purchase & Procurement",
+    "description": "Handles supplier selection, purchase requests, purchase orders, and procurement activities."
+  },
+  {
+    "code": "INV",
+    "name": "Inventory & Warehouse",
+    "description": "Manages stock, warehouses, goods receipts, stock transfers, and inventory adjustments."
+  },
+  {
+    "code": "PROD",
+    "name": "Production",
+    "description": "Plans and manages manufacturing, production orders, material consumption, and output."
+  },
+  {
+    "code": "QC",
+    "name": "Quality Control",
+    "description": "Inspects materials and products and maintains quality standards and compliance."
+  },
+  {
+    "code": "LOG",
+    "name": "Logistics & Transportation",
+    "description": "Manages shipments, deliveries, transportation, dispatch, and distribution."
+  },
+  {
+    "code": "CS",
+    "name": "Customer Support",
+    "description": "Handles customer queries, complaints, service requests, and after-sales support."
+  },
+  {
+    "code": "IT",
+    "name": "Information Technology",
+    "description": "Manages software, hardware, networks, technical support, and IT infrastructure."
+  },
+  {
+    "code": "ADMIN",
+    "name": "Administration",
+    "description": "Handles office administration, facilities, company assets, and general administrative activities."
+  },
+  {
+    "code": "LEGAL",
+    "name": "Legal & Compliance",
+    "description": "Manages contracts, legal documentation, regulatory compliance, and legal matters."
+  },
+  {
+    "code": "RND",
+    "name": "Research & Development",
+    "description": "Develops new products, improves existing products, and conducts research and innovation."
+  },
+  {
+    "code": "OPS",
+    "name": "Operations",
+    "description": "Oversees day-to-day business processes and operational efficiency."
+  },
+  {
+    "code": "PMO",
+    "name": "Project Management",
+    "description": "Plans, tracks, and coordinates projects, timelines, budgets, and deliverables."
+  },
+  {
+    "code": "SERVICE",
+    "name": "Service & Maintenance",
+    "description": "Handles equipment maintenance, repairs, installations, and field service activities."
+  },
+  {
+    "code": "EXPORT",
+    "name": "Import & Export",
+    "description": "Manages international trade documentation, customs, export orders, and import shipments."
+  },
+  {
+    "code": "AUDIT",
+    "name": "Internal Audit",
+    "description": "Reviews internal controls, financial processes, operational risks, and company policies."
+  }
+]

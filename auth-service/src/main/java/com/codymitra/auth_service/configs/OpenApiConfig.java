@@ -14,11 +14,11 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("PrimeSys API")
+                        .title("Account ERP API")
                         .version("1.0.0"))
                 .servers(java.util.List.of(
                         new Server()
-                                .url("http://localhost:8080")
+                                .url("http://localhost:8060")
                                 .description("Local development server")
                 ));
     }

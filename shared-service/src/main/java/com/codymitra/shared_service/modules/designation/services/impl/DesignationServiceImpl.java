@@ -10,6 +10,7 @@ import com.codymitra.shared_service.modules.designation.mappers.DesignationMappe
 import com.codymitra.shared_service.modules.designation.repositories.DesignationRepository;
 import com.codymitra.shared_service.modules.designation.services.DesignationService;
 import com.codymitra.shared_service.modules.designation.utils.DesignationHierarchy;
+import com.codymitra.shared_service.modules.department_designation.repositories.DepartmentDesignationRepository;
 import com.codymitra.shared_service.modules.employee.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,12 @@ public class DesignationServiceImpl implements DesignationService {
 
     private final DesignationRepository designationRepository;
     private final EmployeeRepository employeeRepository;
+    private final DepartmentDesignationRepository departmentDesignationRepository;
 
     @Override
     @Transactional(readOnly = true)
     public List<DesignationDTO> getAll() {
-        return designationRepository.findAll().stream()
+        return designationRepository.findAllByParentIdIsNull().stream()
                 .map(DesignationMapper::designationDTO)
                 .toList();
     }
@@ -49,7 +51,7 @@ public class DesignationServiceImpl implements DesignationService {
     @Transactional
     public DesignationDTO create(CreateDesignationRequest request) {
         validateUnique(request.name(), DesignationMapper.resolveCode(request.code(), request.name()), null);
-        validateParent(request.parentId(), null);
+        validateParent(DesignationMapper.parentId(request), null);
         return DesignationMapper.designationDTO(
                 designationRepository.save(DesignationMapper.designationEntity(request))
         );
@@ -60,7 +62,7 @@ public class DesignationServiceImpl implements DesignationService {
     public DesignationDTO update(UUID id, CreateDesignationRequest request) {
         DesignationEntity entity = findById(id);
         validateUnique(request.name(), DesignationMapper.resolveCode(request.code(), request.name()), id);
-        validateParent(request.parentId(), id);
+        validateParent(DesignationMapper.parentId(request), id);
         return DesignationMapper.designationDTO(
                 designationRepository.save(DesignationMapper.designationEntity(entity, request))
         );
@@ -72,6 +74,9 @@ public class DesignationServiceImpl implements DesignationService {
         DesignationEntity entity = findById(id);
         if (designationRepository.existsByParentId(id)) {
             throw new DataAlreadyExistsException("Designation has child designations, remove them first");
+        }
+        if (departmentDesignationRepository.existsByDesignation_Id(id)) {
+            throw new DataAlreadyExistsException("Designation is assigned to a department, remove it from the department first");
         }
         if (!employeeRepository.findByDesignationId(id).isEmpty()) {
             throw new DataAlreadyExistsException("Designation is assigned to employees, it cannot be deleted");

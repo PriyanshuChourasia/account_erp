@@ -10,10 +10,8 @@ public record CreateDesignationRequest(
 
         String code,
 
-        UUID parentId,
+        String parentId,
 
-        String description,
-
-        Boolean active
+        String description
 ) {
 }

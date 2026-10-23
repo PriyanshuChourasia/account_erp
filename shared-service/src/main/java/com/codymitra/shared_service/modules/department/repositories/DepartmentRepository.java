@@ -1,5 +1,6 @@
 package com.codymitra.shared_service.modules.department.repositories;
 
+import java.util.Optional;
 import java.util.UUID;
 import com.codymitra.shared_service.modules.department.entities.DepartmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,10 @@ public interface DepartmentRepository extends JpaRepository<DepartmentEntity, UU
     Boolean existsByName(String name);
 
     Boolean existsByCode(String code);
+
+    Optional<DepartmentEntity> findByCode(String code);
+
+    Boolean existsByNameAndIdNot(String name, UUID id);
+
+    Boolean existsByCodeAndIdNot(String code, UUID id);
 }

@@ -24,9 +24,15 @@ public final class DepartmentMapper {
         if (request.code() != null) {
             department.setCode(request.code().toUpperCase());
         }
-        department.setParentId(request.parentId());
         department.setDescription(request.description());
         department.setActive(true);
+        return department;
+    }
+
+    public static DepartmentEntity departmentEntity(DepartmentEntity department, CreateDepartmentRequest request) {
+        department.setName(request.name());
+        department.setCode(request.code() != null ? request.code().toUpperCase() : null);
+        department.setDescription(request.description());
         return department;
     }
 }

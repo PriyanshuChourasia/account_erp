@@ -1,0 +1,261 @@
+
+[
+  {
+    "name": "Chief Executive Officer",
+    "code": "CEO",
+    "description": "Leads the company, defines business strategy, and oversees overall company performance.",
+    "children": [
+      {
+        "name": "Managing Director",
+        "code": "MD",
+        "description": "Directs company strategy, governance, and business performance.",
+        "children": [
+          {
+            "name": "Director",
+            "code": "DIR",
+            "description": "Provides strategic direction and oversees business functions or divisions.",
+            "children": []
+          },
+          {
+            "name": "General Manager",
+            "code": "GM",
+            "description": "Manages overall operations, resources, and business performance.",
+            "children": [
+              {
+                "name": "Department Head",
+                "code": "DEPT_HEAD",
+                "description": "Leads a department, manages employees, and monitors departmental goals.",
+                "children": [
+                  {
+                    "name": "Manager",
+                    "code": "MANAGER",
+                    "description": "Plans, coordinates, and supervises a team or business function.",
+                    "children": [
+                      {
+                        "name": "Assistant Manager",
+                        "code": "ASST_MANAGER",
+                        "description": "Supports the manager with daily operations, team coordination, and reporting.",
+                        "children": [
+                          {
+                            "name": "Team Lead",
+                            "code": "TEAM_LEAD",
+                            "description": "Guides team members, assigns tasks, and monitors team performance.",
+                            "children": [
+                              {
+                                "name": "Executive",
+                                "code": "EXECUTIVE",
+                                "description": "Performs operational, administrative, or functional tasks within a department.",
+                                "children": [
+                                  {
+                                    "name": "Officer",
+                                    "code": "OFFICER",
+                                    "description": "Handles departmental responsibilities, documentation, and process execution.",
+                                    "children": [
+                                      {
+                                        "name": "Assistant",
+                                        "code": "ASSISTANT",
+                                        "description": "Provides administrative and operational support to a team or manager.",
+                                        "children": [
+                                          {
+                                            "name": "Clerk",
+                                            "code": "CLERK",
+                                            "description": "Maintains records, processes documents, and performs clerical duties.",
+                                            "children": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Accountant",
+    "code": "ACCOUNTANT",
+    "description": "Maintains financial records and prepares accounts, reconciliations, and reports.",
+    "children": [
+      {
+        "name": "Chartered Accountant",
+        "code": "CA",
+        "description": "Provides accounting, taxation, auditing, and financial compliance expertise.",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "HR Executive",
+    "code": "HR_EXEC",
+    "description": "Handles recruitment, employee documentation, onboarding, and HR administration.",
+    "children": [
+      {
+        "name": "Recruiter",
+        "code": "RECRUITER",
+        "description": "Sources candidates, coordinates interviews, and supports hiring activities.",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Sales Manager",
+    "code": "SALES_MANAGER",
+    "description": "Leads the sales team, manages sales targets, and develops customer relationships.",
+    "children": [
+      {
+        "name": "Assistant Sales Manager",
+        "code": "ASST_SALES_MANAGER",
+        "description": "Supports the sales manager in daily sales operations and team coordination.",
+        "children": [
+          {
+            "name": "Senior Sales Executive",
+            "code": "SR_SALES_EXEC",
+            "description": "Handles key accounts, supports junior sales executives, and manages important customer relationships.",
+            "children": []
+          },
+          {
+            "name": "Sales Executive",
+            "code": "SALES_EXEC",
+            "description": "Generates leads, communicates with customers, and handles sales activities.",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Marketing Executive",
+    "code": "MARKETING_EXEC",
+    "description": "Executes marketing campaigns, promotions, branding, and lead-generation activities.",
+    "children": []
+  },
+  {
+    "name": "Purchase Executive",
+    "code": "PURCHASE_EXEC",
+    "description": "Processes purchase requests, obtains quotations, and coordinates with suppliers.",
+    "children": []
+  },
+  {
+    "name": "Storekeeper",
+    "code": "STORE_KEEPER",
+    "description": "Maintains stock records and manages the receipt, storage, and issue of goods.",
+    "children": [
+      {
+        "name": "Warehouse Supervisor",
+        "code": "WAREHOUSE_SUP",
+        "description": "Supervises warehouse staff, stock handling, storage, and dispatch operations.",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Production Engineer",
+    "code": "PRODUCTION_ENG",
+    "description": "Improves manufacturing processes and supports production planning and execution.",
+    "children": [
+      {
+        "name": "Production Supervisor",
+        "code": "PRODUCTION_SUP",
+        "description": "Supervises production workers and monitors output, schedules, and safety.",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Quality Engineer",
+    "code": "QUALITY_ENG",
+    "description": "Develops quality processes and investigates product defects.",
+    "children": [
+      {
+        "name": "Quality Inspector",
+        "code": "QUALITY_INSPECTOR",
+        "description": "Inspects incoming materials, work in progress, and finished products.",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Logistics Executive",
+    "code": "LOGISTICS_EXEC",
+    "description": "Coordinates transportation, shipments, delivery schedules, and logistics documents.",
+    "children": []
+  },
+  {
+    "name": "Customer Support Executive",
+    "code": "CUSTOMER_SUPPORT",
+    "description": "Responds to customer questions, resolves issues, and tracks service requests.",
+    "children": []
+  },
+  {
+    "name": "Software Engineer",
+    "code": "SOFTWARE_ENG",
+    "description": "Designs, develops, tests, and maintains software applications.",
+    "children": [
+      {
+        "name": "System Administrator",
+        "code": "IT_ADMIN",
+        "description": "Maintains systems, user access, networks, servers, and IT infrastructure.",
+        "children": []
+      }
+    ]
+  },
+  {
+    "name": "Administration Executive",
+    "code": "ADMIN_EXEC",
+    "description": "Coordinates office facilities, supplies, records, and administrative services.",
+    "children": []
+  },
+  {
+    "name": "Legal Advisor",
+    "code": "LEGAL_ADVISOR",
+    "description": "Advises on legal matters, reviews contracts, and supports regulatory compliance.",
+    "children": []
+  },
+  {
+    "name": "Project Manager",
+    "code": "PROJECT_MANAGER",
+    "description": "Plans project scope, timelines, resources, budgets, and delivery.",
+    "children": []
+  },
+  {
+    "name": "Research Engineer",
+    "code": "RESEARCH_ENG",
+    "description": "Conducts technical research, experimentation, and product development.",
+    "children": []
+  },
+  {
+    "name": "Service Engineer",
+    "code": "SERVICE_ENG",
+    "description": "Installs, diagnoses, repairs, and maintains equipment or technical systems.",
+    "children": []
+  },
+  {
+    "name": "Internal Auditor",
+    "code": "INTERNAL_AUDITOR",
+    "description": "Evaluates internal controls, business processes, and compliance with company policies.",
+    "children": []
+  },
+  {
+    "name": "Trainee",
+    "code": "TRAINEE",
+    "description": "Learns job responsibilities through supervised training and practical work.",
+    "children": []
+  },
+  {
+    "name": "Intern",
+    "code": "INTERN",
+    "description": "Gains practical experience by assisting with supervised departmental tasks.",
+    "children": []
+  }
+]

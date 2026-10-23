@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/departments")
@@ -21,7 +22,7 @@ public class DepartmentController {
 
     private final DepartmentService departmentService;
 
-    @GetMapping("/list")
+    @GetMapping("")
     public ResponseEntity<Map<String, Object>> getAll() {
         List<DepartmentDTO> dtos = departmentService.getAll();
         String message = dtos.size() + " total departments fetched";
@@ -39,5 +40,11 @@ public class DepartmentController {
     public ResponseEntity<Map<String, Object>> create(@Valid @RequestBody CreateDepartmentRequest request) {
         String message = departmentService.create(request);
         return ResponseHandler.generateResponse(message, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> update(@PathVariable UUID id, @Valid @RequestBody CreateDepartmentRequest request) {
+        DepartmentDTO dto = departmentService.update(id, request);
+        return ResponseHandler.generateResponse(dto, "Department updated successfully", HttpStatus.OK);
     }
 }
