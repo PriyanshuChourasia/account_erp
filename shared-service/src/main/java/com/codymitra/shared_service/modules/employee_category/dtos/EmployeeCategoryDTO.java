@@ -8,8 +8,10 @@ import java.util.UUID;
 public record EmployeeCategoryDTO(
         UUID id,
         String name,
-        String code,
+        String alias,
         String description,
+        Boolean allocateRevenueItem,
+        Boolean allocateNonRevenueItem,
         Boolean active
 ) {
 }

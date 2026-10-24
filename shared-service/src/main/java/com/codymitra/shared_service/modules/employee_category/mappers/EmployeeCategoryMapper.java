@@ -10,8 +10,10 @@ public final class EmployeeCategoryMapper {
         return new EmployeeCategoryDTO(
                 entity.getId(),
                 entity.getName(),
-                entity.getCode(),
+                entity.getAlias(),
                 entity.getDescription(),
+                entity.getAllocateRevenueItem(),
+                entity.getAllocateNonRevenueItem(),
                 entity.getActive()
         );
     }
@@ -26,17 +28,16 @@ public final class EmployeeCategoryMapper {
         return applyRequest(entity, request);
     }
 
-    public static String resolveCode(String code, String name) {
-        if (code != null && !code.isBlank()) {
-            return code.trim().toUpperCase();
-        }
-        return name.trim().replaceAll("[\\s-]+", "_").toUpperCase();
+    public static String resolveAlias(String alias) {
+        return alias == null || alias.isBlank() ? null : alias.trim();
     }
 
     private static EmployeeCategoryEntity applyRequest(EmployeeCategoryEntity entity, CreateEmployeeCategoryRequest request) {
-        entity.setName(request.name());
-        entity.setCode(resolveCode(request.code(), request.name()));
+        entity.setName(request.name().trim());
+        entity.setAlias(resolveAlias(request.alias()));
         entity.setDescription(request.description());
+        entity.setAllocateRevenueItem(Boolean.TRUE.equals(request.allocateRevenueItem()));
+        entity.setAllocateNonRevenueItem(Boolean.TRUE.equals(request.allocateNonRevenueItem()));
         return entity;
     }
 }

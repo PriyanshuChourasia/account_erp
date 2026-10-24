@@ -7,6 +7,7 @@ import com.codymitra.shared_service.modules.designation.entities.DesignationEnti
 import com.codymitra.shared_service.modules.employee.enums.EmployeeStatusEnum;
 import com.codymitra.shared_service.modules.employee.enums.EmploymentTypeEnum;
 import com.codymitra.shared_service.modules.employee.enums.GenderEnum;
+import com.codymitra.shared_service.modules.employee_group.entities.EmployeeGroupEntity;
 import com.codymitra.shared_service.modules.user.interfaces.Userable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -76,6 +77,10 @@ public class EmployeeEntity extends BaseEntity implements Userable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private DepartmentEntity department;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_group_id")
+    private EmployeeGroupEntity employeeGroup;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "designation_id")

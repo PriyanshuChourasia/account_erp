@@ -18,11 +18,17 @@ public class EmployeeCategoryEntity extends BaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "code", unique = true)
-    private String code;
+    @Column(name = "alias", unique = true)
+    private String alias;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "allocate_revenue_item",nullable = false)
+    private Boolean allocateRevenueItem;
+
+    @Column(name = "allocate_non_revenue_item",nullable = false)
+    private Boolean allocateNonRevenueItem;
 
     @Column(name = "active")
     private Boolean active;

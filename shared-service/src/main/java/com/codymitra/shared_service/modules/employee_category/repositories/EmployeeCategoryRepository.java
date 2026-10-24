@@ -11,9 +11,9 @@ public interface EmployeeCategoryRepository extends JpaRepository<EmployeeCatego
 
     Boolean existsByName(String name);
 
-    Boolean existsByCode(String code);
+    Boolean existsByAlias(String alias);
 
     Boolean existsByNameAndIdNot(String name, UUID id);
 
-    Boolean existsByCodeAndIdNot(String code, UUID id);
+    Boolean existsByAliasAndIdNot(String alias, UUID id);
 }

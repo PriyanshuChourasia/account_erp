@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Head Office",
+    "alias": "HO",
+    "description": "Employees associated with central administration",
+    "allocatedRevenue": false,
+    "allocatedNonRevenue": true
+  }
+]

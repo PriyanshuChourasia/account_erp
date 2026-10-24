@@ -6,8 +6,12 @@ public record CreateEmployeeCategoryRequest(
         @NotBlank(message = "Name is required")
         String name,
 
-        String code,
+        String alias,
 
-        String description
+        String description,
+
+        Boolean allocateRevenueItem,
+
+        Boolean allocateNonRevenueItem
 ) {
 }

@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -19,10 +21,14 @@ public class EmployeeGroupEntity extends BaseEntity {
     private String name;
 
     @Column(name = "code", unique = true)
-    private String code;
+    private String alias;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "parent_id")
+    private UUID parentId;
+
+    // wait for pay heads
+//    @Column(name = "active_salary_details")
+
 
     @Column(name = "active")
     private Boolean active;

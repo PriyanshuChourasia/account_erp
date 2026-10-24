@@ -38,7 +38,7 @@ public class EmployeeCategoryServiceImpl implements EmployeeCategoryService {
     @Override
     @Transactional
     public EmployeeCategoryDTO create(CreateEmployeeCategoryRequest request) {
-        validateUnique(request.name(), EmployeeCategoryMapper.resolveCode(request.code(), request.name()), null);
+        validateUnique(request.name().trim(), EmployeeCategoryMapper.resolveAlias(request.alias()), null);
         return EmployeeCategoryMapper.employeeCategoryDTO(employeeCategoryRepository.save(EmployeeCategoryMapper.employeeCategoryEntity(request)));
     }
 
@@ -46,7 +46,7 @@ public class EmployeeCategoryServiceImpl implements EmployeeCategoryService {
     @Transactional
     public EmployeeCategoryDTO update(UUID id, CreateEmployeeCategoryRequest request) {
         EmployeeCategoryEntity entity = findById(id);
-        validateUnique(request.name(), EmployeeCategoryMapper.resolveCode(request.code(), request.name()), id);
+        validateUnique(request.name().trim(), EmployeeCategoryMapper.resolveAlias(request.alias()), id);
         return EmployeeCategoryMapper.employeeCategoryDTO(employeeCategoryRepository.save(EmployeeCategoryMapper.employeeCategoryEntity(entity, request)));
     }
 
@@ -63,22 +63,22 @@ public class EmployeeCategoryServiceImpl implements EmployeeCategoryService {
         );
     }
 
-    private void validateUnique(String name, String code, UUID id) {
-        if (id == null) {
-            if (employeeCategoryRepository.existsByName(name)) {
-                throw new DataAlreadyExistsException("Employee category already exists with this name");
-            }
-            if (employeeCategoryRepository.existsByCode(code)) {
-                throw new DataAlreadyExistsException("Employee category already exists with this code");
-            }
-            return;
-        }
-
-        if (employeeCategoryRepository.existsByNameAndIdNot(name, id)) {
+    private void validateUnique(String name, String alias, UUID id) {
+        boolean nameTaken = id == null
+                ? employeeCategoryRepository.existsByName(name)
+                : employeeCategoryRepository.existsByNameAndIdNot(name, id);
+        if (nameTaken) {
             throw new DataAlreadyExistsException("Employee category already exists with this name");
         }
-        if (employeeCategoryRepository.existsByCodeAndIdNot(code, id)) {
-            throw new DataAlreadyExistsException("Employee category already exists with this code");
+
+        if (alias == null) {
+            return;
+        }
+        boolean aliasTaken = id == null
+                ? employeeCategoryRepository.existsByAlias(alias)
+                : employeeCategoryRepository.existsByAliasAndIdNot(alias, id);
+        if (aliasTaken) {
+            throw new DataAlreadyExistsException("Employee category already exists with this alias");
         }
     }
 }

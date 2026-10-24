@@ -1,0 +1,50 @@
+[
+  {
+    "name": "A Positive",
+    "code": "A_POSITIVE",
+    "description": "Blood group A with Rh factor positive.",
+    "active": true
+  },
+  {
+    "name": "A Negative",
+    "code": "A_NEGATIVE",
+    "description": "Blood group A with Rh factor negative.",
+    "active": true
+  },
+  {
+    "name": "B Positive",
+    "code": "B_POSITIVE",
+    "description": "Blood group B with Rh factor positive.",
+    "active": true
+  },
+  {
+    "name": "B Negative",
+    "code": "B_NEGATIVE",
+    "description": "Blood group B with Rh factor negative.",
+    "active": true
+  },
+  {
+    "name": "O Positive",
+    "code": "O_POSITIVE",
+    "description": "Blood group O with Rh factor positive.",
+    "active": true
+  },
+  {
+    "name": "O Negative",
+    "code": "O_NEGATIVE",
+    "description": "Blood group O with Rh factor negative. Universal donor.",
+    "active": true
+  },
+  {
+    "name": "AB Positive",
+    "code": "AB_POSITIVE",
+    "description": "Blood group AB with Rh factor positive. Universal recipient.",
+    "active": true
+  },
+  {
+    "name": "AB Negative",
+    "code": "AB_NEGATIVE",
+    "description": "Blood group AB with Rh factor negative.",
+    "active": true
+  }
+]
