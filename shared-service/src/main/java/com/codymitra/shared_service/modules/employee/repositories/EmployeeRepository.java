@@ -15,11 +15,15 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, UUID> 
 
     Boolean existsByEmail(String email);
 
+    Boolean existsByCompanyMail(String companyMail);
+
     Optional<EmployeeEntity> findByEmail(String email);
 
     Boolean existsByEmployeeCodeAndIdNot(String employeeCode, UUID id);
 
     Boolean existsByEmailAndIdNot(String email, UUID id);
+
+    Boolean existsByCompanyMailAndIdNot(String companyMail, UUID id);
 
     List<EmployeeEntity> findByDepartmentId(UUID departmentId);
 

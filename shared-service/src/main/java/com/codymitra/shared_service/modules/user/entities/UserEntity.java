@@ -2,6 +2,7 @@ package com.codymitra.shared_service.modules.user.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
 import com.codymitra.shared_service.modules.employee.entities.EmployeeEntity;
+import com.codymitra.shared_service.modules.gender.entities.GenderEntity;
 import com.codymitra.shared_service.modules.user.enums.UserableTypeEnum;
 import com.codymitra.shared_service.modules.user.interfaces.Userable;
 import com.codymitra.shared_service.modules.user_type.entities.UserTypeEntity;
@@ -40,14 +41,15 @@ public class UserEntity extends BaseEntity {
     @Column(name = "country_code",nullable = false)
     private String countryCode;
 
-    @Column(name = "license_no",unique = true)
-    private String licenseNo;
-
     @Column(name = "contact_no",nullable = false,unique = true)
     private Long contactNo;
 
     @Column(name = "alt_contact_no")
     private Long altContactNo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gender_id")
+    private GenderEntity gender;
 
     @Column(name = "telephone_no")
     private String telePhoneNo;

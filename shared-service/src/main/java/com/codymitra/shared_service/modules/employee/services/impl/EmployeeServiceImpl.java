@@ -2,6 +2,8 @@ package com.codymitra.shared_service.modules.employee.services.impl;
 
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataAlreadyExistsException;
 import com.codymitra.shared_service.exceptionHandler.exceptions.DataNotFoundException;
+import com.codymitra.shared_service.modules.blood_group.entities.BloodGroupEntity;
+import com.codymitra.shared_service.modules.blood_group.repositories.BloodGroupRepository;
 import com.codymitra.shared_service.modules.company.entities.CompanyEntity;
 import com.codymitra.shared_service.modules.company.repositories.CompanyRepository;
 import com.codymitra.shared_service.modules.department.entities.DepartmentEntity;
@@ -12,8 +14,11 @@ import com.codymitra.shared_service.modules.employee.dtos.CreateEmployeeRequest;
 import com.codymitra.shared_service.modules.employee.dtos.EmployeeDTO;
 import com.codymitra.shared_service.modules.employee.entities.EmployeeEntity;
 import com.codymitra.shared_service.modules.employee.mappers.EmployeeMapper;
+import com.codymitra.shared_service.modules.employee.mappers.EmployeeMapper.EmployeeRelations;
 import com.codymitra.shared_service.modules.employee.repositories.EmployeeRepository;
 import com.codymitra.shared_service.modules.employee.services.EmployeeService;
+import com.codymitra.shared_service.modules.employee_group.entities.EmployeeGroupEntity;
+import com.codymitra.shared_service.modules.employee_group.repositories.EmployeeGroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +32,10 @@ import java.util.UUID;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final BloodGroupRepository bloodGroupRepository;
     private final CompanyRepository companyRepository;
     private final DepartmentRepository departmentRepository;
+    private final EmployeeGroupRepository employeeGroupRepository;
     private final DesignationRepository designationRepository;
 
     @Override
@@ -60,18 +67,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public EmployeeDTO create(CreateEmployeeRequest request) {
         String employeeCode = EmployeeMapper.resolveEmployeeCode(request.employeeCode(), request.firstName(), request.lastName());
-        validateUnique(employeeCode, request.email(), null);
+        validateUnique(employeeCode, EmployeeMapper.resolveMail(request.email()), EmployeeMapper.resolveMail(request.companyMail()), null);
         validateDates(request.dateOfJoining(), request.dateOfExit());
 
-        EmployeeEntity entity = EmployeeMapper.employeeEntity(
-                request,
-                employeeCode,
-                resolveCompany(request.companyId()),
-                resolveDepartment(request.departmentId()),
-                resolveDesignation(request.designationId()),
-                resolveReportingManager(request.reportingManagerId(), null)
-        );
-
+        EmployeeEntity entity = EmployeeMapper.employeeEntity(request, employeeCode, resolveRelations(request));
         return EmployeeMapper.employeeDTO(employeeRepository.save(entity));
     }
 
@@ -80,19 +79,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDTO update(UUID id, CreateEmployeeRequest request) {
         EmployeeEntity entity = findById(id);
         String employeeCode = EmployeeMapper.resolveEmployeeCode(request.employeeCode(), request.firstName(), request.lastName());
-        validateUnique(employeeCode, request.email(), id);
+        validateUnique(employeeCode, EmployeeMapper.resolveMail(request.email()), EmployeeMapper.resolveMail(request.companyMail()), id);
         validateDates(request.dateOfJoining(), request.dateOfExit());
 
-        EmployeeEntity updated = EmployeeMapper.employeeEntity(
-                entity,
-                request,
-                employeeCode,
-                resolveCompany(request.companyId()),
-                resolveDepartment(request.departmentId()),
-                resolveDesignation(request.designationId()),
-                resolveReportingManager(request.reportingManagerId(), id)
-        );
-
+        EmployeeEntity updated = EmployeeMapper.employeeEntity(entity, request, employeeCode, resolveRelations(request));
         return EmployeeMapper.employeeDTO(employeeRepository.save(updated));
     }
 
@@ -109,22 +99,30 @@ public class EmployeeServiceImpl implements EmployeeService {
         );
     }
 
-    private void validateUnique(String employeeCode, String email, UUID id) {
-        if (id == null) {
-            if (employeeRepository.existsByEmployeeCode(employeeCode)) {
-                throw new DataAlreadyExistsException("Employee already exists with this code");
-            }
-            if (email != null && !email.isBlank() && employeeRepository.existsByEmail(email)) {
-                throw new DataAlreadyExistsException("Employee already exists with this email");
-            }
-            return;
-        }
-
-        if (employeeRepository.existsByEmployeeCodeAndIdNot(employeeCode, id)) {
+    private void validateUnique(String employeeCode, String email, String companyMail, UUID id) {
+        boolean codeTaken = id == null
+                ? employeeRepository.existsByEmployeeCode(employeeCode)
+                : employeeRepository.existsByEmployeeCodeAndIdNot(employeeCode, id);
+        if (codeTaken) {
             throw new DataAlreadyExistsException("Employee already exists with this code");
         }
-        if (email != null && !email.isBlank() && employeeRepository.existsByEmailAndIdNot(email, id)) {
-            throw new DataAlreadyExistsException("Employee already exists with this email");
+
+        if (email != null) {
+            boolean emailTaken = id == null
+                    ? employeeRepository.existsByEmail(email)
+                    : employeeRepository.existsByEmailAndIdNot(email, id);
+            if (emailTaken) {
+                throw new DataAlreadyExistsException("Employee already exists with this email");
+            }
+        }
+
+        if (companyMail != null) {
+            boolean companyMailTaken = id == null
+                    ? employeeRepository.existsByCompanyMail(companyMail)
+                    : employeeRepository.existsByCompanyMailAndIdNot(companyMail, id);
+            if (companyMailTaken) {
+                throw new DataAlreadyExistsException("Employee already exists with this company mail");
+            }
         }
     }
 
@@ -132,6 +130,25 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (dateOfJoining != null && dateOfExit != null && dateOfExit.isBefore(dateOfJoining)) {
             throw new IllegalArgumentException("Date of exit cannot be before date of joining");
         }
+    }
+
+    private EmployeeRelations resolveRelations(CreateEmployeeRequest request) {
+        return new EmployeeRelations(
+                resolveBloodGroup(request.bloodGroupId()),
+                resolveCompany(request.companyId()),
+                resolveDepartment(request.departmentId()),
+                resolveEmployeeGroup(request.employeeGroupId()),
+                resolveDesignation(request.designationId())
+        );
+    }
+
+    private BloodGroupEntity resolveBloodGroup(UUID bloodGroupId) {
+        if (bloodGroupId == null) {
+            return null;
+        }
+        return bloodGroupRepository.findById(bloodGroupId).orElseThrow(
+                () -> new DataNotFoundException("No such blood group found with this id")
+        );
     }
 
     private CompanyEntity resolveCompany(UUID companyId) {
@@ -152,24 +169,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         );
     }
 
+    private EmployeeGroupEntity resolveEmployeeGroup(UUID employeeGroupId) {
+        if (employeeGroupId == null) {
+            return null;
+        }
+        return employeeGroupRepository.findById(employeeGroupId).orElseThrow(
+                () -> new DataNotFoundException("No such employee group found with this id")
+        );
+    }
+
     private DesignationEntity resolveDesignation(UUID designationId) {
         if (designationId == null) {
             return null;
         }
         return designationRepository.findById(designationId).orElseThrow(
                 () -> new DataNotFoundException("No such designation found with this id")
-        );
-    }
-
-    private EmployeeEntity resolveReportingManager(UUID reportingManagerId, UUID employeeId) {
-        if (reportingManagerId == null) {
-            return null;
-        }
-        if (reportingManagerId.equals(employeeId)) {
-            throw new IllegalArgumentException("Employee cannot be their own reporting manager");
-        }
-        return employeeRepository.findById(reportingManagerId).orElseThrow(
-                () -> new DataNotFoundException("No such reporting manager found with this id")
         );
     }
 }

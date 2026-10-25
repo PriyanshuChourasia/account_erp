@@ -2,7 +2,6 @@ package com.codymitra.shared_service.modules.employee.dtos;
 
 import com.codymitra.shared_service.modules.employee.enums.EmployeeStatusEnum;
 import com.codymitra.shared_service.modules.employee.enums.EmploymentTypeEnum;
-import com.codymitra.shared_service.modules.employee.enums.GenderEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
@@ -16,11 +15,11 @@ public record EmployeeDTO(
         String middleName,
         String lastName,
         String email,
+        String companyMail,
         String contactNo,
         String altContactNo,
-        LocalDate dateOfBirth,
-        GenderEnum gender,
-        String bloodGroup,
+        UUID bloodGroupId,
+        String bloodGroupName,
         LocalDate dateOfJoining,
         LocalDate dateOfExit,
         EmploymentTypeEnum employmentType,
@@ -29,12 +28,10 @@ public record EmployeeDTO(
         String companyName,
         UUID departmentId,
         String departmentName,
+        UUID employeeGroupId,
+        String employeeGroupName,
         UUID designationId,
         String designationName,
-        UUID reportingManagerId,
-        String reportingManagerName,
-        String panNo,
-        String aadhaarNo,
         String pfNo,
         String esiNo,
         String uanNo,

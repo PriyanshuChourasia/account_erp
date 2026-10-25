@@ -50,13 +50,6 @@ public class EmployeeEntity extends BaseEntity implements Userable {
     @Column(name = "alt_contact_no")
     private String altContactNo;
 
-    @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
-    private GenderEnum gender;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "blood_group_id")
     private BloodGroupEntity bloodGroup;
@@ -91,15 +84,17 @@ public class EmployeeEntity extends BaseEntity implements Userable {
     @JoinColumn(name = "designation_id")
     private DesignationEntity designation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reporting_manager_id")
-    private EmployeeEntity reportingManager;
+    // this part needed to be modified according to need
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "reporting_manager_id")
+//    private EmployeeEntity reportingManager;
 
-    @Column(name = "pan_no", unique = true)
-    private String panNo;
-
-    @Column(name = "aadhaar_no", unique = true)
-    private String aadhaarNo;
+    // in document type will be updated
+//    @Column(name = "pan_no", unique = true)
+//    private String panNo;
+//
+//    @Column(name = "aadhaar_no", unique = true)
+//    private String aadhaarNo;
 
     @Column(name = "pf_no")
     private String pfNo;
