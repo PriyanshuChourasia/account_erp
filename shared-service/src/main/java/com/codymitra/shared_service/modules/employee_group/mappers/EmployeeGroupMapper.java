@@ -10,8 +10,7 @@ public final class EmployeeGroupMapper {
         return new EmployeeGroupDTO(
                 entity.getId(),
                 entity.getName(),
-                entity.getCode(),
-                entity.getDescription(),
+                entity.getAlias(),
                 entity.getActive()
         );
     }
@@ -35,8 +34,7 @@ public final class EmployeeGroupMapper {
 
     private static EmployeeGroupEntity applyRequest(EmployeeGroupEntity entity, CreateEmployeeGroupRequest request) {
         entity.setName(request.name());
-        entity.setCode(resolveCode(request.code(), request.name()));
-        entity.setDescription(request.description());
+        entity.setAlias(resolveCode(request.code(), request.name()));
         return entity;
     }
 }

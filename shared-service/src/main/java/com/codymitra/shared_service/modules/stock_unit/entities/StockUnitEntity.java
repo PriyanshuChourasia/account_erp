@@ -1,7 +1,7 @@
 package com.codymitra.shared_service.modules.stock_unit.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
-import com.codymitra.shared_service.modules.stock_unit.enums.StockUnitTypeEnum;
+import com.codymitra.shared_service.enums.UnitTypeEnum;
 import com.codymitra.shared_service.modules.unique_quantity_code.entities.UniqueQuantityCodeEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,7 +38,7 @@ public class StockUnitEntity extends BaseEntity {
     @Comment("Compound will have two level of units either multiply or divide")
     @Column(name = "unit_type")
     @Enumerated(EnumType.STRING)
-    private StockUnitTypeEnum unitType;
+    private UnitTypeEnum unitType;
 
     @OneToOne
     @JoinColumn(name = "unique_quantity_code_id")

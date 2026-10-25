@@ -1,0 +1,5 @@
+[
+  { "unitType": "SIMPLE", "name": "Hours",  "symbol": "Hr",  "description": "Work measured in hours",  "active": true },
+  { "unitType": "SIMPLE", "name": "Days",   "symbol": "Day", "description": "Work measured in days",   "active": true },
+  { "unitType": "SIMPLE", "name": "Pieces", "symbol": "Pcs", "description": "Work measured per piece", "active": true }
+]

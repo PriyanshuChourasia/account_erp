@@ -1,6 +1,7 @@
 package com.codymitra.shared_service.modules.employee.entities;
 
 import com.codymitra.shared_service.entities.BaseEntity;
+import com.codymitra.shared_service.modules.blood_group.entities.BloodGroupEntity;
 import com.codymitra.shared_service.modules.company.entities.CompanyEntity;
 import com.codymitra.shared_service.modules.department.entities.DepartmentEntity;
 import com.codymitra.shared_service.modules.designation.entities.DesignationEntity;
@@ -40,6 +41,9 @@ public class EmployeeEntity extends BaseEntity implements Userable {
     @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "company_mail",unique = true)
+    private String companyMail;
+
     @Column(name = "contact_no")
     private String contactNo;
 
@@ -53,8 +57,9 @@ public class EmployeeEntity extends BaseEntity implements Userable {
     @Column(name = "gender")
     private GenderEnum gender;
 
-    @Column(name = "blood_group")
-    private String bloodGroup;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "blood_group_id")
+    private BloodGroupEntity bloodGroup;
 
     @Column(name = "date_of_joining")
     private LocalDate dateOfJoining;

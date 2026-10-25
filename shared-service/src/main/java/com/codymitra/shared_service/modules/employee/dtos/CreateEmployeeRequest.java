@@ -22,6 +22,9 @@ public record CreateEmployeeRequest(
         @Email(message = "Invalid email")
         String email,
 
+        @Email(message = "Invalid email")
+        String companyMail,
+
         String contactNo,
 
         String altContactNo,

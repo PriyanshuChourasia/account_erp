@@ -9,7 +9,6 @@ public record EmployeeGroupDTO(
         UUID id,
         String name,
         String code,
-        String description,
         Boolean active
 ) {
 }
