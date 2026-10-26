@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Male",
+    "code": "M",
+    "status": true
+  },
+  {
+    "name": "Female",
+    "code": "F",
+    "status": true
+  },
+  {
+    "name": "Other",
+    "code": "OTH",
+    "status": true
+  }
+]

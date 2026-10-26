@@ -8,7 +8,6 @@ import java.util.UUID;
 public record EmployeeGroupDTO(
         UUID id,
         String name,
-        String code,
         Boolean active
 ) {
 }

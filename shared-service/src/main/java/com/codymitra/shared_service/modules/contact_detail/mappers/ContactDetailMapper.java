@@ -12,9 +12,6 @@ public final class ContactDetailMapper {
                 entity.getId(),
                 entity.getEmployee() != null ? entity.getEmployee().getId() : null,
                 entity.getEmployee() != null ? entity.getEmployee().getEmployeeCode() : null,
-                entity.getMobile(),
-                entity.getAltMobile(),
-                entity.getEmail(),
                 entity.getPersonalEmail(),
                 entity.getAddress(),
                 entity.getEmergencyContactName(),
@@ -39,9 +36,6 @@ public final class ContactDetailMapper {
 
     private static ContactDetailEntity applyRequest(ContactDetailEntity entity, CreateContactDetailRequest request, EmployeeEntity employee) {
         entity.setEmployee(employee);
-        entity.setMobile(resolveOptional(request.mobile()));
-        entity.setAltMobile(resolveOptional(request.altMobile()));
-        entity.setEmail(resolveOptional(request.email()));
         entity.setPersonalEmail(resolveOptional(request.personalEmail()));
         entity.setAddress(resolveOptional(request.address()));
         entity.setEmergencyContactName(resolveOptional(request.emergencyContactName()));

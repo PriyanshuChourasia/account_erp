@@ -12,13 +12,13 @@ public final class GenderMapper {
                 entity.getName(),
                 entity.getCode(),
                 entity.getDescription(),
-                entity.getActive()
+                entity.getStatus()
         );
     }
 
     public static GenderEntity genderEntity(CreateGenderRequest request) {
         GenderEntity entity = applyRequest(new GenderEntity(), request);
-        entity.setActive(true);
+        entity.setStatus(true);
         return entity;
     }
 

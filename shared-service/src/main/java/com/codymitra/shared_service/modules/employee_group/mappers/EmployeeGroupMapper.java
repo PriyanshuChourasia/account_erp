@@ -10,7 +10,6 @@ public final class EmployeeGroupMapper {
         return new EmployeeGroupDTO(
                 entity.getId(),
                 entity.getName(),
-                entity.getAlias(),
                 entity.getActive()
         );
     }
@@ -25,16 +24,13 @@ public final class EmployeeGroupMapper {
         return applyRequest(entity, request);
     }
 
-    public static String resolveCode(String code, String name) {
-        if (code != null && !code.isBlank()) {
-            return code.trim().toUpperCase();
-        }
+    public static String resolveCode( String name) {
         return name.trim().replaceAll("[\\s-]+", "_").toUpperCase();
     }
 
     private static EmployeeGroupEntity applyRequest(EmployeeGroupEntity entity, CreateEmployeeGroupRequest request) {
         entity.setName(request.name());
-        entity.setAlias(resolveCode(request.code(), request.name()));
+        entity.setAlias(resolveCode(request.name()));
         return entity;
     }
 }

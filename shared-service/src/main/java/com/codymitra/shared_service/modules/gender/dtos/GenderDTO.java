@@ -10,6 +10,6 @@ public record GenderDTO(
         String name,
         String code,
         String description,
-        Boolean active
+        Boolean status
 ) {
 }

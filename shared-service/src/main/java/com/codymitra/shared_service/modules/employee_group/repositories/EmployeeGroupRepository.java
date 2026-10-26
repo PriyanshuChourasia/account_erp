@@ -11,9 +11,5 @@ public interface EmployeeGroupRepository extends JpaRepository<EmployeeGroupEnti
 
     Boolean existsByName(String name);
 
-    Boolean existsByCode(String code);
-
     Boolean existsByNameAndIdNot(String name, UUID id);
-
-    Boolean existsByCodeAndIdNot(String code, UUID id);
 }

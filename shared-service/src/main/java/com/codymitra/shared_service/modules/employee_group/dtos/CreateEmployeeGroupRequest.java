@@ -6,8 +6,6 @@ public record CreateEmployeeGroupRequest(
         @NotBlank(message = "Name is required")
         String name,
 
-        String code,
-
         String description
 ) {
 }

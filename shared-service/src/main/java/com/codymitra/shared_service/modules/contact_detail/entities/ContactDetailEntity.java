@@ -20,17 +20,20 @@ public class ContactDetailEntity extends BaseEntity {
     @JoinColumn(name = "employee_id", nullable = false)
     private EmployeeEntity employee;
 
-    @Column(name = "mobile")
-    private String mobile;
+    @Column(name = "contact_no",nullable = false,unique = true)
+    private String contactNo;
 
-    @Column(name = "alt_mobile")
-    private String altMobile;
+    @Column(name = "alt_contact_no")
+    private String altContactNo;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "company_email")
+    private String companyEmail;
 
     @Column(name = "personal_email")
     private String personalEmail;
+
+    @Column(name = "telephone_no")
+    private String telephoneNo;
 
     @Column(name = "address")
     private String address;

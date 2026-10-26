@@ -24,6 +24,6 @@ public class GenderEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "status")
+    private Boolean status;
 }

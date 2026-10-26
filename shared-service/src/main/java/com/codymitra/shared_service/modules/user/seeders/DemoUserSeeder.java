@@ -45,6 +45,11 @@ public class DemoUserSeeder implements Seeder {
     }
 
     @Override
+    public boolean runOnStartup(){
+        return false;
+    }
+
+    @Override
     public void seed() {
         seedDataReader.readList(DATA_FILE, DemoUser.class).stream()
                 .filter(demoUser -> !userRepository.existsByEmail(demoUser.email()))

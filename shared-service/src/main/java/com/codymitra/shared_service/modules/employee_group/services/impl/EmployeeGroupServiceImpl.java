@@ -38,7 +38,7 @@ public class EmployeeGroupServiceImpl implements EmployeeGroupService {
     @Override
     @Transactional
     public EmployeeGroupDTO create(CreateEmployeeGroupRequest request) {
-        validateUnique(request.name(), EmployeeGroupMapper.resolveCode(request.code(), request.name()), null);
+        validateUnique(request.name(), EmployeeGroupMapper.resolveCode(request.name()), null);
         return EmployeeGroupMapper.employeeGroupDTO(employeeGroupRepository.save(EmployeeGroupMapper.employeeGroupEntity(request)));
     }
 
@@ -46,7 +46,7 @@ public class EmployeeGroupServiceImpl implements EmployeeGroupService {
     @Transactional
     public EmployeeGroupDTO update(UUID id, CreateEmployeeGroupRequest request) {
         EmployeeGroupEntity entity = findById(id);
-        validateUnique(request.name(), EmployeeGroupMapper.resolveCode(request.code(), request.name()), id);
+        validateUnique(request.name(), EmployeeGroupMapper.resolveCode(request.name()), id);
         return EmployeeGroupMapper.employeeGroupDTO(employeeGroupRepository.save(EmployeeGroupMapper.employeeGroupEntity(entity, request)));
     }
 
@@ -68,17 +68,11 @@ public class EmployeeGroupServiceImpl implements EmployeeGroupService {
             if (employeeGroupRepository.existsByName(name)) {
                 throw new DataAlreadyExistsException("Employee group already exists with this name");
             }
-            if (employeeGroupRepository.existsByCode(code)) {
-                throw new DataAlreadyExistsException("Employee group already exists with this code");
-            }
             return;
         }
 
         if (employeeGroupRepository.existsByNameAndIdNot(name, id)) {
             throw new DataAlreadyExistsException("Employee group already exists with this name");
-        }
-        if (employeeGroupRepository.existsByCodeAndIdNot(code, id)) {
-            throw new DataAlreadyExistsException("Employee group already exists with this code");
         }
     }
 }

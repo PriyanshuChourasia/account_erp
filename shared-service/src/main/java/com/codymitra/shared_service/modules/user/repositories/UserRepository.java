@@ -19,6 +19,4 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     Boolean existsByContactNo(Long contactNo);
 
     Boolean existsByCode(String code);
-
-    Boolean existsByLicenseNo(String licenseNo);
 }

@@ -15,7 +15,6 @@ public final class UserMapper {
                 entity.getEmail(),
                 entity.getContactNo(),
                 entity.getAltContactNo(),
-                entity.getLicenseNo(),
                 entity.getTelePhoneNo(),
                 entity.getFaxNo(),
                 entity.getWebsite(),
@@ -31,7 +30,6 @@ public final class UserMapper {
         entity.setEmail(dto.email());
         entity.setContactNo(dto.contactNo());
         entity.setAltContactNo(dto.altContactNo());
-        entity.setLicenseNo(dto.licenseNo());
         entity.setTelePhoneNo(dto.telePhoneNo());
         entity.setFaxNo(dto.faxNo());
         entity.setWebsite(dto.website());
@@ -46,7 +44,6 @@ public final class UserMapper {
         if (dto.email() != null) entity.setEmail(dto.email());
         if (dto.contactNo() != null) entity.setContactNo(dto.contactNo());
         if (dto.altContactNo() != null) entity.setAltContactNo(dto.altContactNo());
-        if (dto.licenseNo() != null) entity.setLicenseNo(dto.licenseNo());
         if (dto.telePhoneNo() != null) entity.setTelePhoneNo(dto.telePhoneNo());
         if (dto.faxNo() != null) entity.setFaxNo(dto.faxNo());
         if (dto.website() != null) entity.setWebsite(dto.website());
