@@ -8,13 +8,13 @@ import java.util.UUID;
 public record CreateStockUnitRequestDTO(
         @NotBlank(message = "Name is required")
         String name,
+        String symbol,
         String alias,
-        String description,
-        String code,
         String unitType,
         UUID uqcId,
         UUID primaryUnitId,
         UUID secondaryUnitId,
         BigDecimal conversionFactor,
-        Integer decimalPlaces
+        Integer decimalPlaces,
+        Boolean active
 ) {}

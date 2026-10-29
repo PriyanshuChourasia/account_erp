@@ -15,15 +15,15 @@ public final class StockUnitMapper {
         return new StockUnitDTO(
                 unit.getId(),
                 unit.getName(),
-                unit.getCode(),
+                unit.getSymbol(),
                 unit.getAlias(),
-                unit.getDescription(),
                 unit.getUnitType(),
                 unit.getUqc() != null ? UniqueQuantityCodeMapper.uqcDTO(unit.getUqc()) : null,
                 baseStockUnitDTO(baseUnit1),
                 baseStockUnitDTO(baseUnit2),
                 unit.getConversionFactor(),
-                unit.getDecimalPlaces()
+                unit.getDecimalPlaces(),
+                unit.getActive()
         );
     }
 
@@ -38,16 +38,15 @@ public final class StockUnitMapper {
 
     private static StockUnitEntity applyRequest(StockUnitEntity unit, CreateStockUnitRequestDTO unitRequest, UniqueQuantityCodeEntity uqc) {
         unit.setName(unitRequest.name());
-        String codeName = unitRequest.name().replace(" ", "_");
-        unit.setCode(codeName.toUpperCase());
+        unit.setSymbol(unitRequest.symbol());
         unit.setAlias(unitRequest.alias());
-        unit.setDescription(unitRequest.description());
         unit.setUnitType(unitRequest.unitType() != null ? UnitTypeEnum.valueOf(unitRequest.unitType()) : null);
         unit.setUqc(uqc);
         unit.setPrimaryUnitId(unitRequest.primaryUnitId());
         unit.setSecondaryUnitId(unitRequest.secondaryUnitId());
         unit.setConversionFactor(unitRequest.conversionFactor());
         unit.setDecimalPlaces(unitRequest.decimalPlaces());
+        unit.setActive(unitRequest.active() != null ? unitRequest.active() : Boolean.TRUE);
         return unit;
     }
 
@@ -55,12 +54,12 @@ public final class StockUnitMapper {
         return new BaseStockUnitDTO(
                 unit.getId(),
                 unit.getName(),
-                unit.getCode(),
+                unit.getSymbol(),
                 unit.getAlias(),
-                unit.getDescription(),
                 unit.getUnitType(),
                 unit.getConversionFactor(),
-                unit.getDecimalPlaces()
+                unit.getDecimalPlaces(),
+                unit.getActive()
         );
     }
 }

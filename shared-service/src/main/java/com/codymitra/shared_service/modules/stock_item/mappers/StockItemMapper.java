@@ -15,7 +15,7 @@ public final class StockItemMapper {
                 stockItemEntity.getName(),
                 stockItemEntity.getCode(),
                 stockItemEntity.getAlias(),
-                stockItemEntity.getDescription(),
+                stockItemEntity.getParentId(),
                 stockItemEntity.getStockItemType(),
                 stockItemEntity.getStockGroup() != null ? stockItemEntity.getStockGroup().getId() : null,
                 stockItemEntity.getStockCategory() != null ? stockItemEntity.getStockCategory().getId() : null,
@@ -53,7 +53,7 @@ public final class StockItemMapper {
         stockItem.setName(createStockItemDTO.name());
         stockItem.setCode(createStockItemDTO.code());
         stockItem.setAlias(createStockItemDTO.alias());
-        stockItem.setDescription(createStockItemDTO.description());
+        stockItem.setParentId(createStockItemDTO.parentId());
         stockItem.setStockItemType(createStockItemDTO.stockItemType());
         stockItem.setStockGroup(stockGroup);
         stockItem.setStockCategory(stockCategory);

@@ -12,4 +12,8 @@ public interface StockUnitRepository extends JpaRepository<StockUnitEntity, UUID
     Boolean existsByName(String name);
 
     Boolean existsByNameAndIdNot(String name, UUID id);
+
+    Boolean existsBySymbol(String symbol);
+
+    Boolean existsBySymbolAndIdNot(String symbol, UUID id);
 }

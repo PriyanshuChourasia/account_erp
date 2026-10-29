@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface StockItemRepository extends JpaRepository<StockItemEntity, UUID> {
 
     Boolean existsByName(String name);
+
+    Boolean existsByCode(String code);
 }

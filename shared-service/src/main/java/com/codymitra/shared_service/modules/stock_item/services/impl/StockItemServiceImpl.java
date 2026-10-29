@@ -48,6 +48,9 @@ public class StockItemServiceImpl implements StockItemService {
         if(stockItemRepository.existsByName(createStockItemDTO.name())){
             throw new DataAlreadyExistsException("Stock Item already exists");
         }
+        if(createStockItemDTO.code() != null && stockItemRepository.existsByCode(createStockItemDTO.code())){
+            throw new DataAlreadyExistsException("Stock Item code already exists");
+        }
         StockGroupEntity stockGroup = null;
         if(createStockItemDTO.stockGroupId() != null){
             stockGroup = stockGroupService.getById(createStockItemDTO.stockGroupId());

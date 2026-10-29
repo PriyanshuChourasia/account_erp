@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 public record BaseStockUnitDTO(
         UUID id,
         String name,
-        String code,
+        String symbol,
         String alias,
-        String description,
         UnitTypeEnum unitType,
         BigDecimal conversionFactor,
-        Integer decimalPlaces
+        Integer decimalPlaces,
+        Boolean active
 ) {}

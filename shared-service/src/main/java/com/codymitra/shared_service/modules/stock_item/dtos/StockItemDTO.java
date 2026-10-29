@@ -13,7 +13,7 @@ public record StockItemDTO(
         String name,
         String code,
         String alias,
-        String description,
+        String parentId,
         StockItemTypeEnum stockItemType,
         UUID stockGroupId,
         UUID stockCategoryId,

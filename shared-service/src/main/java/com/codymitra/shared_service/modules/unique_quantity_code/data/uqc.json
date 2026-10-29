@@ -1,0 +1,188 @@
+[
+  {
+    "name": "Millimetres",
+    "code": "MMT",
+    "alias": "Mm",
+    "description": "Unit used for measuring small lengths."
+  },
+  {
+    "name": "Kilometres",
+    "code": "KMT",
+    "alias": "Km",
+    "description": "Unit used for measuring long distances."
+  },
+  {
+    "name": "Square Feet",
+    "code": "SQF",
+    "alias": "Sq ft",
+    "description": "Unit used for measuring floor and surface areas."
+  },
+  {
+    "name": "Square Inches",
+    "code": "SQI",
+    "alias": "Sq in",
+    "description": "Unit used for measuring small surface areas."
+  },
+  {
+    "name": "Cubic Feet",
+    "code": "CFT",
+    "alias": "Cu ft",
+    "description": "Unit used for measuring volume."
+  },
+  {
+    "name": "Cubic Centimetres",
+    "code": "CCM",
+    "alias": "Cc",
+    "description": "Unit used for measuring small volumes."
+  },
+  {
+    "name": "Milligrams",
+    "code": "MGM",
+    "alias": "Mg",
+    "description": "Unit used for measuring small weights."
+  },
+  {
+    "name": "Quintals",
+    "code": "QTL",
+    "alias": "Quintal",
+    "description": "Unit used for measuring bulk quantities by weight."
+  },
+  {
+    "name": "Metric Tonnes",
+    "code": "TNE",
+    "alias": "MT",
+    "description": "Unit used for measuring large quantities by weight."
+  },
+  {
+    "name": "Days",
+    "code": "DAY",
+    "alias": "Day",
+    "description": "Unit used for counting days."
+  },
+  {
+    "name": "Hours",
+    "code": "HUR",
+    "alias": "Hr",
+    "description": "Unit used for measuring time in hours."
+  },
+  {
+    "name": "Minutes",
+    "code": "MIN",
+    "alias": "Min",
+    "description": "Unit used for measuring time in minutes."
+  },
+  {
+    "name": "Weeks",
+    "code": "WEE",
+    "alias": "Week",
+    "description": "Unit used for counting weeks."
+  },
+  {
+    "name": "Months",
+    "code": "MON",
+    "alias": "Month",
+    "description": "Unit used for counting months."
+  },
+  {
+    "name": "Years",
+    "code": "ANN",
+    "alias": "Year",
+    "description": "Unit used for counting years."
+  },
+  {
+    "name": "Pairs of Shoes",
+    "code": "PAI",
+    "alias": "Pair",
+    "description": "Unit used for counting pairs of footwear or similar products."
+  },
+  {
+    "name": "Bundles",
+    "code": "BDL",
+    "alias": "Bundle",
+    "description": "Unit used for counting bundled materials."
+  },
+  {
+    "name": "Rolls",
+    "code": "ROL",
+    "alias": "Roll",
+    "description": "Unit used for counting rolled materials."
+  },
+  {
+    "name": "Sheets",
+    "code": "SHT",
+    "alias": "Sheet",
+    "description": "Unit used for counting individual sheets."
+  },
+  {
+    "name": "Plates",
+    "code": "PLA",
+    "alias": "Plate",
+    "description": "Unit used for counting plates or flat material pieces."
+  },
+  {
+    "name": "Drums",
+    "code": "DRM",
+    "alias": "Drum",
+    "description": "Unit used for counting goods supplied in drums."
+  },
+  {
+    "name": "Cans",
+    "code": "CAN",
+    "alias": "Can",
+    "description": "Unit used for counting goods supplied in cans."
+  },
+  {
+    "name": "Jars",
+    "code": "JAR",
+    "alias": "Jar",
+    "description": "Unit used for counting goods supplied in jars."
+  },
+  {
+    "name": "Trays",
+    "code": "TRY",
+    "alias": "Tray",
+    "description": "Unit used for counting goods supplied in trays."
+  },
+  {
+    "name": "Pallets",
+    "code": "PAL",
+    "alias": "Pallet",
+    "description": "Unit used for counting palletized goods."
+  },
+  {
+    "name": "Containers",
+    "code": "CON",
+    "alias": "Container",
+    "description": "Unit used for counting goods supplied in containers."
+  },
+  {
+    "name": "Pairs of Gloves",
+    "code": "PRG",
+    "alias": "Pair",
+    "description": "Unit used for counting pairs of gloves."
+  },
+  {
+    "name": "Vials",
+    "code": "VIA",
+    "alias": "Vial",
+    "description": "Unit used for counting small bottles of liquid."
+  },
+  {
+    "name": "Ampoules",
+    "code": "AMP",
+    "alias": "Ampoule",
+    "description": "Unit used for counting sealed medicinal containers."
+  },
+  {
+    "name": "Tablets",
+    "code": "TBS",
+    "alias": "Tablet",
+    "description": "Unit used for counting tablets."
+  },
+  {
+    "name": "Capsules",
+    "code": "CAP",
+    "alias": "Capsule",
+    "description": "Unit used for counting capsules."
+  }
+]

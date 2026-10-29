@@ -54,6 +54,10 @@ public class StockUnitServiceImpl implements StockUnitService {
             throw new DataAlreadyExistsException("Unit already exists");
         }
 
+        if (createStockUnitRequestDTO.symbol() != null && stockUnitRepository.existsBySymbol(createStockUnitRequestDTO.symbol())) {
+            throw new DataAlreadyExistsException("Unit symbol already exists");
+        }
+
         UniqueQuantityCodeEntity uqc = resolveUqc(createStockUnitRequestDTO.uqcId());
         StockUnitEntity unitEntity = StockUnitMapper.stockUnitEntity(createStockUnitRequestDTO, uqc);
         StockUnitEntity createUnit = stockUnitRepository.save(unitEntity);
@@ -71,6 +75,10 @@ public class StockUnitServiceImpl implements StockUnitService {
 
         if (stockUnitRepository.existsByNameAndIdNot(createStockUnitRequestDTO.name(), id)) {
             throw new DataAlreadyExistsException("Unit already exists");
+        }
+
+        if (createStockUnitRequestDTO.symbol() != null && stockUnitRepository.existsBySymbolAndIdNot(createStockUnitRequestDTO.symbol(), id)) {
+            throw new DataAlreadyExistsException("Unit symbol already exists");
         }
 
         UniqueQuantityCodeEntity uqc = resolveUqc(createStockUnitRequestDTO.uqcId());

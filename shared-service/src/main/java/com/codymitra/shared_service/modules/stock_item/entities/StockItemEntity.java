@@ -33,8 +33,8 @@ public class StockItemEntity extends BaseEntity {
     @Column(name = "alias")
     private String alias;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "parent_id")
+    private String parentId;
 
     @Column(name = "stock_item_type")
     private StockItemTypeEnum stockItemType;

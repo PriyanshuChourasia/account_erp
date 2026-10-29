@@ -25,14 +25,11 @@ public class StockUnitEntity extends BaseEntity {
     @Column(name = "name",unique = true,nullable = false)
     private String name;
 
-    @Column(name = "code",unique = true)
-    private String code;
+    @Column(name = "symbol",unique = true)
+    private String symbol;
 
     @Column(name = "alias")
     private String alias;
-
-    @Column(name = "description")
-    private String description;
 
     ///  simple and compound
     @Comment("Compound will have two level of units either multiply or divide")

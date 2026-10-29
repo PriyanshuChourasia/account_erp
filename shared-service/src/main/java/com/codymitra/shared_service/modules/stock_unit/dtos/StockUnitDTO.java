@@ -12,14 +12,14 @@ import java.math.BigDecimal;
 public record StockUnitDTO(
         UUID id,
         String name,
-        String code,
+        String symbol,
         String alias,
-        String description,
         UnitTypeEnum unitType,
         UniqueQuantityCodeDTO uqc,
         BaseStockUnitDTO primaryUnitId,
         BaseStockUnitDTO secondaryUnitId,
         BigDecimal conversionFactor,
-        Integer decimalPlaces
+        Integer decimalPlaces,
+        Boolean active
 ) {
 }
