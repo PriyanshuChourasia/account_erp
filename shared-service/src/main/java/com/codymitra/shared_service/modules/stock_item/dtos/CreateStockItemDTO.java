@@ -19,6 +19,7 @@ public record CreateStockItemDTO(
         UUID stockCategoryId,
         @NotNull(message = "Unit is required")
         UUID unitId,
+        @NotNull(message = "Alternate unit is required")
         UUID altUnitId,
         Double gstRate,
         Double purchasePrice,

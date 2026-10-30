@@ -11,40 +11,23 @@ public final class StockGroupMapper {
         return new StockGroupDTO(
                 stockGroup.getId(),
                 stockGroup.getName(),
-                stockGroup.getCode(),
                 stockGroup.getAlias(),
+                stockGroup.getParentId(),
                 stockGroup.getDescription(),
-                stockGroup.getActive(),
                 stockGroup.getShouldAddQuantities(),
-                stockGroup.getSetAlterGstDetails()
+                stockGroup.getSetAlterGstDetails(),
+                stockGroup.getActive()
         );
     }
 
     public static StockGroupEntity stockGroupEntity(CreateStockRequest stockRequest){
         StockGroupEntity stockGroup = new StockGroupEntity();
         stockGroup.setName(stockRequest.name());
-        stockGroup.setCode(stockRequest.code().toUpperCase());
         stockGroup.setAlias(stockRequest.alias());
+        stockGroup.setParentId(stockRequest.parentId());
         stockGroup.setDescription(stockRequest.description());
-        if(stockRequest.parentId() != null){
-            stockGroup.setParentId(stockRequest.parentId());
-        }
-        else{
-            stockGroup.setParentId(null);
-        }
-        if(stockRequest.shouldAddQuantities() == null){
-            stockGroup.setShouldAddQuantities(false);
-        }
-        else{
-            stockGroup.setShouldAddQuantities(stockRequest.shouldAddQuantities());
-        }
-
-        if(stockRequest.setAlterGstDetail() == null){
-            stockGroup.setSetAlterGstDetails(false);
-        }
-        else{
-            stockGroup.setSetAlterGstDetails(stockRequest.setAlterGstDetail());
-        }
+        stockGroup.setShouldAddQuantities(Boolean.TRUE.equals(stockRequest.shouldAddQuantities()));
+        stockGroup.setSetAlterGstDetails(Boolean.TRUE.equals(stockRequest.setAlterGstDetails()));
         stockGroup.setActive(true);
         return stockGroup;
     }

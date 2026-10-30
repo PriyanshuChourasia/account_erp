@@ -21,10 +21,11 @@ public class StockGroupServiceImpl implements StockGroupService {
 
     private final StockGroupRepository stockGroupRepository;
 
-//    @Override
-//    public List<StockGroupDTO> getAllStockGroup(){
-//
-//    }
+    @Override
+    public List<StockGroupDTO> getAllStockGroup(){
+        List<StockGroupEntity> groupEntities = stockGroupRepository.findAll();
+        return groupEntities.stream().map(StockGroupMapper::stockDTO).toList();
+    }
 
 
     @Override
@@ -32,6 +33,9 @@ public class StockGroupServiceImpl implements StockGroupService {
 
         if(stockGroupRepository.existsByName(createStockRequest.name())){
             throw new DataAlreadyExistsException("Stock Group Already exists with this name");
+        }
+        if(createStockRequest.parentId() != null){
+            getById(createStockRequest.parentId());
         }
         StockGroupEntity group = StockGroupMapper.stockGroupEntity(createStockRequest);
         StockGroupEntity createGroup = stockGroupRepository.save(group);

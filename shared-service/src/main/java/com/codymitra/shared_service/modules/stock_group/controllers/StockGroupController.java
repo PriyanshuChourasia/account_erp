@@ -9,11 +9,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,6 +20,14 @@ import java.util.Map;
 public class StockGroupController {
 
     private final StockGroupService stockGroupService;
+
+
+    @GetMapping("")
+    public ResponseEntity<Map<String,Object>> getAllStockGroup(){
+        List<StockGroupDTO> stockGroupDTOS = stockGroupService.getAllStockGroup();
+        String message = stockGroupDTOS.size() + " groups fetched";
+        return ResponseHandler.generateResponse(stockGroupDTOS,message,HttpStatus.OK);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<Map<String,Object>> createStockGroup(@Valid @RequestBody CreateStockRequest createStockRequest){

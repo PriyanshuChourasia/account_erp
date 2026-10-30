@@ -29,7 +29,7 @@ public class UQCSeeder implements Seeder {
 
     @Override
     public boolean runOnStartup(){
-        return true;
+        return false;
     }
 
 

@@ -9,9 +9,13 @@ import java.util.UUID;
 
 public interface StockGroupService {
 
-//    List<StockGroupDTO> getAllStockGroup();
+    List<StockGroupDTO> getAllStockGroup();
 
     StockGroupDTO create(CreateStockRequest createStockRequest);
+
+//    StockGroupDTO update(UUID id, CreateStockRequest createStockRequest);
+
+//    void delete(UUID id);
 
     StockGroupEntity getById(UUID id);
 }

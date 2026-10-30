@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public record StockGroupDTO(
         UUID id,
         String name,
-        String code,
         String alias,
+        UUID parentId,
         String description,
-        Boolean isActive,
         Boolean shouldAddQuantities,
-        Boolean setAlterGstDetail
+        Boolean setAlterGstDetails,
+        Boolean active
 ) {}

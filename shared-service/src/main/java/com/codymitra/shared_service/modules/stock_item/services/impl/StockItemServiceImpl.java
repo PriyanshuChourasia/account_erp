@@ -60,10 +60,7 @@ public class StockItemServiceImpl implements StockItemService {
             stockCategory = stockCategoryService.getById(createStockItemDTO.stockCategoryId());
         }
         StockUnitEntity unit = stockUnitService.getEntityById(createStockItemDTO.unitId());
-        StockUnitEntity altUnit = null;
-        if(createStockItemDTO.altUnitId() != null){
-            altUnit = stockUnitService.getEntityById(createStockItemDTO.altUnitId());
-        }
+        StockUnitEntity altUnit = stockUnitService.getEntityById(createStockItemDTO.altUnitId());
         StockItemEntity stockItemEntity = StockItemMapper.stockItemEntity(createStockItemDTO, stockGroup, stockCategory, unit, altUnit);
         stockItemRepository.save(stockItemEntity);
         return "Stock Item created successfully";

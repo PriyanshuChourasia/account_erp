@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface StockGroupRepository extends JpaRepository<StockGroupEntity, UUID> {
 
     Boolean existsByName(String name);
-
-    Boolean existsByCode(String code);
 }

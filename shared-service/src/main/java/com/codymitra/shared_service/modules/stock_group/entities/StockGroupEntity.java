@@ -22,9 +22,6 @@ public class StockGroupEntity extends BaseEntity {
     @Column(name = "name",unique = true)
     private String name;
 
-    @Column(name = "code",unique = true)
-    private String code;
-
     @Column(name = "alias")
     private String alias;
 
